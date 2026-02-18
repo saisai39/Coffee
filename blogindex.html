@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ - コーヒーサイト</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+body {
+    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+    background-color: #fefcf7;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #c7b198;
+    padding: 30px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2em;
+}
+
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.section-card {
+    background-color: #e7d9ce;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* ここで中央揃え */
+}
+
+.article-list li {
+    margin: 15px 0;
+}
+
+.article-list li a {
+    display: inline-block; /* 中央揃え用 */
+    padding: 15px 25px;
+    background-color: #f4ece1;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.article-list li a:hover {
+    background-color: #e0d3b8;
+    transform: translateY(-2px);
+}
+
+.top-link {
+    display: inline-block;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    background-color: #c7b198;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    transition: background 0.2s;
+    display: block;
+    width: fit-content;
+}
+
+.top-link:hover {
+    background-color: #b09b7f;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #c7b198;
+    color: #fff;
+    margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1><a href="../index.html">コーヒーサイト</a></h1>
+</header>
+
+<main>
+    <section class="section-card">
+        <h1>ブログ</h1>
+        <p>コーヒー好きが自由に語る場所です。記事は順次追加予定です。あなたも読んで、語って、コーヒーの楽しみを広げましょう。また、このブログを書きたい方募集してます！</p>
+    </section>
+
+    <section class="section-card">
+        <h2>記事一覧</h2>
+        <ul class="article-list">
+            <li><a href="article1.html">記事タイトル1（仮）</a></li>
+            <li><a href="article2.html">記事タイトル2（仮）</a></li>
+            <li><a href="article3.html">記事タイトル3（仮）</a></li>
+        </ul>
+    </section>
+
+    <a href="../index.html" class="top-link">トップページに戻る</a>
+</main>
+
+<footer>
+    &copy; 2026 CoffeeSite
+</footer>
+
+</body>
+</html>
