@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>初心者の方へ</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic Pro", sans-serif;
+      background-color: #fefcf7;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #c7b198;
+      padding: 30px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 2em;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .step-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .step-card {
+      background-color: #e7d9ce;
+      border-radius: 10px;
+      padding: 20px;
+      width: 220px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background 0.2s;
+      text-align: center;
+    }
+
+    .step-card a {
+      display: block;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    .step-card:hover {
+      background-color: #d6c4b2;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #c7b198;
+      color: #fff;
+      margin-top: 40px;
+    }
+
+    .top-link {
+      display: inline-block;
+      margin: 30px auto 0;
+      padding: 10px 20px;
+      background-color: #e7d9ce;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+      transition: background 0.2s;
+      display: block;
+      width: fit-content;
+    }
+
+    .top-link:hover {
+      background-color: #d6c4b2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">コーヒーサイト</a></h1>
+    <p>コーヒー初心者の方のためのステップガイド</p>
+  </header>
+
+  <main>
+    <h2>初心者向けステップ一覧</h2>
+    <div class="step-list">
+      <div class="step-card">
+        <a href="step1.html">迷わなくていい</a>
+        <p>まずは基本の道具や種類を知って、どれを選べばいいか迷わないようにします。</p>
+      </div>
+      <div class="step-card">
+        <a href="step2.html">これだけ揃えればいい</a>
+        <p>必要最小限の道具や材料を揃えて、今日からすぐにコーヒーを楽しめる準備を整えます。</p>
+      </div>
+      <div class="step-card">
+        <a href="step3.html">この淹れ方でいい</a>
+        <p>簡単で失敗しにくい淹れ方を紹介。味の基本を学びます。</p>
+      </div>
+      <div class="step-card">
+        <a href="step4.html">よくある迷い</a>
+        <p>豆の種類や挽き方、淹れ方で迷うポイントとその解決策をまとめました。</p>
+      </div>
+      <div class="step-card">
+        <a href="step5.html">もっと知りたい人へ</a>
+        <p>ここまで来たらさらに深く学びたい方向けに、知識や応用テクニックを紹介します。</p>
+      </div>
+    </div>
+
+    <!-- トップに戻るリンク -->
+    <a href="../index.html" class="top-link">トップページに戻る</a>
+  </main>
+
+  <footer>
+    &copy; 2026 CoffeeSite
+  </footer>
+</body>
+</html>
