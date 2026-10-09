@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -29,19 +28,43 @@ body {
 }
 
 header {
-    padding: 24px 20px;
-    background: var(--beige);
-    text-align: center;
+    padding: 0;
+    background: #fffdfb;
+    border-top: 5px solid #42291f;
+    border-bottom: 1px solid #e8ddd2;
+    text-align: left;
+}
+
+.header-inner {
+    width: min(1290px, calc(100% - 48px));
+    min-height: 83px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: .02em;
 }
 
 header h1 a {
-    color: white;
+    color: #42291f;
     text-decoration: none;
+}
+
+.header-link {
+    color: #6a4938;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.header-link:hover {
+    text-decoration: underline;
 }
 
 main {
@@ -64,14 +87,31 @@ a {
     color: inherit;
 }
 
+/* Step 1 Hero */
 .hero {
-    padding: clamp(24px, 5vw, 48px);
-    margin-bottom: 52px;
-    background: var(--beige-light);
-    border-radius: 16px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 78px max(24px, calc((100% - 1030px) / 2)) 70px;
+    margin: 0 0 48px;
+    background: #42291f;
+    border-radius: 0;
+    color: #fff8f1;
 }
 
-.eyebrow,
+.eyebrow {
+    display: table;
+    width: auto;
+    max-width: 100%;
+    padding: 8px 16px;
+    margin-bottom: 22px;
+    border: 1px solid rgba(255, 248, 241, .55);
+    border-radius: 999px;
+    color: #fff8f1;
+    font-size: .9rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+}
+
 .section-number {
     color: #806447;
     font-size: .78rem;
@@ -80,22 +120,33 @@ a {
 }
 
 .hero h2 {
-    margin: 8px 0 16px;
-    font-size: clamp(1.8rem, 4vw, 2.7rem);
-    line-height: 1.4;
+    max-width: 1030px;
+    margin: 0 0 26px;
+    color: #fff8f1;
+    font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+    font-weight: 750;
+    line-height: 1.35;
 }
 
 .hero p {
-    max-width: 760px;
+    max-width: 830px;
     margin: 0;
+    color: #eadbd0;
+    font-size: 1.08rem;
+    line-height: 2;
 }
 
 .hero-note {
-    padding-top: 18px;
-    margin-top: 22px;
-    border-top: 1px solid #d9c8b6;
-    color: #655548;
-    font-size: .9rem;
+    box-sizing: border-box;
+    max-width: 1030px;
+    padding: 18px 22px;
+    margin-top: 32px;
+    border-top: 0;
+    border-left: 4px solid #d8ae8b;
+    background: rgba(255, 248, 241, .09);
+    color: #fff8f1;
+    font-size: 1rem;
+    line-height: 1.9;
 }
 
 .section {
@@ -279,6 +330,41 @@ footer {
 }
 
 @media (max-width: 700px) {
+    .header-inner {
+        width: calc(100% - 32px);
+        min-height: 70px;
+        gap: 12px;
+    }
+
+    header h1 {
+        font-size: 1.15rem;
+    }
+
+    .header-link {
+        font-size: .82rem;
+        text-align: right;
+    }
+
+    .hero {
+        padding: 48px 20px 44px;
+        margin-bottom: 36px;
+    }
+
+    .hero h2 {
+        font-size: clamp(2rem, 7vw, 2.5rem);
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        line-height: 1.9;
+    }
+
+    .hero-note {
+        padding: 15px 16px;
+        font-size: .9rem;
+    }
+
     main {
         width: calc(100% - 28px);
         padding-top: 20px;
@@ -299,8 +385,26 @@ footer {
 <body>
 
 <header>
-    <h1><a href="../index.html">コーヒーサイト</a></h1>
+    <div class="header-inner">
+        <h1><a href="../index.html">COFFEE GUIDE</a></h1>
+        <a class="header-link" href="beginner.html">初心者向けガイド一覧へ</a>
+    </div>
 </header>
+
+<section class="hero">
+    <span class="eyebrow">BEGINNER GUIDE · STEP 1</span>
+    <h2>コーヒーに使う道具</h2>
+    <p>
+        コーヒーを淹れるときに使う道具には、抽出するもの、
+        豆を挽くもの、湯の量や温度を測るものなどがあります。
+        それぞれの役割と仕組みを知ると、道具同士の違いを
+        比較しやすくなります。
+    </p>
+    <div class="hero-note">
+        ここでは一般的な道具の役割を紹介します。
+        必要な道具や適した組み合わせは、抽出方法や使用する製品によって異なります。
+    </div>
+</section>
 
 <main>
     <nav class="breadcrumb" aria-label="パンくずリスト">
@@ -310,21 +414,6 @@ footer {
         <span aria-hidden="true"> / </span>
         <span>コーヒーに使う道具</span>
     </nav>
-
-    <section class="hero">
-        <span class="eyebrow">BEGINNER / STEP 01</span>
-        <h2>コーヒーに使う道具</h2>
-        <p>
-            コーヒーを淹れるときに使う道具には、抽出するもの、
-            豆を挽くもの、湯の量や温度を測るものなどがあります。
-            それぞれの役割と仕組みを知ると、道具同士の違いを
-            比較しやすくなります。
-        </p>
-        <div class="hero-note">
-            ここでは一般的な道具の役割を紹介します。
-            必要な道具や適した組み合わせは、抽出方法や使用する製品によって異なります。
-        </div>
-    </section>
 
     <!-- 01 抽出器具 -->
     <section class="section" id="brewing">
