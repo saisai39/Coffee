@@ -1,49 +1,893 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ステップ4：よくある迷い</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-/* step1と同じCSS */
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:900px; margin:40px auto; padding:0 20px; }
-h1,h2 { text-align:center; }
-.section-card { background:#e7d9ce; padding:20px; border-radius:10px; margin-bottom:30px; box-shadow:2px 2px 5px rgba(0,0,0,0.2); }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ブラックコーヒー、カフェラテ、カプチーノなど、さまざまなコーヒーの種類と飲み方を初心者向けに解説します。">
+  <title>Step 4：コーヒーの種類・飲み方 | COFFEE GUIDE</title>
+
+  <style>
+    :root {
+      --background: #f8f5ef;
+      --surface: #fffdf8;
+      --brown: #493326;
+      --brown-light: #654b39;
+      --text: #302820;
+      --muted: #74685d;
+      --border: #e5dbce;
+      --accent: #c7a783;
+      --soft: #eee5da;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+      line-height: 1.85;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      background: var(--surface);
+      border-top: 5px solid var(--brown);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      width: min(1120px, calc(100% - 40px));
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      color: var(--brown);
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      white-space: nowrap;
+    }
+
+    .header-link {
+      color: var(--brown-light);
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .header-link:hover {
+      opacity: 0.65;
+    }
+
+    .hero {
+      background: var(--brown);
+      color: var(--surface);
+      padding: 68px 20px 64px;
+    }
+
+    .hero-inner {
+      width: min(960px, 100%);
+      margin: 0 auto;
+    }
+
+    .step-label {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 5px 15px;
+      border: 1px solid rgba(255, 253, 248, 0.5);
+      border-radius: 999px;
+      color: #f1dfca;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      color: #fff8ed;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.4;
+      letter-spacing: 0.025em;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin: 0;
+      color: #e7d9c9;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .hero-note {
+      margin-top: 28px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--accent);
+      background: rgba(255, 255, 255, 0.07);
+      color: #f3e9dc;
+      font-size: 14px;
+    }
+
+    main {
+      width: min(960px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 76px;
+    }
+
+    .intro {
+      margin-bottom: 38px;
+    }
+
+    .intro h2 {
+      margin: 0 0 12px;
+      color: var(--brown);
+      font-size: 25px;
+      line-height: 1.5;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contents {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .contents a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 700;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .contents a:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .contents a span:last-child {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    .knowledge-section {
+      margin-bottom: 24px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 4px 14px rgba(73, 51, 38, 0.035);
+      scroll-margin-top: 24px;
+    }
+
+    .section-number {
+      display: block;
+      margin-bottom: 5px;
+      color: #a88a6b;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+    }
+
+    .knowledge-section h2 {
+      margin: 0 0 15px;
+      color: var(--brown);
+      font-size: 23px;
+      line-height: 1.5;
+    }
+
+    .knowledge-section h3 {
+      margin: 24px 0 8px;
+      color: var(--brown-light);
+      font-size: 17px;
+    }
+
+    .knowledge-section p {
+      margin: 0 0 14px;
+    }
+
+    .knowledge-section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .knowledge-section ul {
+      margin: 10px 0 0;
+      padding-left: 1.4em;
+    }
+
+    .knowledge-section li {
+      margin-bottom: 8px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fcf8f1;
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: var(--soft);
+      color: var(--brown-light);
+      font-size: 14px;
+    }
+
+    .drink-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .drink-card {
+      display: grid;
+      grid-template-columns: 145px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fcf8f1;
+    }
+
+    .drink-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 145px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f2e8da;
+    }
+
+    .cup {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: 76px;
+      height: 94px;
+      overflow: visible;
+      border: 3px solid #d6c4ae;
+      border-top: 0;
+      border-radius: 4px 4px 20px 20px;
+      background: #fffdf8;
+    }
+
+    .cup::after {
+      content: "";
+      position: absolute;
+      top: 17px;
+      right: -21px;
+      width: 19px;
+      height: 35px;
+      border: 5px solid #d6c4ae;
+      border-left: 0;
+      border-radius: 0 15px 15px 0;
+    }
+
+    .coffee-layer {
+      width: 100%;
+      height: 70%;
+      border-radius: 0 0 15px 15px;
+      background: #513321;
+    }
+
+    .latte-layer {
+      height: 66%;
+      background: linear-gradient(
+        to bottom,
+        #fff5e8 0%,
+        #fff5e8 27%,
+        #bd8b5b 28%,
+        #bd8b5b 100%
+      );
+    }
+
+    .cappuccino-layer {
+      height: 72%;
+      background: linear-gradient(
+        to bottom,
+        #fff9ef 0%,
+        #fff9ef 38%,
+        #c59a70 39%,
+        #8b5937 100%
+      );
+    }
+
+    .americano-layer {
+      height: 68%;
+      background: #6b4228;
+    }
+
+    .espresso-layer {
+      height: 42%;
+      background: linear-gradient(
+        to bottom,
+        #c69a60 0%,
+        #c69a60 15%,
+        #3c2115 16%,
+        #3c2115 100%
+      );
+    }
+
+    .drink-copy h3 {
+      margin: 0 0 8px;
+      color: var(--brown);
+      font-size: 18px;
+    }
+
+    .drink-copy p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .drink-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--brown-light);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .comparison-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .comparison {
+      width: 100%;
+      min-width: 520px;
+      border-collapse: collapse;
+      background: var(--surface);
+      font-size: 14px;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison th {
+      background: var(--soft);
+      color: var(--brown);
+      font-weight: 700;
+    }
+
+    .comparison tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .comparison td:first-child {
+      color: var(--brown);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .back-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 42px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 12px 24px;
+      border: 1px solid var(--brown);
+      border-radius: 999px;
+      background: var(--brown);
+      color: #fff8ed;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: transparent;
+      color: var(--brown);
+    }
+
+    .site-footer {
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      background: #f0e9df;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        width: calc(100% - 32px);
+        min-height: 66px;
+        gap: 12px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 48px 20px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      main {
+        width: calc(100% - 32px);
+        padding: 34px 0 54px;
+      }
+
+      .intro h2 {
+        font-size: 22px;
+      }
+
+      .contents {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 34px;
+      }
+
+      .knowledge-section {
+        padding: 22px 18px;
+        margin-bottom: 18px;
+      }
+
+      .knowledge-section h2 {
+        font-size: 21px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drink-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .drink-visual {
+        min-height: 130px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
-</header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="beginner.html">COFFEE GUIDE</a>
+      <a class="header-link" href="beginner.html">初心者ガイドに戻る　←</a>
+    </div>
+  </header>
 
-<main>
-<section class="section-card">
-<h1>ステップ4：よくある迷い</h1>
-<p>コーヒーを始めた初心者がよく迷うポイントを整理しました。ここを理解すれば迷わずにコーヒーを楽しめます。</p>
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="step-label">STEP 4 · COFFEE DRINKS</span>
+      <h1>コーヒーの種類・飲み方</h1>
+      <p class="hero-description">
+        コーヒーには、ブラックコーヒー、アメリカーノ、カフェラテ、カプチーノなど、さまざまな種類があります。使われる材料やコーヒーとミルクの割合によって、味わいや口当たりは大きく変わります。それぞれの違いを知って、自分に合った一杯を見つけましょう。
+      </p>
+      <div class="hero-note">
+        このページでは、完成した飲み物としてのコーヒーの種類を学びます。豆の特徴はStep 3、器具や抽出方法はStep 1・Step 2で扱います。
+      </div>
+    </div>
+  </section>
 
-<h2>豆の選び方</h2>
-<p>アラビカ種とロブスタ種、どちらを選ぶか迷うことがあります。初心者には香りが豊かで苦味が穏やかなアラビカ種がおすすめです。</p>
+  <main>
+    <section class="intro">
+      <h2>コーヒーの違いを知ろう</h2>
+      <p>
+        カフェのメニューには、似ているようで材料や作り方が異なる飲み物が並んでいます。まずは、コーヒーをそのまま楽しむ飲み方と、ミルクや水などを加えて楽しむ飲み方に分けて考えると、それぞれの違いが分かりやすくなります。
+      </p>
+    </section>
 
-<h2>挽き方の違い</h2>
-<p>ドリップ用は中挽き、フレンチプレスは粗挽き、エスプレッソは細挽き。目的の淹れ方に合わせることが大事です。</p>
+    <nav class="contents" aria-label="このページの目次">
+      <a href="#basics"><span>1. コーヒーの基本</span><span>↓</span></a>
+      <a href="#black"><span>2. ブラックコーヒー</span><span>↓</span></a>
+      <a href="#espresso"><span>3. エスプレッソとアメリカーノ</span><span>↓</span></a>
+      <a href="#milk"><span>4. ミルク入りコーヒー</span><span>↓</span></a>
+      <a href="#comparison"><span>5. 種類ごとの違い</span><span>↓</span></a>
+      <a href="#choose"><span>6. 自分に合う一杯を選ぶ</span><span>↓</span></a>
+    </nav>
 
-<h2>淹れ方の迷い</h2>
-<p>抽出時間やお湯の量で迷うことがあります。基本の淹れ方（蒸らし30秒、2〜3分抽出）を守れば安定した味が出ます。</p>
+    <section class="knowledge-section" id="basics">
+      <span class="section-number">01 / BASICS</span>
+      <h2>コーヒーの種類は何で変わる？</h2>
+      <p>
+        コーヒーの種類は、コーヒーの抽出液をどのように使うか、何を加えるか、どのような割合で組み合わせるかなどによって変わります。同じコーヒー豆を使っていても、飲み物の作り方によって印象が異なります。
+      </p>
 
-<p>迷いを少なくして、まずは基本を確実にマスターしましょう。</p>
-</section>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>コーヒーそのものを楽しむ</h3>
+          <p>
+            コーヒーの香りや苦味、酸味などを直接楽しむ飲み方です。ブラックコーヒーやエスプレッソなどがあります。
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>水などで調整する</h3>
+          <p>
+            抽出したコーヒーにお湯や水を加え、濃さや飲みやすさを調整する飲み方です。アメリカーノなどが代表例です。
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>ミルクを加える</h3>
+          <p>
+            コーヒーにミルクや泡立てたミルクを加えることで、口当たりや味わいが変わります。カフェラテやカプチーノなどがあります。
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>甘さや風味を加える</h3>
+          <p>
+            砂糖、シロップ、チョコレートなどを加えたアレンジもあります。材料や分量によってさまざまな飲み方ができます。
+          </p>
+        </div>
+      </div>
 
-<a href="beginner.html" class="top-link">ステップ一覧に戻る</a>
-</main>
+      <div class="note">
+        「エスプレッソ」はコーヒーの抽出方法・抽出されたコーヒーを指す言葉として使われ、「カフェラテ」はエスプレッソとミルクを組み合わせた飲み物です。似た分類に見えても、意味が異なることを覚えておきましょう。
+      </div>
+    </section>
 
-<footer>
-&copy; 2026 CoffeeSite
-</footer>
+    <section class="knowledge-section" id="black">
+      <span class="section-number">02 / BLACK COFFEE</span>
+      <h2>ブラックコーヒー</h2>
+      <p>
+        ブラックコーヒーは、基本的にミルクや砂糖を加えずに飲むコーヒーです。豆や焙煎、抽出による香りや味わいを感じやすく、コーヒーそのものの個性を楽しめます。
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>味わいの特徴</h3>
+          <p>
+            豆や抽出方法によって、苦味、酸味、甘さ、香ばしさなどの感じ方が変わります。すっきりしたものから、濃厚で力強いものまで幅があります。
+          </p>
+        </div>
+        <div class="info-card">
+          <h3>こんな人におすすめ</h3>
+          <p>
+            豆ごとの違いを楽しみたい人や、ミルクや砂糖を加えずにコーヒーの香りと味わいを感じたい人に向いています。
+          </p>
+        </div>
+      </div>
+
+      <h3>ブラックコーヒーにも種類がある</h3>
+      <p>
+        ブラックコーヒーという言葉は、ミルクなどを加えない飲み方を表します。ハンドドリップで淹れたコーヒーも、エスプレッソをお湯で割ったアメリカーノも、ミルクを加えなければブラックで飲むことができます。
+      </p>
+    </section>
+
+    <section class="knowledge-section" id="espresso">
+      <span class="section-number">03 / ESPRESSO</span>
+      <h2>エスプレッソとアメリカーノ</h2>
+      <p>
+        エスプレッソは、細かく挽いたコーヒー粉に高い圧力をかけて短時間で抽出するコーヒーです。少量ながら味わいが凝縮されており、香りや苦味をしっかり感じられます。カフェラテやカプチーノなどのベースにも使われます。
+      </p>
+
+      <div class="drink-list">
+        <article class="drink-card">
+          <div class="drink-visual" aria-hidden="true">
+            <div class="cup">
+              <div class="coffee-layer espresso-layer"></div>
+            </div>
+          </div>
+          <div class="drink-copy">
+            <span class="tag">少量・濃厚</span>
+            <h3>エスプレッソ</h3>
+            <p>
+              圧力を利用して抽出した、濃厚なコーヒーです。一般的なドリップコーヒーよりも少量で提供され、表面にクレマと呼ばれる泡状の層が見られることがあります。
+            </p>
+            <p>
+              そのまま飲むほか、ミルクと組み合わせる飲み物のベースとしても使われます。
+            </p>
+          </div>
+        </article>
+
+        <article class="drink-card">
+          <div class="drink-visual" aria-hidden="true">
+            <div class="cup">
+              <div class="coffee-layer americano-layer"></div>
+            </div>
+          </div>
+          <div class="drink-copy">
+            <span class="tag">お湯で調整</span>
+            <h3>アメリカーノ</h3>
+            <p>
+              一般的には、エスプレッソにお湯を加えて作る飲み物です。エスプレッソの風味を残しながら、量を増やして飲みやすくします。
+            </p>
+            <p>
+              ミルクを加えずに楽しむことが多く、ブラックコーヒーの選択肢の一つです。
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        エスプレッソは「コーヒーを抽出する方法・その抽出液」、アメリカーノは「エスプレッソにお湯を加えた飲み物」と考えると、違いを理解しやすくなります。
+      </div>
+    </section>
+
+    <section class="knowledge-section" id="milk">
+      <span class="section-number">04 / MILK COFFEE</span>
+      <h2>ミルク入りコーヒー</h2>
+      <p>
+        コーヒーにミルクを加えると、口当たりがまろやかになり、苦味や酸味の感じ方も変わります。カフェラテやカプチーノ、カフェオレは、どれもコーヒーとミルクを組み合わせた飲み物ですが、一般的な作り方やミルクの使い方に違いがあります。
+      </p>
+
+      <div class="drink-list">
+        <article class="drink-card">
+          <div class="drink-visual" aria-hidden="true">
+            <div class="cup">
+              <div class="coffee-layer latte-layer"></div>
+            </div>
+          </div>
+          <div class="drink-copy">
+            <span class="tag">ミルクのなめらかさ</span>
+            <h3>カフェラテ</h3>
+            <p>
+              一般的には、エスプレッソにスチームミルクを加えた飲み物です。ミルクの割合が比較的多く、なめらかな口当たりとコーヒーの風味を一緒に楽しめます。
+            </p>
+            <p>
+              コーヒーの苦味が強すぎる飲み物が苦手な人にも、試しやすい選択肢です。
+            </p>
+          </div>
+        </article>
+
+        <article class="drink-card">
+          <div class="drink-visual" aria-hidden="true">
+            <div class="cup">
+              <div class="coffee-layer cappuccino-layer"></div>
+            </div>
+          </div>
+          <div class="drink-copy">
+            <span class="tag">ふんわりした泡</span>
+            <h3>カプチーノ</h3>
+            <p>
+              一般的には、エスプレッソにスチームミルクと泡立てたミルクを組み合わせた飲み物です。泡の存在感があり、ふんわりとした口当たりを楽しめます。
+            </p>
+            <p>
+              カフェラテと似ていますが、ミルクフォームの量や仕上がりによって飲み心地が異なります。
+            </p>
+          </div>
+        </article>
+
+        <article class="drink-card">
+          <div class="drink-visual" aria-hidden="true">
+            <div class="cup">
+              <div class="coffee-layer" style="background: linear-gradient(to bottom, #f6e5cd 0%, #f6e5cd 40%, #95613d 41%, #95613d 100%);"></div>
+            </div>
+          </div>
+          <div class="drink-copy">
+            <span class="tag">親しみやすい味</span>
+            <h3>カフェオレ</h3>
+            <p>
+              一般的には、ドリップコーヒーなどに温めたミルクを加えた飲み物です。コーヒーとミルクの風味をバランスよく楽しめます。
+            </p>
+            <p>
+              カフェラテとの大きな違いは、伝統的な作り方ではベースとなるコーヒーが異なる点です。カフェオレはドリップコーヒーなど、カフェラテはエスプレッソを使うのが一般的です。
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <h3>ミルク入りコーヒーを選ぶポイント</h3>
+      <ul>
+        <li>ミルクのなめらかさを楽しみたいなら、カフェラテ。</li>
+        <li>泡のふんわりした口当たりが好きなら、カプチーノ。</li>
+        <li>普段のコーヒーにミルクを加えたような親しみやすさを求めるなら、カフェオレ。</li>
+      </ul>
+
+      <div class="note">
+        お店によってレシピやコーヒーとミルクの割合は異なります。名前だけでなく、メニューの説明や店員さんへの確認も参考になります。
+      </div>
+    </section>
+
+    <section class="knowledge-section" id="comparison">
+      <span class="section-number">05 / COMPARISON</span>
+      <h2>コーヒーの種類を比較する</h2>
+      <p>
+        代表的な飲み物の違いを一覧で確認してみましょう。実際の味や濃さは、豆、抽出量、ミルクの量、お店のレシピなどによって変わります。
+      </p>
+
+      <div class="comparison-wrap">
+        <table class="comparison">
+          <thead>
+            <tr>
+              <th>種類</th>
+              <th>主な材料・作り方</th>
+              <th>特徴</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ブラックコーヒー</td>
+              <td>抽出したコーヒー</td>
+              <td>豆や抽出による風味を直接楽しめる</td>
+            </tr>
+            <tr>
+              <td>エスプレッソ</td>
+              <td>圧力を利用して抽出したコーヒー</td>
+              <td>少量で濃厚な味わい</td>
+            </tr>
+            <tr>
+              <td>アメリカーノ</td>
+              <td>エスプレッソとお湯</td>
+              <td>エスプレッソをお湯で飲みやすく調整</td>
+            </tr>
+            <tr>
+              <td>カフェラテ</td>
+              <td>エスプレッソとスチームミルク</td>
+              <td>なめらかでミルクの存在感がある</td>
+            </tr>
+            <tr>
+              <td>カプチーノ</td>
+              <td>エスプレッソとスチームミルク、ミルクフォーム</td>
+              <td>泡立てたミルクによるふんわりした口当たり</td>
+            </tr>
+            <tr>
+              <td>カフェオレ</td>
+              <td>ドリップコーヒーなどとミルク</td>
+              <td>コーヒーとミルクを組み合わせた親しみやすい味</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="knowledge-section" id="choose">
+      <span class="section-number">06 / FIND YOUR FAVORITE</span>
+      <h2>自分に合う一杯を選ぶ</h2>
+      <p>
+        コーヒーの楽しみ方に正解はありません。苦味や酸味の感じ方、ミルクの好み、その日の気分に合わせて選んでみましょう。
+      </p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>豆の香りや味を楽しみたい</h3>
+          <p>まずはブラックコーヒーを試してみましょう。豆による香りや味の違いを感じる手がかりになります。</p>
+        </div>
+        <div class="info-card">
+          <h3>濃厚な味が好き</h3>
+          <p>エスプレッソを試してみましょう。少量で力強い風味を楽しめます。</p>
+        </div>
+        <div class="info-card">
+          <h3>まろやかさを重視したい</h3>
+          <p>カフェラテやカフェオレなど、ミルクを使った飲み物を試してみましょう。</p>
+        </div>
+        <div class="info-card">
+          <h3>ふんわりした口当たりが好き</h3>
+          <p>ミルクフォームを使ったカプチーノを試してみましょう。</p>
+        </div>
+      </div>
+
+      <h3>飲み比べてみよう</h3>
+      <p>
+        同じお店でブラックコーヒーとカフェラテを飲み比べたり、カフェラテとカプチーノの口当たりを比べたりすると、材料や仕上がりによる違いを感じやすくなります。飲んだときの香り、苦味、酸味、ミルクの風味などを意識してみましょう。
+      </p>
+
+      <div class="note">
+        Step 5では、こうした飲み物の味や香りを、苦味・酸味・甘さ・口当たりなどの観点から、さらに詳しく学びます。
+      </div>
+    </section>
+
+    <section class="knowledge-section">
+      <span class="section-number">SUMMARY</span>
+      <h2>このページのまとめ</h2>
+      <p>
+        コーヒーには、ブラックコーヒー、エスプレッソ、アメリカーノ、カフェラテ、カプチーノ、カフェオレなど、さまざまな種類があります。違いを理解するポイントは、コーヒーの抽出方法だけでなく、水やミルクなどの材料、組み合わせ方、仕上がりにも注目することです。
+      </p>
+      <p>
+        まずは名前と基本的な違いを覚え、気になる飲み物を実際に試してみましょう。自分の好みが分かると、カフェのメニュー選びがもっと楽しくなります。
+      </p>
+    </section>
+
+    <div class="back-area">
+      <a class="back-link" href="beginner.html">← 初心者ガイドに戻る</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>COFFEE GUIDE · コーヒーをもっと知る、もっと楽しむ。</p>
+  </footer>
 </body>
 </html>
