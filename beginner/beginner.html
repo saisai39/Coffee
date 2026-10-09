@@ -2,145 +2,623 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>初心者の方へ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="コーヒー初心者の方のためのステップガイド。道具選びから淹れ方、よくある疑問まで、順番に学べます。">
+  <title>初心者向けステップガイド | COFFEE GUIDE</title>
   <link rel="stylesheet" href="../css/style.css">
+
   <style>
+    :root {
+      --color-background: #f8f5ef;
+      --color-surface: #fffdf8;
+      --color-brown: #493326;
+      --color-brown-light: #654b39;
+      --color-text: #302820;
+      --color-text-light: #74685d;
+      --color-border: #e5dbce;
+      --color-accent: #c7a783;
+      --color-card: #fffdf9;
+      --shadow-card: 0 8px 24px rgba(73, 51, 38, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: "Hiragino Kaku Gothic Pro", sans-serif;
-      background-color: #fefcf7;
-      color: #000;
       margin: 0;
       padding: 0;
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Kaku Gothic Pro",
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      background-color: #c7b198;
-      padding: 30px 20px;
-      text-align: center;
-      color: #fff;
+    a {
+      color: inherit;
     }
 
-    header h1 a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 2em;
+    /* ヘッダー */
+    .site-header {
+      position: relative;
+      z-index: 10;
+      background-color: var(--color-surface);
+      border-top: 5px solid var(--color-brown);
+      border-bottom: 1px solid var(--color-border);
     }
 
-    header p {
-      margin-top: 10px;
-      font-size: 1.2em;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .step-list {
+    .header-inner {
+      width: min(1120px, calc(100% - 48px));
+      min-height: 82px;
+      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .site-logo {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      line-height: 1.3;
+    }
+
+    .site-logo a {
+      color: var(--color-brown);
+      text-decoration: none;
+    }
+
+    .header-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-brown-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .header-link::before {
+      content: "←";
+      font-size: 1.1rem;
+    }
+
+    .header-link:hover {
+      opacity: 0.65;
+    }
+
+    /* ヒーローエリア */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          ellipse at 90% 10%,
+          rgba(164, 126, 91, 0.16),
+          transparent 38%
+        ),
+        var(--color-brown);
+      color: #fffaf2;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1000px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 76px 0 72px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 5px 14px;
+      border: 1px solid rgba(255, 250, 242, 0.48);
+      border-radius: 999px;
+      color: #f1dfc9;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    .hero h2 {
+      max-width: 780px;
+      margin: 0 0 22px;
+      color: #fffaf2;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      text-align: left;
+    }
+
+    .hero-description {
+      max-width: 740px;
+      margin: 0;
+      color: #e9ded2;
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      max-width: 780px;
+      margin-top: 30px;
+      padding: 17px 20px;
+      border-left: 3px solid var(--color-accent);
+      background-color: rgba(255, 250, 242, 0.08);
+      color: #f1e7db;
+      font-size: 0.9rem;
+      line-height: 1.9;
+    }
+
+    .hero-note-mark {
+      flex: 0 0 auto;
+      color: #e0bd94;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-note p {
+      margin: 0;
+    }
+
+    /* メインコンテンツ */
+    main {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 72px 0 80px;
+    }
+
+    .section-heading {
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .section-eyebrow {
+      margin: 0 0 8px;
+      color: #927557;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--color-brown);
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .section-description {
+      max-width: 650px;
+      margin: 14px auto 0;
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+    }
+
+    /* ステップカード */
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
     }
 
     .step-card {
-      background-color: #e7d9ce;
-      border-radius: 10px;
-      padding: 20px;
-      width: 220px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-      transition: transform 0.2s, background 0.2s;
-      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 28px 26px 25px;
+      overflow: hidden;
+      background-color: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      box-shadow: var(--shadow-card);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
     }
 
-    .step-card a {
-      display: block;
-      text-decoration: none;
-      color: #000;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .step-card p {
-      font-size: 0.9em;
-      color: #333;
+    .step-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #c7a783;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
     }
 
     .step-card:hover {
-      background-color: #d6c4b2;
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      border-color: #d3bda5;
+      box-shadow: 0 14px 32px rgba(73, 51, 38, 0.12);
     }
 
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      background-color: #c7b198;
-      color: #fff;
-      margin-top: 40px;
+    .step-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .step-number {
+      display: block;
+      margin-bottom: 13px;
+      color: #a58a6b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    .step-card h3 {
+      margin: 0 0 13px;
+      color: var(--color-brown);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .step-card h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .step-card h3 a:focus-visible,
+    .header-link:focus-visible,
+    .top-link:focus-visible,
+    .site-logo a:focus-visible {
+      outline: 3px solid #b9956e;
+      outline-offset: 4px;
+      border-radius: 3px;
+    }
+
+    .step-card p {
+      flex: 1;
+      margin: 0;
+      color: var(--color-text-light);
+      font-size: 0.91rem;
+      line-height: 1.9;
+    }
+
+    .step-card-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 23px;
+      padding-top: 15px;
+      border-top: 1px solid #eee5da;
+      color: var(--color-brown-light);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .step-card-link::after {
+      content: "→";
+      font-size: 1.15rem;
+      transition: transform 0.2s ease;
+    }
+
+    .step-card:hover .step-card-link::after {
+      transform: translateX(4px);
+    }
+
+    /* トップページへのリンク */
+    .bottom-navigation {
+      display: flex;
+      justify-content: center;
+      margin-top: 52px;
     }
 
     .top-link {
-      display: inline-block;
-      margin: 30px auto 0;
-      padding: 10px 20px;
-      background-color: #e7d9ce;
-      color: #000;
-      text-decoration: none;
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 13px 27px;
+      border: 1px solid #d7c6b4;
+      border-radius: 4px;
+      background-color: #eee5da;
+      color: var(--color-brown);
+      font-size: 0.92rem;
+      font-weight: 700;
       text-align: center;
-      transition: background 0.2s;
-      display: block;
-      width: fit-content;
+      text-decoration: none;
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .top-link::before {
+      content: "←";
+      font-size: 1.1rem;
     }
 
     .top-link:hover {
-      background-color: #d6c4b2;
+      transform: translateY(-2px);
+      border-color: #c7b198;
+      background-color: #e4d5c4;
+    }
+
+    /* フッター */
+    .site-footer {
+      padding: 27px 24px;
+      border-top: 1px solid var(--color-border);
+      background-color: #f0e8dd;
+      color: #76685b;
+      text-align: center;
+    }
+
+    .site-footer p {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* タブレット */
+    @media (max-width: 900px) {
+      .step-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-inner {
+        padding: 64px 0;
+      }
+
+      main {
+        padding-top: 60px;
+      }
+    }
+
+    /* スマートフォン */
+    @media (max-width: 600px) {
+      .header-inner {
+        width: calc(100% - 36px);
+        min-height: 72px;
+        gap: 14px;
+      }
+
+      .site-logo {
+        font-size: 1.2rem;
+      }
+
+      .header-link {
+        font-size: 0.78rem;
+      }
+
+      .hero-inner {
+        width: calc(100% - 36px);
+        padding: 52px 0 48px;
+      }
+
+      .hero-label {
+        margin-bottom: 18px;
+        font-size: 0.68rem;
+      }
+
+      .hero h2 {
+        margin-bottom: 17px;
+        font-size: 2rem;
+      }
+
+      .hero-description {
+        font-size: 0.92rem;
+        line-height: 1.9;
+      }
+
+      .hero-note {
+        gap: 9px;
+        margin-top: 23px;
+        padding: 14px 15px;
+        font-size: 0.83rem;
+      }
+
+      main {
+        width: calc(100% - 36px);
+        padding: 48px 0 56px;
+      }
+
+      .section-heading {
+        margin-bottom: 27px;
+      }
+
+      .section-description {
+        font-size: 0.88rem;
+        text-align: left;
+      }
+
+      .step-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .step-card {
+        padding: 24px 22px 21px;
+      }
+
+      .step-card h3 {
+        font-size: 1.08rem;
+      }
+
+      .step-card p {
+        font-size: 0.9rem;
+      }
+
+      .bottom-navigation {
+        margin-top: 35px;
+      }
+
+      .top-link {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
+    /* 動きを減らす設定を利用している場合 */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1><a href="../index.html">コーヒーサイト</a></h1>
-    <p>コーヒー初心者の方のためのステップガイド</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-logo">
+        <a href="../index.html">COFFEE GUIDE</a>
+      </h1>
+
+      <a href="../index.html" class="header-link">
+        トップページへ戻る
+      </a>
+    </div>
   </header>
 
-  <main>
-    <h2>初心者向けステップ一覧</h2>
-    <div class="step-list">
-      <div class="step-card">
-        <a href="step1.html">コーヒーに使う道具</a>
-        <p>ドリッパーやコーヒーミルなど、コーヒーを淹れるために使う道具の種類と役割を紹介します。</p>
-      </div>
-      <div class="step-card">
-        <a href="step2.html">これだけ揃えればいい</a>
-        <p>必要最小限の道具や材料を揃えて、今日からすぐにコーヒーを楽しめる準備を整えます。</p>
-      </div>
-      <div class="step-card">
-        <a href="step3.html">この淹れ方でいい</a>
-        <p>簡単で失敗しにくい淹れ方を紹介。味の基本を学びます。</p>
-      </div>
-      <div class="step-card">
-        <a href="step4.html">よくある迷い</a>
-        <p>豆の種類や挽き方、淹れ方で迷うポイントとその解決策をまとめました。</p>
-      </div>
-      <div class="step-card">
-        <a href="step5.html">もっと知りたい人へ</a>
-        <p>ここまで来たらさらに深く学びたい方向けに、知識や応用テクニックを紹介します。</p>
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-label">BEGINNER GUIDE</span>
+
+      <h2>コーヒー初心者のための<br>ステップガイド</h2>
+
+      <p class="hero-description">
+        コーヒーをこれから始める方に向けて、道具選びから淹れ方、よくある疑問まで、5つのステップに分けて紹介します。気になるところから、少しずつ学んでいきましょう。
+      </p>
+
+      <div class="hero-note">
+        <span class="hero-note-mark">i</span>
+        <p>
+          初めての方でも順番に読み進められる構成です。まずは各ステップの内容を確認し、自分に合ったところから始めてみてください。
+        </p>
       </div>
     </div>
+  </section>
 
-    <!-- トップに戻るリンク -->
-    <a href="../index.html" class="top-link">トップページに戻る</a>
+  <main>
+    <section aria-labelledby="step-list-heading">
+      <div class="section-heading">
+        <p class="section-eyebrow">Start Here</p>
+        <h2 id="step-list-heading">初心者向けステップ一覧</h2>
+        <p class="section-description">
+          5つのステップを通して、コーヒーの基本を順番に確認できます。
+        </p>
+      </div>
+
+      <div class="step-list">
+        <article class="step-card">
+          <span class="step-number">STEP 01</span>
+          <h3>
+            <a href="step1.html">コーヒーに使う道具</a>
+          </h3>
+          <p>
+            ドリッパーやコーヒーミルなど、コーヒーを淹れるために使う道具の種類と役割を紹介します。
+          </p>
+          <a href="step1.html" class="step-card-link">
+            このステップを見る
+          </a>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">STEP 02</span>
+          <h3>
+            <a href="step2.html">これだけ揃えればいい</a>
+          </h3>
+          <p>
+            必要最小限の道具や材料を揃えて、今日からすぐにコーヒーを楽しめる準備を整えます。
+          </p>
+          <a href="step2.html" class="step-card-link">
+            このステップを見る
+          </a>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">STEP 03</span>
+          <h3>
+            <a href="step3.html">この淹れ方でいい</a>
+          </h3>
+          <p>
+            簡単で失敗しにくい淹れ方を紹介。味の基本を学びます。
+          </p>
+          <a href="step3.html" class="step-card-link">
+            このステップを見る
+          </a>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">STEP 04</span>
+          <h3>
+            <a href="step4.html">よくある迷い</a>
+          </h3>
+          <p>
+            豆の種類や挽き方、淹れ方で迷うポイントとその解決策をまとめました。
+          </p>
+          <a href="step4.html" class="step-card-link">
+            このステップを見る
+          </a>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">STEP 05</span>
+          <h3>
+            <a href="step5.html">もっと知りたい人へ</a>
+          </h3>
+          <p>
+            ここまで来たらさらに深く学びたい方向けに、知識や応用テクニックを紹介します。
+          </p>
+          <a href="step5.html" class="step-card-link">
+            このステップを見る
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <nav class="bottom-navigation" aria-label="ページナビゲーション">
+      <a href="../index.html" class="top-link">
+        トップページに戻る
+      </a>
+    </nav>
   </main>
 
-  <footer>
-    &copy; 2026 CoffeeSite
+  <footer class="site-footer">
+    <p>&copy; 2026 CoffeeSite</p>
   </footer>
 </body>
 </html>
