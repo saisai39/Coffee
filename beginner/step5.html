@@ -1,49 +1,1447 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ステップ5：もっと知りたい人へ</title>
-<link rel="stylesheet" href="../css/style.css">
-<style>
-/* step1と同じCSS */
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:900px; margin:40px auto; padding:0 20px; }
-h1,h2 { text-align:center; }
-.section-card { background:#e7d9ce; padding:20px; border-radius:10px; margin-bottom:30px; box-shadow:2px 2px 5px rgba(0,0,0,0.2); }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="コーヒーの味・香りを学ぶ初心者向けガイド。苦味、酸味、甘味、香り、口当たりの違いや、焙煎・抽出による味の変化を解説します。">
+  <title>Step 5：味・香り | COFFEE GUIDE</title>
+
+  <style>
+    :root {
+      --background: #f8f5ef;
+      --surface: #fffdf8;
+      --surface-soft: #f3ede4;
+      --brown: #493326;
+      --brown-light: #654b39;
+      --text: #302820;
+      --muted: #74685d;
+      --border: #e5dbce;
+      --accent: #c7a783;
+      --accent-dark: #96724f;
+      --shadow: 0 5px 18px rgba(73, 51, 38, 0.06);
+      --radius: 16px;
+      --content-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--accent-dark);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 253, 248, 0.97);
+      border-top: 4px solid var(--brown);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-inner {
+      width: min(var(--content-width), calc(100% - 40px));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      white-space: nowrap;
+    }
+
+    .header-link {
+      color: var(--brown-light);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 0;
+    }
+
+    .header-link:hover,
+    .text-link:hover {
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(199, 167, 131, 0.17),
+          transparent 34%
+        ),
+        var(--brown);
+      color: var(--surface);
+      padding: 72px 20px 66px;
+    }
+
+    .hero-inner {
+      max-width: var(--content-width);
+      margin: 0 auto;
+    }
+
+    .step-label {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 5px 13px;
+      border: 1px solid rgba(255, 253, 248, 0.38);
+      border-radius: 999px;
+      color: #f0dfcb;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .hero h1 {
+      max-width: 800px;
+      margin: 0 0 20px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.35;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin: 0;
+      color: #e9ded2;
+      font-size: 16px;
+    }
+
+    .hero-note {
+      max-width: 760px;
+      margin-top: 28px;
+      padding: 15px 18px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: rgba(255, 253, 248, 0.08);
+      color: #f0e5d9;
+      font-size: 14px;
+    }
+
+    .page-container {
+      width: min(var(--content-width), calc(100% - 40px));
+      margin: 42px auto 76px;
+    }
+
+    .intro-card,
+    .toc-card,
+    .content-card,
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card {
+      padding: 25px 28px;
+      margin-bottom: 24px;
+    }
+
+    .intro-card h2,
+    .toc-card h2 {
+      margin: 0 0 12px;
+      color: var(--brown);
+      font-size: 21px;
+    }
+
+    .intro-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .toc-card {
+      padding: 26px 28px;
+      margin-bottom: 42px;
+    }
+
+    .toc-description {
+      margin: -4px 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toc-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 50px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fffefa;
+      color: var(--brown-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 650;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .toc-list a:hover {
+      background: var(--surface-soft);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .toc-number {
+      flex: 0 0 27px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin: 48px 0 20px;
+    }
+
+    .section-number {
+      flex: 0 0 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--brown);
+      color: var(--surface);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--brown);
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.45;
+    }
+
+    .section-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .content-card {
+      padding: 27px 28px;
+      margin-bottom: 18px;
+    }
+
+    .content-card h3 {
+      margin: 0 0 12px;
+      color: var(--brown-light);
+      font-size: 18px;
+    }
+
+    .content-card h4 {
+      margin: 22px 0 8px;
+      color: var(--brown);
+      font-size: 15px;
+    }
+
+    .content-card p {
+      margin: 0 0 14px;
+    }
+
+    .content-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-card ul,
+    .content-card ol {
+      margin: 10px 0 0;
+      padding-left: 1.5em;
+    }
+
+    .content-card li {
+      margin: 7px 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .info-box {
+      padding: 19px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fffefa;
+    }
+
+    .info-box h3,
+    .info-box h4 {
+      margin: 0 0 8px;
+      color: var(--brown);
+      font-size: 16px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .flavor-card {
+      min-height: 170px;
+      padding: 19px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #fffefa;
+    }
+
+    .flavor-symbol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--brown-light);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .flavor-card h3 {
+      margin: 0 0 6px;
+      color: var(--brown);
+      font-size: 16px;
+    }
+
+    .flavor-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .word-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .word-tag {
+      display: inline-block;
+      padding: 5px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fffefa;
+      color: var(--brown-light);
+      font-size: 13px;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 17px 19px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      background: var(--surface-soft);
+      color: var(--brown-light);
+      font-size: 14px;
+    }
+
+    .table-wrap {
+      width: 100%;
+      margin-top: 18px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 580px;
+      border-collapse: collapse;
+      background: #fffefa;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-soft);
+      color: var(--brown);
+      font-weight: 750;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .roast-scale {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .roast-item {
+      padding: 15px 10px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #fffefa;
+      text-align: center;
+    }
+
+    .roast-color {
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 10px;
+      border: 1px solid rgba(48, 40, 32, 0.12);
+      border-radius: 50%;
+    }
+
+    .roast-item h3 {
+      margin: 0 0 5px;
+      color: var(--brown);
+      font-size: 14px;
+    }
+
+    .roast-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .roast-light {
+      background: #c99b64;
+    }
+
+    .roast-medium {
+      background: #98633d;
+    }
+
+    .roast-dark {
+      background: #603b2b;
+    }
+
+    .roast-deep {
+      background: #30231f;
+    }
+
+    .tasting-steps {
+      counter-reset: tasting;
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tasting-step {
+      position: relative;
+      padding: 18px 20px 18px 60px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fffefa;
+      counter-increment: tasting;
+    }
+
+    .tasting-step::before {
+      content: counter(tasting);
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 29px;
+      height: 29px;
+      border-radius: 50%;
+      background: var(--brown);
+      color: var(--surface);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .tasting-step h3 {
+      margin: 0 0 5px;
+      color: var(--brown);
+      font-size: 16px;
+    }
+
+    .tasting-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .summary-card {
+      margin-top: 42px;
+      padding: 28px;
+      background: var(--surface-soft);
+      box-shadow: none;
+    }
+
+    .summary-card h2 {
+      margin: 0 0 15px;
+      color: var(--brown);
+      font-size: 23px;
+    }
+
+    .summary-card ul {
+      margin: 0;
+      padding-left: 1.5em;
+    }
+
+    .summary-card li {
+      margin: 8px 0;
+    }
+
+    .next-step {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 32px;
+      padding: 11px 17px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--brown-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: var(--surface-soft);
+      border-color: var(--accent);
+    }
+
+    .text-link {
+      color: var(--brown-light);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .site-footer {
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      background: #f1ebe2;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .footer-brand {
+      margin-bottom: 5px;
+      color: var(--brown);
+      font-weight: 800;
+      letter-spacing: 0.13em;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 54px 20px 48px;
+      }
+
+      .page-container {
+        margin-top: 28px;
+        margin-bottom: 52px;
+      }
+
+      .toc-list {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flavor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .roast-scale {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-heading {
+        margin-top: 38px;
+      }
+
+      .content-card,
+      .intro-card,
+      .toc-card,
+      .summary-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .header-inner {
+        width: calc(100% - 28px);
+        min-height: 62px;
+        gap: 10px;
+      }
+
+      .brand {
+        font-size: 14px;
+        letter-spacing: 0.08em;
+      }
+
+      .header-link {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 44px 18px 40px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .page-container {
+        width: calc(100% - 28px);
+      }
+
+      .flavor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flavor-card {
+        min-height: auto;
+      }
+
+      .section-number {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+      }
+
+      .section-heading {
+        gap: 11px;
+      }
+
+      .section-heading h2 {
+        font-size: 21px;
+      }
+
+      .content-card,
+      .intro-card,
+      .toc-card,
+      .summary-card {
+        padding: 19px;
+      }
+
+      .tasting-step {
+        padding: 16px 16px 16px 53px;
+      }
+
+      .tasting-step::before {
+        top: 15px;
+        left: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
-</header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="beginner.html">COFFEE GUIDE</a>
+      <a class="header-link" href="beginner.html">初心者ガイドに戻る ←</a>
+    </div>
+  </header>
 
-<main>
-<section class="section-card">
-<h1>ステップ5：もっと知りたい人へ</h1>
-<p>ここまで来た方は、より深くコーヒーを理解したい方向けです。豆の違い、味の特徴、抽出方法の応用まで学べます。</p>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="step-label">STEP 05 · TASTE & AROMA</div>
+        <h1>味・香りを知って、<br>自分好みの一杯を見つける</h1>
+        <p class="hero-description">
+          コーヒーの味は、苦いだけではありません。酸味や甘味、香り、口当たりなど、
+          さまざまな要素が組み合わさって一杯の個性を作っています。
+          それぞれの特徴を知り、味わいを自分の言葉で表現できるようになりましょう。
+        </p>
+        <div class="hero-note">
+          このページでは、味や香りを表現する言葉、焙煎や抽出による変化、
+          実際に飲み比べるときのポイントを順番に解説します。
+        </div>
+      </div>
+    </section>
 
-<h2>味の理解を深める</h2>
-<p>酸味・苦味・甘味・コクのバランスを意識して、味覚を磨きましょう。テイスティングを通して好みの味を見つけることが大切です。</p>
+    <div class="page-container">
+      <section class="intro-card">
+        <h2>このステップで学ぶこと</h2>
+        <p>
+          コーヒーの味を評価するとき、最初から専門用語を覚える必要はありません。
+          「すっきりしている」「香ばしい」「口当たりが重い」など、
+          自分が感じたことを少しずつ整理するのが第一歩です。
+          味の要素を分けて考えると、豆や淹れ方を選ぶときにも役立ちます。
+        </p>
+      </section>
 
-<h2>抽出の応用</h2>
-<p>お湯の温度や注ぎ方を変えることで味が大きく変わります。基本の淹れ方をマスターした後、少しずつ調整して自分好みの味を探してみてください。</p>
+      <nav class="toc-card" aria-label="ページ内目次">
+        <h2>目次</h2>
+        <p class="toc-description">読みたい項目を選ぶと、その場所へ移動できます。</p>
+        <ol class="toc-list">
+          <li><a href="#section1"><span class="toc-number">01</span>コーヒーの味を作る要素</a></li>
+          <li><a href="#section2"><span class="toc-number">02</span>苦味・酸味・甘味</a></li>
+          <li><a href="#section3"><span class="toc-number">03</span>香りの特徴と表現</a></li>
+          <li><a href="#section4"><span class="toc-number">04</span>口当たりと後味</a></li>
+          <li><a href="#section5"><span class="toc-number">05</span>焙煎による味の変化</a></li>
+          <li><a href="#section6"><span class="toc-number">06</span>抽出による味の変化</a></li>
+          <li><a href="#section7"><span class="toc-number">07</span>味わいを記録する方法</a></li>
+          <li><a href="#section8"><span class="toc-number">08</span>自分好みの味を見つける</a></li>
+        </ol>
+      </nav>
 
-<h2>豆の管理</h2>
-<p>豆の鮮度は味に直結します。購入後は密閉容器で保存し、焙煎度合いを確認して、豆ごとの味の特徴を学びましょう。</p>
+      <section id="section1">
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <div>
+            <h2>コーヒーの味を作る要素</h2>
+            <p>一杯の味を、いくつかの視点に分けて考える</p>
+          </div>
+        </div>
 
-<p>これらを理解すれば、自宅でもカフェのように美味しいコーヒーを楽しめるようになります。実践を通して自分だけの味を見つけてください。</p>
-</section>
+        <div class="content-card">
+          <p>
+            コーヒーを飲んだときに感じる印象は、一つの要素だけで決まるわけではありません。
+            苦味や酸味といった基本的な味に加えて、鼻で感じる香り、
+            舌や口の中で感じる質感、飲み込んだ後に残る後味などが合わさっています。
+          </p>
 
-<a href="beginner.html" class="top-link">ステップ一覧に戻る</a>
-</main>
+          <div class="info-grid">
+            <div class="info-box">
+              <h3>味</h3>
+              <p>
+                苦味、酸味、甘味など、口の中で感じる味わいです。
+                強さだけでなく、どのような印象かにも注目します。
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>香り</h3>
+              <p>
+                コーヒーから感じる香りの特徴です。
+                花や果物、ナッツ、チョコレートなどに例えて表現できます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>口当たり</h3>
+              <p>
+                口に含んだときの質感です。
+                軽くすっきりしているか、なめらかで重みがあるかなどを見ます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h3>後味</h3>
+              <p>
+                飲み込んだ後に残る味や香りです。
+                すぐに消えるか、長く続くか、心地よく感じるかを確かめます。
+              </p>
+            </div>
+          </div>
 
-<footer>
-&copy; 2026 CoffeeSite
-</footer>
+          <div class="notice">
+            味の感じ方には個人差があります。同じコーヒーでも、飲む人や温度、
+            そのときの体調などによって印象が変わることがあります。
+            自分が実際に感じたことを大切にしましょう。
+          </div>
+        </div>
+      </section>
+
+      <section id="section2">
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <div>
+            <h2>苦味・酸味・甘味</h2>
+            <p>基本となる味の違いを知る</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h3>苦味</h3>
+          <p>
+            コーヒーの苦味は、焙煎の度合いや豆の種類、抽出の条件などによって
+            印象が変わります。苦味そのものが悪いわけではなく、
+            香ばしさや甘い印象と調和していると、味に深みを感じることがあります。
+          </p>
+          <div class="word-list">
+            <span class="word-tag">穏やかな苦味</span>
+            <span class="word-tag">しっかりした苦味</span>
+            <span class="word-tag">香ばしい</span>
+            <span class="word-tag">ビター</span>
+            <span class="word-tag">力強い</span>
+          </div>
+
+          <h4>感じたときの考え方</h4>
+          <p>
+            苦味があるかどうかだけでなく、苦味がどれくらい強いか、
+            香ばしさを伴うか、後味に長く残るかを考えると、
+            より細かく味を表現できます。
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h3>酸味</h3>
+          <p>
+            コーヒーの酸味は、果物を思わせる明るい印象や、
+            口の中をすっきりさせる感覚につながることがあります。
+            酸味の強さだけでなく、どのような酸味に感じるかが重要です。
+          </p>
+          <div class="word-list">
+            <span class="word-tag">柑橘系</span>
+            <span class="word-tag">りんごのような</span>
+            <span class="word-tag">ベリー系</span>
+            <span class="word-tag">明るい</span>
+            <span class="word-tag">爽やか</span>
+            <span class="word-tag">穏やか</span>
+          </div>
+
+          <h4>酸味が苦手な場合</h4>
+          <p>
+            酸味が苦手だと感じる場合は、焙煎度や豆の種類を変えて飲み比べると、
+            好みに合うものを見つけやすくなります。
+            ただし、酸味の印象は焙煎だけでなく、豆や抽出方法によっても変わります。
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h3>甘味</h3>
+          <p>
+            コーヒーは砂糖を加えなくても、甘い印象を感じることがあります。
+            キャラメルやチョコレート、熟した果物などを思わせる風味が、
+            甘味のイメージにつながる場合があります。
+          </p>
+          <div class="word-list">
+            <span class="word-tag">キャラメル</span>
+            <span class="word-tag">チョコレート</span>
+            <span class="word-tag">はちみつ</span>
+            <span class="word-tag">熟した果物</span>
+            <span class="word-tag">まろやか</span>
+          </div>
+
+          <div class="notice">
+            「甘い」と感じることと、実際に砂糖のような甘味が強いことは
+            必ずしも同じではありません。香りや苦味とのバランスによっても、
+            甘い印象が生まれることがあります。
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h3>味のバランス</h3>
+          <p>
+            苦味、酸味、甘味は、どれか一つだけを強く感じればよいというものではありません。
+            それぞれの要素がどのように組み合わさっているかによって、
+            コーヒー全体の印象が変わります。
+          </p>
+          <ul>
+            <li>苦味が中心で、香ばしい印象が強い。</li>
+            <li>酸味が明るく、すっきりした印象がある。</li>
+            <li>甘い印象と穏やかな苦味が調和している。</li>
+            <li>酸味や苦味が強く、味の輪郭がはっきりしている。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="section3">
+        <div class="section-heading">
+          <span class="section-number">03</span>
+          <div>
+            <h2>香りの特徴と表現</h2>
+            <p>香りを身近なものに例えてみる</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <p>
+            コーヒーの香りは、味わいを理解するための大切な手がかりです。
+            香りを表現するときは、必ずしも正確な名前を当てる必要はありません。
+            「果物のよう」「ナッツのよう」「焼き菓子のよう」といった、
+            身近なものへの例えから始めてみましょう。
+          </p>
+
+          <div class="flavor-grid">
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">花</div>
+              <h3>花のような香り</h3>
+              <p>
+                花やハーブを思わせる、繊細で華やかな印象。
+                香りを軽やかに感じるときの表現に使えます。
+              </p>
+            </div>
+
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">果</div>
+              <h3>果物のような香り</h3>
+              <p>
+                柑橘類、ベリー、りんごなどを思わせる香り。
+                爽やかさや熟した果実のような印象を表せます。
+              </p>
+            </div>
+
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">木</div>
+              <h3>ナッツのような香り</h3>
+              <p>
+                アーモンドやヘーゼルナッツなどを思わせる香り。
+                香ばしさや落ち着いた印象を表現できます。
+              </p>
+            </div>
+
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">甘</div>
+              <h3>甘い香り</h3>
+              <p>
+                チョコレート、キャラメル、焼き菓子などを思わせる香り。
+                コクや甘い印象を説明するときに使えます。
+              </p>
+            </div>
+
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">香</div>
+              <h3>焙煎の香り</h3>
+              <p>
+                焼いた穀物やトーストを思わせる香り。
+                焙煎による香ばしい印象を表現できます。
+              </p>
+            </div>
+
+            <div class="flavor-card">
+              <div class="flavor-symbol" aria-hidden="true">他</div>
+              <h3>その他の香り</h3>
+              <p>
+                スパイスや土、木などを思わせる香り。
+                感じた印象を無理に一つの分類に当てはめる必要はありません。
+              </p>
+            </div>
+          </div>
+
+          <h4>香りを確かめるコツ</h4>
+          <ol>
+            <li>飲む前に、カップから立ち上がる香りを感じる。</li>
+            <li>少量を口に含み、味と一緒に感じる香りに注目する。</li>
+            <li>飲み込んだ後に、鼻や口の中に残る香りを確かめる。</li>
+            <li>思い浮かんだものを、簡単な言葉でメモする。</li>
+          </ol>
+
+          <div class="notice">
+            香りの表現は人によって異なります。「柑橘系」と感じる人もいれば、
+            「爽やか」と表現する人もいます。どちらが正解というわけではありません。
+          </div>
+        </div>
+      </section>
+
+      <section id="section4">
+        <div class="section-heading">
+          <span class="section-number">04</span>
+          <div>
+            <h2>口当たりと後味</h2>
+            <p>飲んだときの質感や、飲み込んだ後の印象を知る</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <h3>口当たりとは？</h3>
+          <p>
+            口当たりは、コーヒーを口に含んだときに感じる質感のことです。
+            味そのものとは別に、軽いか重いか、さらっとしているか、
+            なめらかかといった印象を表現します。
+          </p>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h4>軽い口当たり</h4>
+              <p>
+                水のようにさらっとしていて、飲みやすく感じられるタイプ。
+                「軽やか」「すっきり」と表現できます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>重みのある口当たり</h4>
+              <p>
+                口の中に厚みや存在感を感じるタイプ。
+                「しっかりしている」「厚みがある」と表現できます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>なめらかな口当たり</h4>
+              <p>
+                舌の上で滑らかに感じられるタイプ。
+                「まろやか」「クリーミー」と表現することがあります。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>ざらつきを感じる口当たり</h4>
+              <p>
+                舌や口の中にざらつきや乾いた感覚が残るタイプ。
+                どのような感覚かを具体的に記録すると役立ちます。
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 28px;">後味とは？</h3>
+          <p>
+            後味は、コーヒーを飲み込んだ後に残る味や香りのことです。
+            後味が短くすっきり消える場合もあれば、
+            香りや苦味が長く続く場合もあります。
+          </p>
+
+          <div class="word-list">
+            <span class="word-tag">すっきり消える</span>
+            <span class="word-tag">甘い余韻が残る</span>
+            <span class="word-tag">香ばしさが続く</span>
+            <span class="word-tag">苦味が長く残る</span>
+            <span class="word-tag">爽やかな余韻</span>
+          </div>
+
+          <div class="notice">
+            後味が長いこと自体が良い、短いこと自体が悪い、というわけではありません。
+            自分にとって心地よい後味かどうかも、好みを知る手がかりになります。
+          </div>
+        </div>
+      </section>
+
+      <section id="section5">
+        <div class="section-heading">
+          <span class="section-number">05</span>
+          <div>
+            <h2>焙煎による味の変化</h2>
+            <p>豆をどの程度まで煎るかで、味わいの傾向が変わる</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <p>
+            焙煎とは、生のコーヒー豆に熱を加えて、香りや味わいを引き出す工程です。
+            焙煎の度合いは「焙煎度」と呼ばれ、一般に浅煎りから深煎りまで段階的に表されます。
+            焙煎度が変わると、酸味や苦味、香ばしさなどの感じ方も変化します。
+          </p>
+
+          <div class="roast-scale">
+            <div class="roast-item">
+              <div class="roast-color roast-light" aria-hidden="true"></div>
+              <h3>浅煎り</h3>
+              <p>果物を思わせる酸味や、明るい香りが感じられることがある。</p>
+            </div>
+            <div class="roast-item">
+              <div class="roast-color roast-medium" aria-hidden="true"></div>
+              <h3>中煎り</h3>
+              <p>酸味や苦味、香ばしさなどが組み合わさった味わいになりやすい。</p>
+            </div>
+            <div class="roast-item">
+              <div class="roast-color roast-dark" aria-hidden="true"></div>
+              <h3>深煎り</h3>
+              <p>苦味やロースト感がはっきり感じられることがある。</p>
+            </div>
+            <div class="roast-item">
+              <div class="roast-color roast-deep" aria-hidden="true"></div>
+              <h3>さらに深い焙煎</h3>
+              <p>力強い苦味や、深く香ばしい印象が強くなることがある。</p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 28px;">焙煎度を選ぶときの目安</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>好みの傾向</th>
+                  <th>試してみたい焙煎度</th>
+                  <th>確認したいポイント</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>果物のような酸味や明るい香りが好き</td>
+                  <td>浅煎り</td>
+                  <td>酸味の種類、香りの華やかさ</td>
+                </tr>
+                <tr>
+                  <td>味のバランスを楽しみたい</td>
+                  <td>中煎り</td>
+                  <td>酸味、苦味、甘い印象のバランス</td>
+                </tr>
+                <tr>
+                  <td>苦味や香ばしさが好き</td>
+                  <td>深煎り</td>
+                  <td>苦味の強さ、香ばしさ、後味</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="notice">
+            これはあくまで一般的な目安です。同じ焙煎度でも、豆の品種や産地、
+            焙煎の方法によって味は変わります。焙煎度だけで味を完全に予測することはできません。
+          </div>
+        </div>
+      </section>
+
+      <section id="section6">
+        <div class="section-heading">
+          <span class="section-number">06</span>
+          <div>
+            <h2>抽出による味の変化</h2>
+            <p>同じ豆でも、淹れ方や条件によって印象が変わる</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <p>
+            コーヒーの抽出とは、豆に含まれる味や香りの成分をお湯などで取り出すことです。
+            豆の種類や焙煎度が同じでも、挽き目、お湯の温度、抽出時間、
+            お湯と粉の比率などが変わると、仕上がりの味に違いが出ます。
+          </p>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h4>挽き目</h4>
+              <p>
+                粉の細かさです。細かく挽くと成分が抽出されやすくなる傾向があり、
+                粗く挽くと抽出の進み方が変わります。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>お湯の温度</h4>
+              <p>
+                温度は成分の溶け出し方に影響します。
+                豆や焙煎度に合わせて調整すると、好みの味を探しやすくなります。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>抽出時間</h4>
+              <p>
+                お湯が粉に触れている時間です。
+                長さが変わると、抽出される成分や味のバランスも変わることがあります。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>粉とお湯の比率</h4>
+              <p>
+                コーヒー粉に対して、どのくらいのお湯を使うかという比率です。
+                濃さや味の感じ方に影響します。
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 28px;">味が好みと違ったときに確認すること</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>感じたこと</th>
+                  <th>確認してみること</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>味が薄く感じる</td>
+                  <td>粉とお湯の比率、挽き目、抽出時間を確認する。</td>
+                </tr>
+                <tr>
+                  <td>苦味が強すぎる</td>
+                  <td>焙煎度、挽き目、お湯の温度、抽出時間を見直す。</td>
+                </tr>
+                <tr>
+                  <td>酸味が目立つ</td>
+                  <td>豆の特徴や焙煎度、抽出条件を一つずつ確認する。</td>
+                </tr>
+                <tr>
+                  <td>香りが弱く感じる</td>
+                  <td>豆の鮮度、保存方法、挽きたてかどうかを確認する。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="notice">
+            味が好みと違った場合、一度にすべての条件を変えると原因が分かりにくくなります。
+            まずは一つの条件だけを少し変えて、味の違いを比べてみましょう。
+          </div>
+        </div>
+      </section>
+
+      <section id="section7">
+        <div class="section-heading">
+          <span class="section-number">07</span>
+          <div>
+            <h2>味わいを記録する方法</h2>
+            <p>感じたことをメモすると、自分の好みが見えてくる</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <p>
+            コーヒーの味を覚えるには、飲んだときの印象を簡単に記録する方法がおすすめです。
+            専門的な評価をする必要はありません。最初は「苦味が強い」
+            「香りが甘い」「後味がすっきりしている」など、
+            自分にとって分かりやすい言葉で十分です。
+          </p>
+
+          <div class="tasting-steps">
+            <div class="tasting-step">
+              <h3>飲む前に香りを確かめる</h3>
+              <p>
+                果物、ナッツ、チョコレート、花など、どのような香りを思い浮かべるかを記録します。
+              </p>
+            </div>
+            <div class="tasting-step">
+              <h3>一口飲んで、最初の印象を記録する</h3>
+              <p>
+                苦味、酸味、甘い印象のうち、何が目立つかを考えます。
+              </p>
+            </div>
+            <div class="tasting-step">
+              <h3>口当たりを確かめる</h3>
+              <p>
+                軽い、なめらか、しっかりしているなど、口の中で感じる質感を記録します。
+              </p>
+            </div>
+            <div class="tasting-step">
+              <h3>飲み込んだ後の余韻を確かめる</h3>
+              <p>
+                どのような味や香りが残るか、どのくらい続くかを確認します。
+              </p>
+            </div>
+            <div class="tasting-step">
+              <h3>最後に、また飲みたいかを考える</h3>
+              <p>
+                味の説明だけでなく、自分が好きかどうかも残しておくと、次の豆選びに役立ちます。
+              </p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 28px;">記録するときの項目例</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>項目</th>
+                  <th>記録の例</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>豆・商品名</td>
+                  <td>購入した豆の名前や産地</td>
+                </tr>
+                <tr>
+                  <td>焙煎度</td>
+                  <td>浅煎り・中煎り・深煎りなど</td>
+                </tr>
+                <tr>
+                  <td>香り</td>
+                  <td>ナッツのよう、果物のよう、香ばしい</td>
+                </tr>
+                <tr>
+                  <td>味</td>
+                  <td>苦味が強い、酸味が爽やか、甘い印象がある</td>
+                </tr>
+                <tr>
+                  <td>口当たり・後味</td>
+                  <td>軽い、なめらか、余韻が長い</td>
+                </tr>
+                <tr>
+                  <td>好み</td>
+                  <td>また飲みたい、少し苦すぎる、酸味が好み</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="section8">
+        <div class="section-heading">
+          <span class="section-number">08</span>
+          <div>
+            <h2>自分好みの味を見つける</h2>
+            <p>少しずつ飲み比べて、好みの傾向を探す</p>
+          </div>
+        </div>
+
+        <div class="content-card">
+          <p>
+            自分好みのコーヒーを見つけるためには、違いを意識しながら飲み比べることが役立ちます。
+            最初から細かな味を言い当てようとせず、
+            まずは「どちらが好きか」「何が違うか」を考えてみましょう。
+          </p>
+
+          <h3>飲み比べの進め方</h3>
+          <ol>
+            <li>比較するコーヒーを二種類用意する。</li>
+            <li>できるだけ同じ条件で淹れる。</li>
+            <li>香り、苦味、酸味、口当たり、後味を順番に確かめる。</li>
+            <li>違いを簡単にメモする。</li>
+            <li>どちらが好みだったか、その理由も考える。</li>
+          </ol>
+
+          <h3 style="margin-top: 28px;">こんな比較から始めてみよう</h3>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <h4>浅煎りと深煎り</h4>
+              <p>
+                酸味や香り、苦味、香ばしさの感じ方を比べます。
+                どちらの味わいが好みに近いかを探してみましょう。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>同じ豆で抽出条件を変える</h4>
+              <p>
+                豆は同じまま、挽き目や粉とお湯の比率などを一つずつ変えます。
+                抽出による味の違いを確認できます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>ブラックとミルク入り</h4>
+              <p>
+                ブラックで感じる味と、ミルクを加えたときの印象を比べます。
+                ミルクによって苦味や口当たりがどう感じられるかを見ます。
+              </p>
+            </div>
+            <div class="info-box">
+              <h4>時間を置いて飲み比べる</h4>
+              <p>
+                同じコーヒーでも、温度が変わると味や香りの印象が変わることがあります。
+                熱いときと少し冷めたときの違いを確かめます。
+              </p>
+            </div>
+          </div>
+
+          <div class="notice">
+            飲み比べでは、一度に多くの条件を変えないことが大切です。
+            豆、焙煎度、抽出方法などを一つずつ比較すると、
+            何が自分の好みに影響しているのかを理解しやすくなります。
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-card" id="summary">
+        <h2>このステップのまとめ</h2>
+        <ul>
+          <li>コーヒーの味わいは、味・香り・口当たり・後味などの組み合わせで決まる。</li>
+          <li>苦味、酸味、甘味は、強さだけでなく、どのような印象かにも注目する。</li>
+          <li>香りは果物やナッツなど、身近なものに例えると表現しやすい。</li>
+          <li>焙煎度によって、酸味や苦味、香ばしさなどの傾向が変わる。</li>
+          <li>挽き目、お湯の温度、抽出時間、粉とお湯の比率も味に影響する。</li>
+          <li>飲んだ感想を記録し、条件を一つずつ変えて比較すると、自分の好みを見つけやすい。</li>
+        </ul>
+
+        <div class="next-step">
+          <h3 style="margin: 0 0 8px; color: var(--brown); font-size: 17px;">
+            これで5つのステップは完了です
+          </h3>
+          <p style="margin: 0;">
+            道具、抽出方法、豆、飲み方、味・香りの基本を知ったら、
+            実際にいろいろなコーヒーを試してみましょう。
+            知識と飲み比べを組み合わせることで、自分に合う一杯を見つけやすくなります。
+          </p>
+        </div>
+      </section>
+
+      <a class="back-link" href="beginner.html">← 初心者ガイドに戻る</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">COFFEE GUIDE</div>
+    <div>コーヒーの基本を、少しずつ。</div>
+  </footer>
 </body>
 </html>
