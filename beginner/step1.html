@@ -1,71 +1,826 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ステップ1：迷わなくていい</title>
+<meta name="description" content="コーヒーを淹れるための道具を、役割や仕組みの違いから紹介します。抽出器具、ミル、ケトル、スケールなどの基本を解説します。">
+<title>コーヒーに使う道具 | コーヒーサイト</title>
 <link rel="stylesheet" href="../css/style.css">
+
 <style>
-/* 共通CSSは style.css に置く */
+:root {
+    --bg: #fefcf7;
+    --paper: #fff;
+    --beige: #c7b198;
+    --beige-light: #f0e7dd;
+    --text: #33291f;
+    --muted: #74685d;
+    --border: #e4d8ca;
+}
+
 body {
-    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
-    background-color: #fefcf7;
-    color: #000;
     margin: 0;
-    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic",
+                 Meiryo, sans-serif;
+    line-height: 1.85;
 }
+
 header {
-    background-color: #c7b198;
-    padding: 30px 20px;
+    padding: 24px 20px;
+    background: var(--beige);
     text-align: center;
-    color: #fff;
 }
-header h1 a { color: #fff; text-decoration: none; font-size: 2em; }
-main { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-h1, h2 { text-align: center; }
-.section-card {
-    background-color: #e7d9ce;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+
+header h1 {
+    margin: 0;
+    font-size: 1.7rem;
 }
-.top-link {
-    display: inline-block;
-    margin: 30px auto 0;
-    padding: 10px 20px;
-    background-color: #c7b198;
-    color: #fff;
+
+header h1 a {
+    color: white;
     text-decoration: none;
-    border-radius: 6px;
-    text-align: center;
-    display: block;
-    width: fit-content;
 }
-.top-link:hover { background-color: #b09b7f; }
+
+main {
+    width: min(1080px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 28px 0 70px;
+}
+
+a {
+    color: #735438;
+}
+
+.breadcrumb {
+    margin-bottom: 24px;
+    color: var(--muted);
+    font-size: .88rem;
+}
+
+.breadcrumb a {
+    color: inherit;
+}
+
+.hero {
+    padding: clamp(24px, 5vw, 48px);
+    margin-bottom: 52px;
+    background: var(--beige-light);
+    border-radius: 16px;
+}
+
+.eyebrow,
+.section-number {
+    color: #806447;
+    font-size: .78rem;
+    font-weight: bold;
+    letter-spacing: .12em;
+}
+
+.hero h2 {
+    margin: 8px 0 16px;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1.4;
+}
+
+.hero p {
+    max-width: 760px;
+    margin: 0;
+}
+
+.hero-note {
+    padding-top: 18px;
+    margin-top: 22px;
+    border-top: 1px solid #d9c8b6;
+    color: #655548;
+    font-size: .9rem;
+}
+
+.section {
+    margin-bottom: 58px;
+    scroll-margin-top: 24px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin: 4px 0 8px;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.5;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.tool-card {
+    min-width: 0;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.photo-slot {
+    display: flex;
+    aspect-ratio: 16 / 9;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    background: #eee7df;
+    color: #786b5f;
+    text-align: center;
+}
+
+.photo-slot .photo-icon {
+    font-size: 2rem;
+    opacity: .7;
+}
+
+.photo-slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tool-content {
+    padding: 22px;
+}
+
+.tool-category {
+    color: #927252;
+    font-size: .76rem;
+    font-weight: bold;
+    letter-spacing: .07em;
+}
+
+.tool-content h3 {
+    margin: 5px 0 12px;
+    font-size: 1.28rem;
+}
+
+.tool-content p {
+    margin: 0 0 14px;
+}
+
+.tool-content h4 {
+    margin: 18px 0 6px;
+    font-size: .95rem;
+}
+
+.tool-content ul {
+    padding-left: 1.3em;
+    margin: 6px 0 0;
+}
+
+.tool-content li {
+    margin: 3px 0;
+}
+
+.note {
+    padding: 22px 24px;
+    background: #f4eee7;
+    border-left: 4px solid var(--beige);
+    border-radius: 6px;
+}
+
+.note h3 {
+    margin: 0 0 8px;
+}
+
+.note p:last-child {
+    margin-bottom: 0;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.comparison-table th {
+    background: #eee3d7;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.source-list {
+    padding-left: 1.4em;
+}
+
+.source-list li {
+    margin-bottom: 12px;
+}
+
+.source-list a {
+    overflow-wrap: anywhere;
+}
+
+.source-note {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.back-navigation {
+    margin-top: 54px;
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background: var(--beige);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    background: #b09b7f;
+}
+
+footer {
+    padding: 22px;
+    background: #e7d9ce;
+    color: var(--muted);
+    text-align: center;
+    font-size: .85rem;
+}
+
+@media (max-width: 700px) {
+    main {
+        width: calc(100% - 28px);
+        padding-top: 20px;
+    }
+
+    .tool-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .tool-content {
+        padding: 18px;
+    }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <h1><a href="../index.html">コーヒーサイト</a></h1>
+    <h1><a href="../index.html">コーヒーサイト</a></h1>
 </header>
 
 <main>
-  <section class="section-card">
-    <h1>ステップ1：迷わなくていい</h1>
-    <p>まずは基本の道具や種類を知ることが大事です。コーヒー豆、ドリッパー、カップなど、どれを選べばいいか迷わないように簡単に紹介します。</p>
-    <ul>
-      <li>コーヒー豆はアラビカ種がおすすめ</li>
-      <li>ドリッパーは手軽に使えるプラスチック製でもOK</li>
-      <li>カップはお気に入りのものを1つ用意すれば十分</li>
-    </ul>
-  </section>
+    <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../index.html">ホーム</a>
+        <span aria-hidden="true"> / </span>
+        <a href="beginner.html">初心者向け</a>
+        <span aria-hidden="true"> / </span>
+        <span>コーヒーに使う道具</span>
+    </nav>
 
-  <a href="beginner.html" class="top-link">ステップ一覧に戻る</a>
+    <section class="hero">
+        <span class="eyebrow">BEGINNER / STEP 01</span>
+        <h2>コーヒーに使う道具</h2>
+        <p>
+            コーヒーを淹れるときに使う道具には、抽出するもの、
+            豆を挽くもの、湯の量や温度を測るものなどがあります。
+            それぞれの役割と仕組みを知ると、道具同士の違いを
+            比較しやすくなります。
+        </p>
+        <div class="hero-note">
+            ここでは一般的な道具の役割を紹介します。
+            必要な道具や適した組み合わせは、抽出方法や使用する製品によって異なります。
+        </div>
+    </section>
+
+    <!-- 01 抽出器具 -->
+    <section class="section" id="brewing">
+        <div class="section-heading">
+            <span class="section-number">01 / BREWING</span>
+            <h2>コーヒーを抽出する道具</h2>
+            <p>
+                コーヒー粉と水を接触させ、飲むためのコーヒーを作る器具です。
+                抽出の仕組みや、抽出後に粉を分離する方法が異なります。
+            </p>
+        </div>
+
+        <div class="tool-grid">
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：ドリッパー -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>ドリッパーの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">POUR-OVER</span>
+                    <h3>ドリッパー</h3>
+                    <p>
+                        ドリッパーは、フィルターに入れたコーヒー粉へ湯を注ぎ、
+                        抽出液を下へ通すための器具です。
+                        紙・布・金属などのフィルターが使われ、
+                        ドリッパーの形状や穴の構造も製品によって異なります。
+                    </p>
+                    <h4>比較するときのポイント</h4>
+                    <ul>
+                        <li>円すい形や台形などの形状</li>
+                        <li>対応するフィルターの形と素材</li>
+                        <li>一度に抽出できる量</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：フレンチプレス -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>フレンチプレスの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">IMMERSION</span>
+                    <h3>フレンチプレス</h3>
+                    <p>
+                        フレンチプレスは、容器の中でコーヒー粉を湯に浸し、
+                        金属製などのメッシュフィルターを押し下げて
+                        粉を分離する器具です。
+                    </p>
+                    <h4>比較するときのポイント</h4>
+                    <ul>
+                        <li>容器の容量</li>
+                        <li>フィルターの構造</li>
+                        <li>容器や部品の材質</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：エアロプレス -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>エアロプレスの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">PRESS / IMMERSION</span>
+                    <h3>エアロプレス</h3>
+                    <p>
+                        エアロプレスは、筒状のチャンバー内でコーヒー粉と湯を
+                        接触させ、プランジャーを押してフィルター越しに抽出する器具です。
+                        使用するフィルターやレシピによって、抽出条件を変えられます。
+                    </p>
+                    <h4>比較するときのポイント</h4>
+                    <ul>
+                        <li>使用するフィルター</li>
+                        <li>粉と湯の量、接触時間</li>
+                        <li>押し下げる手順や抽出方法</li>
+                    </ul>
+                    <a href="https://aeropress.com/pages/how-it-works"
+                       target="_blank" rel="noopener noreferrer">
+                        メーカー公式の仕組み解説 →
+                    </a>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：エスプレッソマシン -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>エスプレッソマシンの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">ESPRESSO</span>
+                    <h3>エスプレッソマシン</h3>
+                    <p>
+                        エスプレッソマシンは、コーヒー粉に加圧した湯を通して
+                        エスプレッソを抽出するための機器です。
+                        機種によって、圧力を生み出す仕組みや操作方法、
+                        温度制御などの機能が異なります。
+                    </p>
+                    <h4>比較するときのポイント</h4>
+                    <ul>
+                        <li>手動式か、自動制御機能があるか</li>
+                        <li>抽出量や温度の調整方法</li>
+                        <li>ミルク用スチーム機能の有無</li>
+                    </ul>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- 02 ミル -->
+    <section class="section" id="grinder">
+        <div class="section-heading">
+            <span class="section-number">02 / GRINDING</span>
+            <h2>コーヒーミル</h2>
+            <p>
+                コーヒーミルは、焙煎したコーヒー豆を粉砕する器具です。
+                粉の粒の大きさや分布は抽出に関係するため、
+                ミルの方式や挽き目の調整範囲が比較対象になります。
+            </p>
+        </div>
+
+        <div class="tool-grid">
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：手動ミル -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>手動ミルの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">MANUAL</span>
+                    <h3>手動ミル</h3>
+                    <p>
+                        ハンドルを手で回して豆を挽く器具です。
+                        電源を必要としない製品が多く、構造や容量、
+                        挽き目の調整方法は製品によって異なります。
+                    </p>
+                    <h4>確認したい点</h4>
+                    <ul>
+                        <li>一度に挽ける豆の量</li>
+                        <li>挽き目の調整範囲</li>
+                        <li>分解や清掃のしやすさ</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：電動ミル -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>電動ミルの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">ELECTRIC</span>
+                    <h3>電動ミル</h3>
+                    <p>
+                        モーターを使って豆を挽く器具です。
+                        刃の方式、挽き目の調整範囲、容量、動作音などは
+                        製品によって異なります。
+                    </p>
+                    <h4>確認したい点</h4>
+                    <ul>
+                        <li>刃の方式</li>
+                        <li>挽き目の設定方法</li>
+                        <li>連続使用できる時間や清掃方法</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div class="note" style="margin-top:22px">
+            <h3>挽き目と抽出の関係</h3>
+            <p>
+                一般に、粉の粒の大きさは抽出速度や抽出される成分に関係します。
+                ただし、仕上がりは挽き目だけで決まるわけではなく、
+                湯温、抽出時間、粉と湯の比率、器具なども関係します。
+                特定の挽き目がすべての抽出方法に適しているわけではありません。
+            </p>
+        </div>
+    </section>
+
+    <!-- 03 湯を扱う道具 -->
+    <section class="section" id="water-tools">
+        <div class="section-heading">
+            <span class="section-number">03 / WATER</span>
+            <h2>ケトルと温度計</h2>
+            <p>
+                湯を用意して注ぐ道具と、温度を測る道具です。
+                必要な機能は、使用する抽出方法や手順によって変わります。
+            </p>
+        </div>
+
+        <div class="tool-grid">
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：ケトル -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>ケトルの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">KETTLE</span>
+                    <h3>ケトル</h3>
+                    <p>
+                        湯を沸かす、または湯を注ぐための道具です。
+                        コーヒー用として販売されているものには、
+                        注ぎ口が細いタイプや、温度設定機能を備えたタイプなどがあります。
+                    </p>
+                    <h4>確認したい点</h4>
+                    <ul>
+                        <li>容量と注ぎ口の形</li>
+                        <li>温度を設定・表示できるか</li>
+                        <li>加熱機能があるか、別途湯を用意するか</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：温度計 -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>温度計の写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">THERMOMETER</span>
+                    <h3>温度計</h3>
+                    <p>
+                        液体などの温度を測定する道具です。
+                        湯温を数値で確認したい場合に使用できます。
+                        温度表示機能を備えたケトルを使う方法もあります。
+                    </p>
+                    <h4>確認したい点</h4>
+                    <ul>
+                        <li>測定できる温度範囲</li>
+                        <li>表示の見やすさと測定方法</li>
+                        <li>使用後の手入れ方法</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 04 計量と容器 -->
+    <section class="section" id="accessories">
+        <div class="section-heading">
+            <span class="section-number">04 / ACCESSORIES</span>
+            <h2>スケール・サーバー・カップ</h2>
+            <p>
+                抽出量を把握したり、コーヒーを受けたり、
+                飲むために使ったりする道具です。
+            </p>
+        </div>
+
+        <div class="tool-grid">
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：スケール -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>スケールの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">SCALE</span>
+                    <h3>スケール</h3>
+                    <p>
+                        物の重さを測る道具です。
+                        コーヒー豆や抽出に使う湯の量を重量で管理する際に使えます。
+                        タイマー機能などを備えた製品もあります。
+                    </p>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：サーバー -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>サーバーの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">SERVER</span>
+                    <h3>サーバー</h3>
+                    <p>
+                        抽出したコーヒーを受けるための容器です。
+                        複数杯分をまとめて抽出するときなどに使われます。
+                        容量、材質、目盛りの有無などは製品によって異なります。
+                    </p>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：カップ -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>カップの写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">CUP</span>
+                    <h3>カップ</h3>
+                    <p>
+                        コーヒーを飲むための器です。
+                        材質、形状、容量などの違いがあり、
+                        用途や好みに合わせて選ばれています。
+                    </p>
+                </div>
+            </article>
+
+            <article class="tool-card">
+                <div class="photo-slot">
+                    <!-- 写真を入れる場所：保存容器 -->
+                    <span class="photo-icon" aria-hidden="true">▧</span>
+                    <span>保存容器の写真</span>
+                </div>
+                <div class="tool-content">
+                    <span class="tool-category">STORAGE</span>
+                    <h3>保存容器</h3>
+                    <p>
+                        コーヒー豆を保管するための容器です。
+                        容器を比較する際は、密閉性、光を通すかどうか、
+                        容量、開閉方法などを確認できます。
+                    </p>
+                    <p>
+                        容器だけで鮮度が決まるわけではありません。
+                        保存環境や保管期間なども関係します。
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 05 比較表 -->
+    <section class="section" id="comparison">
+        <div class="section-heading">
+            <span class="section-number">05 / COMPARISON</span>
+            <h2>道具の役割を比較する</h2>
+            <p>
+                下の表は一般的な役割を整理したものです。
+                製品ごとの機能や対応条件は、メーカーの仕様を確認してください。
+            </p>
+        </div>
+
+        <div class="table-wrap">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th scope="col">道具</th>
+                        <th scope="col">主な役割</th>
+                        <th scope="col">比較するときのポイント</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ドリッパー</td>
+                        <td>フィルターを通してコーヒーを抽出する</td>
+                        <td>形状、フィルター、容量</td>
+                    </tr>
+                    <tr>
+                        <td>フレンチプレス</td>
+                        <td>粉を湯に浸し、フィルターで分離する</td>
+                        <td>容量、フィルター構造、材質</td>
+                    </tr>
+                    <tr>
+                        <td>エアロプレス</td>
+                        <td>筒内で抽出し、プランジャーを押して濾過する</td>
+                        <td>フィルター、容量、抽出手順</td>
+                    </tr>
+                    <tr>
+                        <td>エスプレッソマシン</td>
+                        <td>加圧した湯をコーヒー粉に通す</td>
+                        <td>操作方法、温度制御、機能</td>
+                    </tr>
+                    <tr>
+                        <td>コーヒーミル</td>
+                        <td>焙煎した豆を粉砕する</td>
+                        <td>刃の方式、挽き目、容量</td>
+                    </tr>
+                    <tr>
+                        <td>ケトル</td>
+                        <td>湯を沸かす、または注ぐ</td>
+                        <td>容量、注ぎ口、温度機能</td>
+                    </tr>
+                    <tr>
+                        <td>温度計</td>
+                        <td>温度を測定する</td>
+                        <td>測定範囲、表示、測定方法</td>
+                    </tr>
+                    <tr>
+                        <td>スケール</td>
+                        <td>重さを測定する</td>
+                        <td>計量範囲、表示、タイマー機能</td>
+                    </tr>
+                    <tr>
+                        <td>サーバー</td>
+                        <td>抽出したコーヒーを受ける</td>
+                        <td>容量、材質、目盛り</td>
+                    </tr>
+                    <tr>
+                        <td>カップ</td>
+                        <td>コーヒーを飲む</td>
+                        <td>容量、材質、形状</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 06 抽出条件 -->
+    <section class="section" id="variables">
+        <div class="section-heading">
+            <span class="section-number">06 / BREWING VARIABLES</span>
+            <h2>道具以外にも関係すること</h2>
+        </div>
+
+        <div class="note">
+            <h3>コーヒーの味は、器具だけでは決まらない</h3>
+            <p>
+                抽出したコーヒーの成分や風味には、コーヒー豆の状態、
+                粉の粒の大きさ、水と粉の比率、湯の温度、接触時間、
+                抽出時の圧力、水の性質など、複数の要因が関係します。
+            </p>
+            <p>
+                そのため、器具の種類だけを見て、完成したコーヒーの味を
+                一律に決めつけることはできません。道具を比較するときは、
+                抽出の仕組みと、実際の抽出条件を分けて考えることが大切です。
+            </p>
+        </div>
+    </section>
+
+    <!-- 出典 -->
+    <section class="section" id="sources">
+        <div class="section-heading">
+            <span class="section-number">SOURCES</span>
+            <h2>参考資料</h2>
+            <p>
+                本ページの説明を確認するために参照した資料です。
+                メーカーの説明は、そのメーカーの製品についての情報として扱います。
+            </p>
+        </div>
+
+        <ol class="source-list">
+            <li>
+                <strong>コーヒー抽出に関する学術レビュー</strong><br>
+                「Coffee extraction: A review of parameters and their influence
+                on the physicochemical characteristics and flavour of coffee brews」<br>
+                <a href="https://www.sciencedirect.com/science/article/pii/S0924224419305692"
+                   target="_blank" rel="noopener noreferrer">
+                    Trends in Food Science &amp; Technology, 2020
+                </a>
+                <p class="source-note">
+                    抽出温度、圧力、粒子径、水とコーヒーの比率など、
+                    抽出条件とコーヒーの成分・風味の関係を扱うレビュー論文。
+                </p>
+            </li>
+            <li>
+                <strong>エアロプレス公式：抽出の仕組み</strong><br>
+                <a href="https://aeropress.com/pages/how-it-works"
+                   target="_blank" rel="noopener noreferrer">
+                    AeroPress — How It Works
+                </a>
+                <p class="source-note">
+                    エアロプレスのメーカーによる、抽出方法と器具の仕組みの説明。
+                    メーカーによる味の評価は、独立した比較試験の結果とは区別しています。
+                </p>
+            </li>
+            <li>
+                <strong>エアロプレス公式：使用方法</strong><br>
+                <a href="https://aeropress.com/pages/how-to-use"
+                   target="_blank" rel="noopener noreferrer">
+                    AeroPress — How To Use
+                </a>
+                <p class="source-note">
+                    エアロプレスの構成部品と基本的な使用手順を確認するための資料。
+                </p>
+            </li>
+        </ol>
+
+        <p class="source-note">
+            参考資料はページ内のすべての器具を同じ条件で比較した研究ではありません。
+            各製品の細かな仕様や性能を説明する場合は、製品ごとの公式仕様や
+            該当する比較試験などを別途確認する必要があります。
+        </p>
+    </section>
+
+    <nav class="back-navigation" aria-label="ページ移動">
+        <a href="beginner.html" class="back-link">
+            初心者向けページに戻る
+        </a>
+    </nav>
+
 </main>
 
 <footer>
-  &copy; 2026 CoffeeSite
+    <p>&copy; 2026 CoffeeSite</p>
 </footer>
+
 </body>
 </html>
