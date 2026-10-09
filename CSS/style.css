@@ -1,3 +1,4 @@
+```css
 /* =======================
    全体リセット・基本
 ======================= */
@@ -7,46 +8,108 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-brown: #422a20;
+    --color-brown-light: #654638;
+    --color-cream: #f7f0e5;
+    --color-cream-dark: #e5d8c6;
+    --color-background: #fffaf4;
+    --color-card: #ffffff;
+    --color-border: #e8ddd0;
+    --color-text: #352820;
+    --color-text-muted: #74665b;
+}
+
 body {
-    font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
-    background-color: #fff8f2; /* 優しいオフホワイト */
-    color: #000; /* 文字は黒で統一 */
-    line-height: 1.6;
+    font-family:
+        "Yu Gothic",
+        "Hiragino Kaku Gothic ProN",
+        "Noto Sans JP",
+        sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.8;
 }
 
 /* =======================
    ヘッダーナビ
 ======================= */
 header {
-    background-color: #f3e9e0; /* 優しいベージュ系 */
-    padding: 15px 20px;
+    background-color: var(--color-background);
+    padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e0d0c0;
+    gap: 20px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 header h1 a {
     text-decoration: none;
-    color: #000;
-    font-size: 1.5em;
+    color: var(--color-brown);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
 nav {
     display: flex;
-    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 nav a {
     text-decoration: none;
-    color: #000;
-    padding: 5px 10px;
-    transition: background 0.2s;
+    color: var(--color-text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 nav a:hover {
-    background-color: #e7d9ce;
-    border-radius: 4px;
+    background-color: #eee3d7;
+    color: var(--color-brown);
+}
+
+/* =======================
+   ページ上部・ヒーロー
+======================= */
+.page-hero {
+    background-color: var(--color-brown);
+    color: var(--color-cream);
+    padding: 64px 32px;
+}
+
+.page-hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page-hero .eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 4px 12px;
+    border: 1px solid rgba(247, 240, 229, 0.45);
+    border-radius: 999px;
+    color: var(--color-cream-dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.page-hero h1 {
+    margin-bottom: 16px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+}
+
+.page-hero p {
+    max-width: 680px;
+    color: var(--color-cream-dark);
+    font-size: 1rem;
+    line-height: 1.9;
 }
 
 /* =======================
@@ -54,33 +117,52 @@ nav a:hover {
 ======================= */
 main {
     max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 20px;
+    margin: 40px auto;
+    padding: 0 24px;
 }
 
 /* =======================
    カード型セクション
 ======================= */
 .section-card {
-    background-color: #f9f5f0; /* アイボリー系 */
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 14px rgba(66, 42, 32, 0.04);
 }
 
 .section-card h1,
-.section-card h2 {
-    margin-bottom: 10px;
+.section-card h2,
+.section-card h3 {
+    color: var(--color-brown);
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
-.section-card ul li a {
+.section-card p {
+    margin-bottom: 12px;
+}
+
+.section-card ul,
+.section-card ol {
+    padding-left: 1.5em;
+}
+
+.section-card li {
+    margin-bottom: 6px;
+}
+
+.section-card ul li a,
+.section-card ol li a {
+    color: var(--color-brown-light);
     text-decoration: none;
-    color: #000; /* リンク文字も黒で統一 */
-    font-weight: bold;
+    font-weight: 600;
 }
 
-.section-card ul li a:hover {
+.section-card ul li a:hover,
+.section-card ol li a:hover {
     text-decoration: underline;
 }
 
@@ -89,25 +171,46 @@ main {
 ======================= */
 footer {
     text-align: center;
-    padding: 15px 0;
+    padding: 24px 20px;
     background-color: #f3e9e0;
-    border-top: 1px solid #e0d0c0;
-    margin-top: 40px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 56px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
 }
 
 /* =======================
    レスポンシブ対応
 ======================= */
 @media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        gap: 5px;
-    }
-
     header {
+        padding: 16px 20px;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 12px;
+    }
+
+    nav {
+        gap: 4px;
+    }
+
+    nav a {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+
+    .page-hero {
+        padding: 44px 22px;
+    }
+
+    main {
+        margin: 28px auto;
+        padding: 0 16px;
+    }
+
+    .section-card {
+        padding: 20px;
+        border-radius: 10px;
     }
 }
-
+```
