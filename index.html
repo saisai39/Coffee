@@ -1,56 +1,814 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coffee</title>
-<link rel="stylesheet" href="/Coffee/CSS/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="コーヒーの道具、豆、淹れ方、味わいについて学べるコーヒーガイド。初心者から、もっと深く知りたい人まで楽しめる情報をまとめています。">
+  <meta name="theme-color" content="#493326">
+  <title>COFFEE GUIDE | コーヒーの世界を楽しもう</title>
+
+  <style>
+    :root {
+      --background: #f8f5ef;
+      --surface: #fffdf8;
+      --surface-soft: #f3ede4;
+      --brown: #493326;
+      --brown-light: #654b39;
+      --text: #302820;
+      --muted: #74685d;
+      --border: #e5dbce;
+      --accent: #c7a783;
+      --accent-dark: #96724f;
+      --shadow: 0 5px 18px rgba(73, 51, 38, 0.06);
+      --content-width: 1080px;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--accent-dark);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    /* ヘッダー */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 253, 248, 0.97);
+      border-top: 4px solid var(--brown);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-inner {
+      width: min(var(--content-width), calc(100% - 40px));
+      min-height: 70px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--brown);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 28px;
+    }
+
+    .main-nav a {
+      color: var(--brown-light);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--accent-dark);
+    }
+
+    /* メインビジュアル */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 88% 20%,
+          rgba(199, 167, 131, 0.18),
+          transparent 32%
+        ),
+        var(--brown);
+      color: var(--surface);
+    }
+
+    .hero-inner {
+      width: min(var(--content-width), calc(100% - 40px));
+      min-height: 420px;
+      margin: 0 auto;
+      padding: 82px 0 76px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 5px 13px;
+      border: 1px solid rgba(255, 253, 248, 0.38);
+      border-radius: 999px;
+      color: #f0dfcb;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0 0 22px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.4;
+      letter-spacing: 0.025em;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 0;
+      color: #e9ded2;
+      font-size: 15px;
+    }
+
+    .hero-note {
+      max-width: 650px;
+      margin-top: 28px;
+      padding: 13px 17px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: rgba(255, 253, 248, 0.08);
+      color: #f0e5d9;
+      font-size: 13px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 750;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--surface);
+      color: var(--brown);
+    }
+
+    .button-primary:hover {
+      background: var(--surface-soft);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 253, 248, 0.38);
+      background: transparent;
+      color: var(--surface);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255, 253, 248, 0.09);
+      transform: translateY(-1px);
+    }
+
+    /* 共通レイアウト */
+
+    .page-container {
+      width: min(var(--content-width), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 58px 0 78px;
+    }
+
+    .section {
+      margin-bottom: 58px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 23px;
+    }
+
+    .section-eyebrow {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--brown);
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.45;
+    }
+
+    .section-heading p {
+      max-width: 500px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* はじめての方へ */
+
+    .welcome-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .welcome-card h2 {
+      margin: 0 0 12px;
+      color: var(--brown);
+      font-size: 23px;
+    }
+
+    .welcome-card p {
+      max-width: 700px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .welcome-action {
+      flex-shrink: 0;
+    }
+
+    .button-brown {
+      background: var(--brown);
+      color: var(--surface);
+    }
+
+    .button-brown:hover {
+      background: var(--brown-light);
+      transform: translateY(-1px);
+    }
+
+    /* 目的別カード */
+
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .purpose-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 290px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .purpose-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 9px 24px rgba(73, 51, 38, 0.09);
+    }
+
+    .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 21px;
+      border-radius: 12px;
+      background: var(--surface-soft);
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .purpose-card h3 {
+      margin: 0 0 12px;
+      color: var(--brown);
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .purpose-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .card-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 23px;
+      color: var(--brown-light);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .card-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .purpose-card:hover .card-arrow {
+      background: var(--surface-soft);
+      transform: translateX(2px);
+    }
+
+    /* サイトの使い方 */
+
+    .guide-panel {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .guide-item {
+      padding: 25px;
+    }
+
+    .guide-item + .guide-item {
+      border-left: 1px solid var(--border);
+    }
+
+    .guide-step {
+      margin-bottom: 12px;
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .guide-item h3 {
+      margin: 0 0 9px;
+      color: var(--brown);
+      font-size: 17px;
+    }
+
+    .guide-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* フッター */
+
+    .site-footer {
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      background: #f1ebe2;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .footer-brand {
+      margin-bottom: 5px;
+      color: var(--brown);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin: 14px 0;
+    }
+
+    .footer-nav a {
+      color: var(--brown-light);
+      text-decoration: none;
+    }
+
+    .footer-nav a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* タブレット */
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        min-height: 390px;
+        padding: 65px 0;
+      }
+
+      .purpose-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .purpose-card:last-child {
+        grid-column: 1 / -1;
+        min-height: 250px;
+      }
+
+      .welcome-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .welcome-action {
+        justify-self: start;
+      }
+
+      .guide-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .guide-item + .guide-item {
+        border-top: 1px solid var(--border);
+        border-left: none;
+      }
+
+      .guide-item {
+        padding: 22px 25px;
+      }
+    }
+
+    /* スマートフォン */
+
+    @media (max-width: 520px) {
+      .header-inner {
+        width: calc(100% - 28px);
+        min-height: 62px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 7px;
+        padding: 11px 0;
+      }
+
+      .brand {
+        font-size: 15px;
+      }
+
+      .main-nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 22px;
+      }
+
+      .main-nav a {
+        font-size: 12px;
+      }
+
+      .hero-inner {
+        width: calc(100% - 36px);
+        min-height: auto;
+        padding: 49px 0 45px;
+      }
+
+      .hero-label {
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-note {
+        font-size: 12px;
+      }
+
+      .hero-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .page-container {
+        width: calc(100% - 28px);
+        padding-top: 35px;
+        padding-bottom: 48px;
+      }
+
+      .section {
+        margin-bottom: 42px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .section-heading h2 {
+        font-size: 24px;
+      }
+
+      .welcome-card {
+        padding: 22px;
+      }
+
+      .welcome-card h2 {
+        font-size: 21px;
+      }
+
+      .welcome-action,
+      .welcome-action .button {
+        width: 100%;
+      }
+
+      .purpose-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .purpose-card,
+      .purpose-card:last-child {
+        grid-column: auto;
+        min-height: 250px;
+        padding: 22px;
+      }
+
+      .guide-item {
+        padding: 20px;
+      }
+
+      .footer-nav {
+        gap: 12px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-    <h1><a href="index.html">Coffee</a></h1>
-    <nav>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">COFFEE GUIDE</a>
+
+      <nav class="main-nav" aria-label="メインナビゲーション">
         <a href="beginner/beginner.html">初心者</a>
         <a href="knowledge/knowledgeindex.html">知識</a>
         <a href="blog/blogindex.html">ブログ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-label">WELCOME TO COFFEE GUIDE</div>
+
+        <h1>ようこそ、<br>コーヒーの世界へ。</h1>
+
+        <p class="hero-description">
+          道具の選び方から、豆の特徴、淹れ方、味わいまで。
+          コーヒーの基本を学びたい人も、もっと深く知りたい人も、
+          自分の興味に合わせて楽しめるガイドです。
+        </p>
+
+        <div class="hero-note">
+          初めての一杯から、知識を深めるための情報まで。
+          自分のペースで、コーヒーの世界を広げていきましょう。
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="beginner/beginner.html">
+            初心者ガイドを読む <span aria-hidden="true">→</span>
+          </a>
+          <a class="button button-secondary" href="knowledge/knowledgeindex.html">
+            知識アーカイブを見る
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-container">
+      <section class="section" aria-labelledby="welcome-title">
+        <div class="welcome-card">
+          <div>
+            <h2 id="welcome-title">コーヒーを、基礎から楽しもう。</h2>
+            <p>
+              コーヒーについて何から知ればいいか分からない方は、
+              まず初心者向けの5つのステップから。
+              道具、抽出方法、豆、飲み方、味・香りの順に、
+              基本を少しずつ学べます。
+            </p>
+          </div>
+
+          <div class="welcome-action">
+            <a class="button button-brown" href="beginner/beginner.html">
+              初心者ガイドへ進む <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="purpose-title">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">EXPLORE</span>
+            <h2 id="purpose-title">目的から探す</h2>
+          </div>
+          <p>
+            今知りたいことに合わせて、読みたいページを選べます。
+          </p>
+        </div>
+
+        <div class="purpose-grid">
+          <a class="purpose-card" href="beginner/beginner.html">
+            <span class="card-number">01</span>
+            <h3>初心者ガイド</h3>
+            <p>
+              コーヒーをこれから始めたい人へ。
+              道具や淹れ方、豆の種類など、
+              最初に知っておきたい基本を5つのステップで紹介します。
+            </p>
+            <span class="card-link">
+              はじめてのコーヒーを学ぶ
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="purpose-card" href="knowledge/knowledgeindex.html">
+            <span class="card-number">02</span>
+            <h3>知識アーカイブ</h3>
+            <p>
+              コーヒーについて、もっと詳しく知りたい人へ。
+              豆や抽出、味わいなどのテーマから、
+              興味のある知識を深く学べます。
+            </p>
+            <span class="card-link">
+              コーヒーの知識を深める
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <a class="purpose-card" href="blog/blogindex.html">
+            <span class="card-number">03</span>
+            <h3>ブログ</h3>
+            <p>
+              コーヒーにまつわる記事を楽しむページです。
+              気になるテーマや新しい発見を通して、
+              コーヒーの楽しみ方を広げましょう。
+            </p>
+            <span class="card-link">
+              ブログ記事を読む
+              <span class="card-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="guide-title">
+        <div class="section-heading">
+          <div>
+            <span class="section-eyebrow">HOW TO USE</span>
+            <h2 id="guide-title">サイトの使い方</h2>
+          </div>
+          <p>
+            決まった順番にこだわらず、興味のあるところから楽しめます。
+          </p>
+        </div>
+
+        <div class="guide-panel">
+          <div class="guide-item">
+            <div class="guide-step">STEP 01</div>
+            <h3>まずは基本を知る</h3>
+            <p>
+              初めての方は初心者ガイドから。
+              コーヒーを楽しむための基礎を順番に確認できます。
+            </p>
+          </div>
+
+          <div class="guide-item">
+            <div class="guide-step">STEP 02</div>
+            <h3>気になるテーマを深める</h3>
+            <p>
+              豆や道具、抽出方法など、もっと知りたい内容を
+              知識アーカイブから探してみましょう。
+            </p>
+          </div>
+
+          <div class="guide-item">
+            <div class="guide-step">STEP 03</div>
+            <h3>興味の幅を広げる</h3>
+            <p>
+              ブログも活用しながら、コーヒーについての
+              新しい発見や楽しみ方を探してみましょう。
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">COFFEE GUIDE</div>
+    <div>コーヒーの基本から、もっと深い楽しみ方まで。</div>
+
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="index.html">ホーム</a>
+      <a href="beginner/beginner.html">初心者</a>
+      <a href="knowledge/knowledgeindex.html">知識</a>
+      <a href="blog/blogindex.html">ブログ</a>
     </nav>
-</header>
 
-<main>
-    <section class="section-card">
-        <h1>ようこそ、コーヒーの世界へ</h1>
-        <p>このサイトは、コーヒー初心者から上級者まで楽しめる情報をまとめたアーカイブです。</p>
-        <p>豆の種類、淹れ方、道具の選び方、味わいの理解など、段階的に学べる構成になっています。</p>
-    </section>
-
-    <section class="section-card">
-        <h2>目的別ページ</h2>
-        <ul>
-            <li>
-                <a href="beginner/beginner.html">初心者向け：はじめてのコーヒー</a>
-                <p>コーヒーを淹れたことがない人でも迷わず始められるステップを紹介。</p>
-            </li>
-            <li>
-                <a href="knowledge/knowledgeindex.html">知識アーカイブ：豆・淹れ方・味わい</a>
-                <p>コーヒーの知識をテーマごとに整理。自分の興味に沿って深く学べます。</p>
-            </li>
-            <li>
-                <a href="blog/blogindex.html">ブログ：コーヒー好きが語る自由な場所</a>
-                <p>コーヒー好きの人たちが語るリアルな体験や考えを楽しめます。</p>
-            </li>
-        </ul>
-    </section>
-
-    <section class="section-card">
-        <h2>サイトの使い方</h2>
-        <p>まずは初心者ページで基本を学ぶもよし、知識アーカイブで興味のあるテーマから読み進めるもよしです。</p>
-        <p>ページ間の移動は、ヘッダーのナビや本文内のリンクから自由に行えます。</p>
-        <p>少しずつ読み進めて、自分のコーヒー理解を広げていきましょう。</p>
-    </section>
-</main>
-
-<footer>
-    &copy; 2026 コーヒー知識アーカイブ
-</footer>
+    <div>&copy; 2026 コーヒー知識アーカイブ</div>
+  </footer>
 </body>
 </html>
