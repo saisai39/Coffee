@@ -1,139 +1,729 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>知識アーカイブ - 目次</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="コーヒーの基礎知識、豆、焙煎、抽出方法、味わい、道具について学べる知識アーカイブです。">
+<title>知識アーカイブ | COFFEE GUIDE</title>
+
 <style>
+:root {
+    --bg: #f8f5ef;
+    --surface: #fffdf8;
+    --brown: #493326;
+    --brown-light: #654b39;
+    --text: #302820;
+    --muted: #74685d;
+    --border: #e5dbce;
+    --accent: #c7a783;
+    --soft: #eee5da;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
 body {
-    font-family: "Hiragino Kaku Gothic Pro", sans-serif;
-    background-color: #fefcf7;
-    color: #000;
     margin: 0;
-    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+    line-height: 1.85;
 }
 
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* ヘッダー */
 header {
-    background-color: #c7b198;
-    padding: 30px 20px;
-    text-align: center;
-    color: #fff;
+    background: var(--surface);
+    border-top: 5px solid var(--brown);
+    border-bottom: 1px solid var(--border);
 }
 
-header h1 a {
-    color: #fff;
+.header-inner {
+    max-width: 1120px;
+    min-height: 88px;
+    margin: 0 auto;
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 1.65rem;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+}
+
+.logo a {
+    color: var(--brown);
     text-decoration: none;
-    font-size: 2em;
 }
 
 header nav {
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 26px;
 }
 
 header nav a {
-    color: #fff;
+    color: var(--brown-light);
+    font-size: 0.94rem;
+    font-weight: 600;
     text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
+    transition: color 0.2s;
 }
 
-main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
+header nav a:hover {
+    color: var(--accent);
 }
 
-.section-card {
-    background-color: #e7d9ce;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+/* メインビジュアル */
+.hero {
+    background: var(--brown);
+    color: var(--surface);
+    padding: 76px 24px 70px;
 }
 
-.section-card h1, .section-card h2 {
-    margin-top: 0;
+.hero-inner {
+    max-width: 1064px;
+    margin: 0 auto;
 }
 
-.section-card ul {
-    list-style: none;
-    padding-left: 0;
+.eyebrow {
+    display: inline-block;
+    margin: 0 0 22px;
+    padding: 5px 14px;
+    border: 1px solid rgba(255, 253, 248, 0.48);
+    border-radius: 30px;
+    color: #e9d5bd;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
 }
 
-.section-card li {
-    margin-bottom: 10px;
+.hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-family: Georgia, "Yu Mincho", serif;
+    font-size: clamp(2.2rem, 5vw, 3.7rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
 }
 
-.section-card li a {
-    font-weight: bold;
-    color: #000;
+.hero-description {
+    max-width: 700px;
+    margin: 22px 0 0;
+    color: #eee2d4;
+    font-size: 1rem;
+}
+
+.hero-note {
+    max-width: 700px;
+    margin-top: 30px;
+    padding: 15px 18px;
+    border-left: 3px solid var(--accent);
+    background: rgba(255, 255, 255, 0.07);
+    color: #f3e9dd;
+    font-size: 0.9rem;
+}
+
+/* パンくずリスト */
+.breadcrumb {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 17px 28px 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.breadcrumb a {
     text-decoration: none;
 }
 
-.section-card li a:hover {
+.breadcrumb a:hover {
     text-decoration: underline;
 }
 
-.top-link {
-    display: inline-block;
-    margin: 20px auto 0;
-    padding: 10px 20px;
-    background-color: #c7b198;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    text-align: center;
-    transition: background 0.2s;
-    display: block;
-    width: fit-content;
+/* メインコンテンツ */
+main {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 28px 80px;
 }
 
-.top-link:hover {
-    background-color: #b09b7f;
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-label {
+    display: block;
+    margin-bottom: 7px;
+    color: #947453;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: var(--brown);
+    font-family: Georgia, "Yu Mincho", serif;
+    font-size: clamp(1.65rem, 3vw, 2.2rem);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.section-heading p {
+    max-width: 720px;
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+}
+
+/* カテゴリーカード */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.category-card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 24px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(73, 51, 38, 0.035);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    border-color: #cdb89f;
+    box-shadow: 0 9px 24px rgba(73, 51, 38, 0.08);
+}
+
+.category-number {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #a88a68;
+    font-family: Georgia, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+}
+
+.category-card h3 {
+    margin: 0;
+    color: var(--brown);
+    font-size: 1.18rem;
+    line-height: 1.55;
+}
+
+.category-card > p {
+    margin: 12px 0 20px;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.85;
+}
+
+.category-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+    color: var(--brown-light);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.category-link span:last-child {
+    color: #a88a68;
+    font-size: 1.15rem;
+    transition: transform 0.2s;
+}
+
+.category-link:hover span:last-child {
+    transform: translateX(4px);
+}
+
+/* 読み方ガイド */
+.guide-section {
+    margin-top: 76px;
+}
+
+.guide-panel {
+    padding: 30px;
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.guide-panel h2 {
+    margin: 0;
+    color: var(--brown);
+    font-family: Georgia, "Yu Mincho", serif;
+    font-size: 1.55rem;
+    font-weight: 500;
+}
+
+.guide-panel > p {
+    margin: 12px 0 24px;
+    color: var(--muted);
+    font-size: 0.93rem;
+}
+
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.guide-step {
+    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.guide-step span {
+    display: block;
+    margin-bottom: 6px;
+    color: #a88a68;
+    font-family: Georgia, serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+}
+
+.guide-step h3 {
+    margin: 0 0 8px;
+    color: var(--brown);
+    font-size: 1rem;
+}
+
+.guide-step p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.87rem;
+}
+
+/* 初心者向けリンク */
+.beginner-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-top: 28px;
+    padding: 25px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.beginner-panel h2 {
+    margin: 0;
+    color: var(--brown);
+    font-size: 1.15rem;
+}
+
+.beginner-panel p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.button-link {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 11px 20px;
+    background: var(--brown);
+    border: 1px solid var(--brown);
+    border-radius: 6px;
+    color: #fffdf8;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.button-link:hover {
+    background: var(--brown-light);
+    border-color: var(--brown-light);
+}
+
+/* フッター */
+footer {
+    padding: 28px 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    text-align: center;
+    font-size: 0.82rem;
+}
+
+.footer-inner {
+    max-width: 1064px;
+    margin: 0 auto;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-bottom: 15px;
+}
+
+.footer-nav a {
+    color: var(--brown-light);
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* タブレット */
+@media (max-width: 850px) {
+    .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .guide-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* スマートフォン */
+@media (max-width: 560px) {
+    .header-inner {
+        padding: 20px 18px;
+    }
+
+    header nav {
+        justify-content: center;
+        gap: 8px 18px;
+    }
+
+    header nav a {
+        font-size: 0.88rem;
+    }
+
+    .hero {
+        padding: 52px 20px 48px;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+
+    .breadcrumb {
+        padding: 15px 20px 0;
+    }
+
+    main {
+        padding: 36px 18px 56px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .category-card {
+        padding: 22px 20px 18px;
+    }
+
+    .guide-section {
+        margin-top: 54px;
+    }
+
+    .guide-panel {
+        padding: 22px 18px;
+    }
+
+    .beginner-panel {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 22px 20px;
+    }
+
+    .button-link {
+        width: 100%;
+    }
+}
+
+/* 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
 }
 </style>
 </head>
+
 <body>
+
 <header>
-    <h1><a href="../index.html">コーヒー知識アーカイブ</a></h1>
-    <nav>
-        <a href="../beginner/beginner.html">初心者</a>
-        <a href="knowledgeindex.html">知識</a>
-        <a href="../blog/index.html">ブログ</a>
-    </nav>
+    <div class="header-inner">
+        <p class="logo">
+            <a href="../index.html">COFFEE GUIDE</a>
+        </p>
+
+        <nav aria-label="メインナビゲーション">
+            <a href="../beginner/beginner.html">初心者</a>
+            <a href="knowledgeindex.html" aria-current="page">知識</a>
+            <a href="../blog/blogindex.html">ブログ</a>
+        </nav>
+    </div>
 </header>
 
+<section class="hero">
+    <div class="hero-inner">
+        <p class="eyebrow">COFFEE KNOWLEDGE ARCHIVE</p>
+        <h1>コーヒーを、<br>もっと深く知る。</h1>
+        <p class="hero-description">
+            豆のこと、淹れ方のこと、味わいのこと。
+            コーヒーにまつわる知識をテーマごとに整理しました。
+            興味のあるところから、自分のペースで読み進めてください。
+        </p>
+        <div class="hero-note">
+            初めて知る基本から、気になるテーマの掘り下げまで。
+            コーヒーを楽しむための知識を集めたアーカイブです。
+        </div>
+    </div>
+</section>
+
+<div class="breadcrumb">
+    <a href="../index.html">ホーム</a>
+    <span aria-hidden="true"> / </span>
+    <span>知識アーカイブ</span>
+</div>
+
 <main>
-    <section class="section-card">
-        <h1>知識アーカイブ目次</h1>
-        <p>このページでは、コーヒーに関する知識ページをテーマごとにまとめています。気になるテーマを選んで読み進めてください。初心者の方も、ある程度経験のある方も、ここから必要な知識を探せます。</p>
+    <section aria-labelledby="categories-title">
+        <div class="section-heading">
+            <span class="section-label">EXPLORE</span>
+            <h2 id="categories-title">知りたいテーマから探す</h2>
+            <p>
+                気になるカテゴリーを選んでください。
+                記事が増えたら、それぞれのカテゴリーに関連するページを追加していけます。
+            </p>
+        </div>
+
+        <div class="category-grid">
+
+            <article class="category-card">
+                <span class="category-number">01 / BASICS</span>
+                <h3>基本知識</h3>
+                <p>
+                    コーヒーの歴史や種類、カフェインなど、
+                    まず知っておきたい基礎的なテーマをまとめます。
+                </p>
+                <a class="category-link" href="basics.html">
+                    <span>基本知識を読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">02 / BEANS</span>
+                <h3>コーヒー豆</h3>
+                <p>
+                    品種や産地、精製方法など、豆による違いを知り、
+                    自分に合うコーヒーを選ぶための知識を学びます。
+                </p>
+                <a class="category-link" href="beans.html">
+                    <span>豆について読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">03 / ROASTING</span>
+                <h3>焙煎</h3>
+                <p>
+                    浅煎りから深煎りまで、焙煎度の違いや、
+                    焙煎がコーヒーの風味に与える影響を学びます。
+                </p>
+                <a class="category-link" href="roasting.html">
+                    <span>焙煎について読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">04 / GRINDING</span>
+                <h3>挽き方</h3>
+                <p>
+                    粉の粒度やコーヒーミルの違い、
+                    抽出方法に合わせた挽き方の考え方を紹介します。
+                </p>
+                <a class="category-link" href="grind.html">
+                    <span>挽き方について読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">05 / BREWING</span>
+                <h3>抽出・淹れ方</h3>
+                <p>
+                    ハンドドリップやフレンチプレスなど、
+                    抽出方法ごとの特徴や基本的な仕組みを解説します。
+                </p>
+                <a class="category-link" href="brewing.html">
+                    <span>淹れ方について読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">06 / TASTE</span>
+                <h3>味わい・香り</h3>
+                <p>
+                    苦味や酸味、甘味、香り、口当たりなど、
+                    コーヒーの風味を知り、表現するための基礎を学びます。
+                </p>
+                <a class="category-link" href="taste.html">
+                    <span>味わいについて読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-number">07 / TOOLS</span>
+                <h3>コーヒーの道具</h3>
+                <p>
+                    ドリッパーやミル、サーバーなど、
+                    道具の役割や種類、選ぶときのポイントを紹介します。
+                </p>
+                <a class="category-link" href="tools.html">
+                    <span>道具について読む</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+        </div>
     </section>
 
-    <section class="section-card">
-        <h2>知識テーマ一覧</h2>
-        <ul>
-            <li><a href="basics.html">基本知識</a> – コーヒーの歴史や種類、カフェインの基礎など、知っておきたい基本情報をまとめています。</li>
-            <li><a href="beans.html">豆の種類</a> – アラビカ種・ロブスタ種などの特徴や産地ごとの違い、豆選びのポイントを解説します。</li>
-            <li><a href="roasting.html">焙煎</a> – 浅煎り・中煎り・深煎りなど焙煎の種類と味わいの関係、家庭でできる焙煎の注意点も紹介。</li>
-            <li><a href="grind.html">挽き方</a> – 粗挽き・中挽き・細挽きなどの粒度と、ドリップ・フレンチプレス・エスプレッソなど抽出方法との関係を解説します。</li>
-            <li><a href="brewing.html">淹れ方</a> – ドリップ、フレンチプレス、エスプレッソなどの淹れ方を紹介。初心者でも失敗しにくいポイントも掲載。</li>
-            <li><a href="taste.html">味わい</a> – 酸味・苦味・甘み・コクなど、味覚の表現方法やテイスティングの基礎知識をまとめました。</li>
-            <li><a href="tools.html">道具</a> – コーヒーミルやドリッパー、サーバーなど、必要な道具の種類と選び方を解説します。</li>
-        </ul>
+    <section class="guide-section" aria-labelledby="guide-title">
+        <div class="guide-panel">
+            <span class="section-label">HOW TO READ</span>
+            <h2 id="guide-title">自分に合った読み進め方で</h2>
+            <p>
+                このアーカイブには決まった順番はありません。
+                知りたいことや、今の興味に合わせて活用してください。
+            </p>
+
+            <div class="guide-steps">
+                <article class="guide-step">
+                    <span>01 / START</span>
+                    <h3>基本から知りたい</h3>
+                    <p>
+                        「基本知識」や「コーヒー豆」から、
+                        コーヒーについて少しずつ理解を深めましょう。
+                    </p>
+                </article>
+
+                <article class="guide-step">
+                    <span>02 / TRY</span>
+                    <h3>自分で淹れてみたい</h3>
+                    <p>
+                        「抽出・淹れ方」「挽き方」「道具」を参考に、
+                        自分に合う方法を探してみましょう。
+                    </p>
+                </article>
+
+                <article class="guide-step">
+                    <span>03 / DISCOVER</span>
+                    <h3>味の違いを知りたい</h3>
+                    <p>
+                        「焙煎」「味わい・香り」を読み、
+                        風味の違いに注目してみましょう。
+                    </p>
+                </article>
+            </div>
+        </div>
     </section>
 
-    <section class="section-card">
-        <h2>このページの使い方</h2>
-        <p>各リンクをクリックすると、それぞれのテーマに沿った詳細ページに移動します。まずは気になるテーマを選んで読み進め、必要に応じて他のページもチェックしてみてください。</p>
-        <p>初心者の方は「基本知識」や「豆の種類」から順番に読むと理解しやすいです。上級者の方は興味のあるテーマだけをピックアップして読むのもおすすめです。</p>
+    <section class="beginner-panel" aria-labelledby="beginner-title">
+        <div>
+            <h2 id="beginner-title">コーヒーを基礎から学びたい方へ</h2>
+            <p>
+                道具や淹れ方など、初めてコーヒーに触れる方に向けた
+                初心者ガイドも用意しています。
+            </p>
+        </div>
+        <a class="button-link" href="../beginner/beginner.html">
+            初心者ガイドを見る →
+        </a>
     </section>
-
-    <a href="../index.html" class="top-link">トップページに戻る</a>
 </main>
 
 <footer>
-    &copy; 2026 CoffeeSite
+    <div class="footer-inner">
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="../index.html">トップページ</a>
+            <a href="../beginner/beginner.html">初心者</a>
+            <a href="knowledgeindex.html">知識</a>
+            <a href="../blog/blogindex.html">ブログ</a>
+        </nav>
+        <p>&copy; 2026 COFFEE GUIDE</p>
+    </div>
 </footer>
+
 </body>
 </html>
