@@ -1,90 +1,998 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>挽き方 - コーヒー知識アーカイブ</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="コーヒーの粗挽き・中挽き・細挽きの違いや、抽出器具に合った挽き目、ミルの選び方、味を調整する方法を解説します。">
+<title>コーヒーの挽き方 | COFFEE GUIDE</title>
 <style>
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:1000px; margin:40px auto; padding:0 20px; }
-h1,h2,h3 { text-align:center; }
-.section-card { background:#e7d9ce; padding:25px; border-radius:12px; margin-bottom:30px; box-shadow:2px 2px 8px rgba(0,0,0,0.2); }
-.section-card h2, .section-card h3 { margin-top:20px; margin-bottom:15px; }
-.section-card p, .section-card ul, .section-card ol { line-height:1.7; margin-bottom:15px; }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
+:root {
+  --bg: #f8f5ef;
+  --surface: #fffdf8;
+  --brown: #493326;
+  --brown-light: #654b39;
+  --text: #302820;
+  --muted: #74685d;
+  --border: #e5dbce;
+  --accent: #c7a783;
+  --soft: #eee5da;
+  --shadow: 0 8px 24px rgba(73, 51, 38, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--brown-light);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--brown);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 24px;
+}
+
+.site-nav a {
+  color: var(--brown-light);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.breadcrumb a:hover,
+.footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(199, 167, 131, 0.18), transparent 38%),
+    var(--brown);
+  color: #fffdf8;
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 24px 72px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #e0c8ad;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+}
+
+.hero-description {
+  max-width: 720px;
+  margin: 22px 0 0;
+  color: #f0e7dd;
+  font-size: 1rem;
+}
+
+.hero-note {
+  max-width: 720px;
+  margin-top: 28px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.06);
+  color: #f0e7dd;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 76px;
+}
+
+.breadcrumb {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #b2a393;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.content-card {
+  margin-bottom: 28px;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 24px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: #987451;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.content-card h2 {
+  margin: 0 0 18px;
+  color: var(--brown);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.5;
+}
+
+.content-card h3 {
+  margin: 26px 0 10px;
+  color: var(--brown-light);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.content-card p {
+  margin: 0 0 16px;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+.content-card ul,
+.content-card ol {
+  margin: 12px 0 18px;
+  padding-left: 1.5em;
+}
+
+.content-card li {
+  margin-bottom: 7px;
+  padding-left: 3px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.intro-item {
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.intro-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--brown);
+}
+
+.intro-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brown);
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toc-list a:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.toc-number {
+  color: #a47d56;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.grind-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.grind-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.grind-card h3 {
+  margin: 0 0 10px;
+  color: var(--brown);
+}
+
+.grind-card p {
+  margin-bottom: 10px;
+  font-size: 0.94rem;
+}
+
+.grind-card p:last-child {
+  margin-bottom: 0;
+}
+
+.grind-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--brown-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  width: 100%;
+  margin: 18px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  text-align: left;
+}
+
+th,
+td {
+  min-width: 120px;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--soft);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.step-list {
+  counter-reset: grind-step;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-list li {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 14px 16px 14px 52px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  counter-increment: grind-step;
+}
+
+.step-list li::before {
+  content: counter(grind-step, decimal-leading-zero);
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  color: #a47d56;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.info-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: #f5eee5;
+  color: #5d5044;
+  font-size: 0.92rem;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tip-item {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.tip-item strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brown);
+}
+
+.tip-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.next-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.next-card h2 {
+  margin: 0 0 8px;
+  color: var(--brown);
+  font-size: 1.3rem;
+}
+
+.next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.next-link {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 1px solid var(--brown);
+  border-radius: 8px;
+  color: var(--brown);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next-link.primary {
+  background: var(--brown);
+  color: #fffdf8;
+}
+
+.next-link:hover {
+  opacity: 0.82;
+}
+
+.site-footer {
+  padding: 30px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-bottom: 18px;
+}
+
+.footer-nav a {
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-footer small {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    gap: 8px 18px;
+  }
+
+  .hero-inner {
+    padding: 54px 20px 50px;
+  }
+
+  main {
+    padding: 24px 16px 54px;
+  }
+
+  .intro-grid,
+  .grind-grid,
+  .toc-list,
+  .tip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-card {
+    border-radius: 12px;
+  }
+
+  .next-card {
+    padding: 22px;
+  }
+
+  th,
+  td {
+    padding: 11px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 </head>
-<body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
+
+<body id="top">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">COFFEE GUIDE</a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="../beginner/beginner.html">初心者</a>
+      <a href="knowledgeindex.html" aria-current="page">知識</a>
+      <a href="../blog/blogindex.html">ブログ</a>
+    </nav>
+  </div>
 </header>
 
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero-inner">
+    <p class="eyebrow">COFFEE KNOWLEDGE / 04</p>
+    <h1 id="page-title">コーヒーの挽き方</h1>
+    <p class="hero-description">
+      コーヒー豆は、挽き方によってお湯との接触の仕方が変わります。
+      抽出器具に合った粒度を選ぶ基本から、ミルの種類、味を調整する方法まで解説します。
+    </p>
+    <div class="hero-note">
+      挽き目に万能の正解はありません。まずは器具に合った目安から始め、
+      実際の味や抽出の様子を見ながら調整してみましょう。
+    </div>
+  </div>
+</section>
+
 <main>
-<section class="section-card">
-<h1>コーヒーの挽き方</h1>
-<p>豆の挽き方は抽出方法や味に大きな影響を与える重要な工程です。粗すぎると味が薄く、細かすぎると苦味が強く出るため、適切な挽き方を理解することが家庭での美味しいコーヒーに直結します。</p>
-<p>ここでは挽き方の種類、器具別の使い分け、味への影響、実践アドバイスまで詳しく解説します。</p>
-</section>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="knowledgeindex.html">知識アーカイブ</a></li>
+      <li aria-current="page">コーヒーの挽き方</li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>1. 挽き方の基本</h2>
-<p>コーヒーの挽き目は粗挽き〜極細挽きまで幅広く、抽出方法に応じて最適な粒度が異なります。挽き目の粒度が違うと抽出速度が変わり、味わいに影響します。</p>
-<ul>
-<li>粗挽き：水が通りやすく、抽出が早いため酸味が際立つ</li>
-<li>中挽き：バランスが良く、ペーパードリップやフレンチプレスに適する</li>
-<li>細挽き：抽出が遅く、苦味とコクが強くなる。エスプレッソに最適</li>
-<li>極細挽き：トルココーヒーなど特殊な抽出法に使用</li>
-</ul>
-</section>
+  <section class="content-card" aria-labelledby="intro-title">
+    <p class="section-label">OVERVIEW</p>
+    <h2 id="intro-title">このページで学べること</h2>
+    <p>
+      コーヒーの挽き方は、豆をどれくらい細かく砕くかということです。
+      粒度が変わると、粉の表面積やお湯の通り方が変化し、抽出される成分や味わいにも影響します。
+      器具に合った挽き目を選び、少しずつ調整することが大切です。
+    </p>
 
-<section class="section-card">
-<h2>2. 器具別の挽き方の目安</h2>
-<h3>ペーパードリップ</h3>
-<p>中挽きが基本。粒が均一であるほど抽出が安定し、酸味・香り・コクのバランスが良くなります。</p>
-<h3>フレンチプレス</h3>
-<p>粗挽き推奨。粗めに挽くことで濁りを減らし、抽出しすぎによる雑味を避けられます。</p>
-<h3>エスプレッソマシン</h3>
-<p>細挽きが基本。抽出圧力が高いため、細かく挽くことで短時間でも濃厚なエスプレッソが抽出できます。</p>
-<h3>ハンドドリップ・ネルドリップ</h3>
-<p>抽出スピードと好みに応じて中挽き〜中細挽きを調整。お湯の注ぎ方と粒度を組み合わせると味の微調整が可能です。</p>
-</section>
+    <div class="intro-grid">
+      <div class="intro-item">
+        <strong>粒度の基本</strong>
+        <p>粗挽き・中挽き・細挽きなどの違いを知る。</p>
+      </div>
+      <div class="intro-item">
+        <strong>器具との相性</strong>
+        <p>ドリップやフレンチプレスなどに合う挽き目を学ぶ。</p>
+      </div>
+      <div class="intro-item">
+        <strong>ミルと調整</strong>
+        <p>器具の選び方と、味に合わせた調整方法を知る。</p>
+      </div>
+    </div>
+  </section>
 
-<section class="section-card">
-<h2>3. 粒度の科学と味の関係</h2>
-<p>粒度が粗いと抽出速度が早く、酸味が強くなります。細かいと抽出が遅くなり、苦味とコクが強く出ます。粒度の均一性も重要で、均一でないと過抽出と未抽出が混ざり、味のバランスが崩れます。</p>
-<p>実践例：同じ豆でペーパードリップ用に中挽きとフレンチプレス用に粗挽きにすると、それぞれ異なる味わいを楽しめます。</p>
-</section>
+  <nav class="content-card" aria-labelledby="toc-title">
+    <p class="section-label">CONTENTS</p>
+    <h2 id="toc-title">目次</h2>
+    <ol class="toc-list">
+      <li><a href="#basics"><span class="toc-number">01</span><span>挽き方の基本</span></a></li>
+      <li><a href="#methods"><span class="toc-number">02</span><span>器具別の挽き目</span></a></li>
+      <li><a href="#extraction"><span class="toc-number">03</span><span>粒度と味の関係</span></a></li>
+      <li><a href="#grinders"><span class="toc-number">04</span><span>ミルの種類と選び方</span></a></li>
+      <li><a href="#adjust"><span class="toc-number">05</span><span>挽き目の調整方法</span></a></li>
+      <li><a href="#storage"><span class="toc-number">06</span><span>挽いた豆の保存</span></a></li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>4. 挽き方の器具</h2>
-<h3>手動ミル</h3>
-<p>手動で挽くことで粒度をコントロールでき、香りが逃げにくい。時間がかかりますが、味覚体験が豊かになります。</p>
-<h3>電動ミル</h3>
-<p>素早く均一に挽ける。ブレード式は粒度が不均一になりやすく、臼式（バー式）が理想です。</p>
-<h3>プロ用グラインダー</h3>
-<p>粒度が非常に均一で、家庭でも安定した抽出が可能。エスプレッソやブレンド用に最適。</p>
-</section>
+  <section class="content-card" id="basics" aria-labelledby="basics-title">
+    <p class="section-label">01 / GRIND SIZE</p>
+    <h2 id="basics-title">挽き方の基本</h2>
+    <p>
+      挽き目は、一般に粗挽きから極細挽きまで段階的に表現されます。
+      ただし、挽き目の名称や実際の粒の大きさには、ミルやメーカーによる違いがあります。
+      「中挽き」という表示だけで、どのミルでもまったく同じ粒度になるとは限りません。
+    </p>
 
-<section class="section-card">
-<h2>5. 実践アドバイスと応用</h2>
-<ul>
-<li>同じ豆でも抽出方法ごとに挽き方を変える</li>
-<li>豆の鮮度が高いほど粒度の影響が出やすい</li>
-<li>抽出スピードを確認しながら微調整</li>
-<li>粒度とお湯の温度・注ぎ方を組み合わせると好みの味が再現できる</li>
-</ul>
-<p>挽き方を理解することで、同じ豆でも味の変化を楽しむことができ、家庭でもプロの味に近づけます。</p>
-</section>
+    <div class="grind-grid">
+      <div class="grind-card">
+        <span class="grind-label">粗挽き</span>
+        <h3>大きめの粒</h3>
+        <p>
+          粒が比較的大きく、お湯との接触面積は小さくなります。
+          フレンチプレスや一部の水出しレシピなどで使われます。
+        </p>
+      </div>
+      <div class="grind-card">
+        <span class="grind-label">中挽き</span>
+        <h3>中くらいの粒</h3>
+        <p>
+          さまざまな抽出器具で使われる粒度です。
+          ドリッパーの形状やフィルター、注ぎ方によって適した細かさは変わります。
+        </p>
+      </div>
+      <div class="grind-card">
+        <span class="grind-label">中細挽き〜細挽き</span>
+        <h3>小さめの粒</h3>
+        <p>
+          表面積が増えるため、抽出が進みやすくなる傾向があります。
+          ペーパードリップやモカポット、エスプレッソなどで使われますが、必要な粒度は器具によって異なります。
+        </p>
+      </div>
+      <div class="grind-card">
+        <span class="grind-label">極細挽き</span>
+        <h3>非常に細かい粉</h3>
+        <p>
+          粉が細かく、トルココーヒーなどの抽出で使われます。
+          一般的なペーパーフィルターでは目詰まりしやすいため、器具に合わせる必要があります。
+        </p>
+      </div>
+    </div>
 
-<a href="knowledgeindex.html" class="top-link">知識目次に戻る</a>
+    <div class="info-note">
+      粒度は砂糖や塩などの見た目に例えられることがありますが、あくまでイメージです。
+      見た目だけでなく、実際に使う器具での抽出結果を基準に調整しましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="methods" aria-labelledby="methods-title">
+    <p class="section-label">02 / BREWING METHODS</p>
+    <h2 id="methods-title">器具別の挽き目の目安</h2>
+    <p>
+      抽出方法によって、お湯が粉と接触する時間や通り方が異なります。
+      そのため、器具に合った粒度から始め、流れ方や味を見ながら調整するのが基本です。
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">抽出器具・方法</th>
+            <th scope="col">挽き目の目安</th>
+            <th scope="col">調整のポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ペーパードリップ</td>
+            <td>中挽き〜中細挽き</td>
+            <td>抽出が遅すぎる場合は少し粗く、速すぎる場合は少し細かくして比較する</td>
+          </tr>
+          <tr>
+            <td>ネルドリップ</td>
+            <td>中挽き前後</td>
+            <td>布の状態や注ぎ方によって流れ方が変わる</td>
+          </tr>
+          <tr>
+            <td>フレンチプレス</td>
+            <td>粗挽き</td>
+            <td>微粉が多い場合は、粗さやミルの粒度の均一性を見直す</td>
+          </tr>
+          <tr>
+            <td>エスプレッソマシン</td>
+            <td>細挽き</td>
+            <td>抽出液の量と時間、流れ方を確認しながら細かく調整する</td>
+          </tr>
+          <tr>
+            <td>モカポット</td>
+            <td>中細挽き前後</td>
+            <td>機器の説明書を優先し、粉を強く押し固めない</td>
+          </tr>
+          <tr>
+            <td>水出しコーヒー</td>
+            <td>中挽き〜粗挽き</td>
+            <td>浸漬時間や器具に合わせて調整する</td>
+          </tr>
+          <tr>
+            <td>トルココーヒー</td>
+            <td>極細挽き</td>
+            <td>専用の抽出方法に合う非常に細かな粉を使う</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>ペーパードリップ</h3>
+    <p>
+      最初は中挽き〜中細挽きを目安にします。
+      ドリッパーの形状や穴の数、フィルターの種類、注ぐ速さによって適した粒度は変わります。
+      抽出が極端に遅い場合は、挽き目が細かすぎないか確認してみましょう。
+    </p>
+
+    <h3>フレンチプレス</h3>
+    <p>
+      粗挽きから始めると、細かな粉がフィルターを通り抜ける量を抑えやすくなります。
+      ただし、粗くすれば必ずおいしくなるわけではありません。
+      味が薄く感じられる場合は、粒度や浸漬時間、粉とお湯の比率を見直します。
+    </p>
+
+    <h3>エスプレッソマシン</h3>
+    <p>
+      一般に細挽きが使われますが、細かさの調整幅は大きく、豆やマシン、バスケットによって適した設定が異なります。
+      抽出が速すぎるときは少し細かく、遅すぎるときは少し粗くする方法を試せます。
+      ただし、粉の量やタンピングなどの条件も影響します。
+    </p>
+
+    <div class="info-note">
+      同じ器具でも、豆が変われば適した挽き目が変わることがあります。
+      ここに示した粒度は出発点として使い、器具の説明書やレシピも参考にしてください。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="extraction" aria-labelledby="extraction-title">
+    <p class="section-label">03 / EXTRACTION</p>
+    <h2 id="extraction-title">粒度と味の関係</h2>
+    <p>
+      コーヒー豆を細かく挽くと、粉の表面積が増え、お湯と接触する部分が増えます。
+      そのため、同じ条件なら抽出が進みやすくなる傾向があります。
+      一方、粗く挽くと表面積が小さくなり、抽出の進み方が変わります。
+    </p>
+    <p>
+      ただし、挽き目だけで酸味や苦味が決まるわけではありません。
+      豆そのものの風味や焙煎度、湯温、抽出時間、粉とお湯の比率などが組み合わさって味が決まります。
+    </p>
+
+    <div class="tip-grid">
+      <div class="tip-item">
+        <strong>細かく挽くと</strong>
+        <p>
+          一般に抽出が進みやすくなります。
+          細かすぎると、器具によっては流れが遅くなったり、苦味や渋みが目立ったりすることがあります。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>粗く挽くと</strong>
+        <p>
+          一般に抽出が進みにくくなります。
+          粗すぎると、味が薄く感じられたり、酸味が突出して感じられたりする場合があります。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>粒度が不均一だと</strong>
+        <p>
+          細かな粉と大きな粒が混在すると、それぞれの抽出の進み方に差が生じ、
+          味のバランスが不安定になることがあります。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>適した粒度にすると</strong>
+        <p>
+          器具に合った水の流れや接触時間を得やすくなり、
+          レシピを再現しやすくなります。
+        </p>
+      </div>
+    </div>
+
+    <h3>同じ豆で比較してみる</h3>
+    <p>
+      挽き目の違いを知るには、同じ豆、同じ粉の量、同じお湯の量、同じ湯温を使い、
+      挽き目だけを少し変えて飲み比べる方法があります。
+      条件を揃えると、粒度の変化による違いを把握しやすくなります。
+    </p>
+
+    <div class="info-note">
+      「粗挽きは酸味が強い」「細挽きは苦い」と一律に決まるわけではありません。
+      どの味が強く感じられるかは、豆と抽出条件の組み合わせによって異なります。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="grinders" aria-labelledby="grinders-title">
+    <p class="section-label">04 / COFFEE GRINDERS</p>
+    <h2 id="grinders-title">ミルの種類と選び方</h2>
+    <p>
+      コーヒーミルは、焙煎した豆を粉にするための器具です。
+      手動式と電動式があり、豆を砕く仕組みによって粒度の揃いやすさや使い勝手が異なります。
+    </p>
+
+    <h3>手動ミル</h3>
+    <p>
+      ハンドルを回して豆を挽くタイプです。電源を必要とせず、持ち運びしやすい製品もあります。
+      一度に挽く量が少ない場合や、自分のペースでコーヒーを準備したい場合に向いています。
+      挽く時間や必要な力は、ミルの構造や豆によって異なります。
+    </p>
+
+    <h3>電動ミル</h3>
+    <p>
+      モーターで豆を挽くタイプです。短時間で挽きやすく、毎日複数杯を淹れる場合にも便利です。
+      ミルによって挽き目の調整幅、音、サイズ、掃除のしやすさが異なります。
+    </p>
+
+    <h3>臼式・バー式ミル</h3>
+    <p>
+      2つの刃や粉砕面の間で豆を砕く仕組みです。
+      製品や設定によって違いはありますが、挽き目を調整しやすく、比較的揃った粒度を得やすい製品があります。
+      円すい状のコニカル刃や平らなフラット刃などの種類があります。
+    </p>
+
+    <h3>プロペラ式ミル</h3>
+    <p>
+      回転する刃で豆を細かく砕くタイプです。
+      手軽な製品が多い一方、挽く時間や操作によって粒の大きさにばらつきが出やすい傾向があります。
+      粒度を細かく調整したい場合は、調整機構のあるミルと比較して選ぶとよいでしょう。
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">種類</th>
+            <th scope="col">主な特徴</th>
+            <th scope="col">選ぶときのポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>手動ミル</td>
+            <td>電源不要で持ち運びしやすい製品がある</td>
+            <td>挽きやすさ、調整幅、容量、手入れ</td>
+          </tr>
+          <tr>
+            <td>電動バー式</td>
+            <td>挽き目を調整でき、粒度を揃えやすい製品がある</td>
+            <td>対応する抽出方法、調整段階、掃除のしやすさ</td>
+          </tr>
+          <tr>
+            <td>電動プロペラ式</td>
+            <td>比較的シンプルな構造の製品がある</td>
+            <td>粒度のばらつき、挽く量、操作方法</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-note">
+      「高価なミルほど誰にとっても最適」とは限りません。
+      使用する抽出器具、必要な挽き目、予算、手入れのしやすさを基準に選びましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="adjust" aria-labelledby="adjust-title">
+    <p class="section-label">05 / ADJUSTMENT</p>
+    <h2 id="adjust-title">挽き目の調整方法</h2>
+    <p>
+      挽き目を調整するときは、まず器具に合った目安から始めます。
+      味や抽出の速さを確認し、少しずつ変更すると違いを把握しやすくなります。
+    </p>
+
+    <h3>基本の手順</h3>
+    <ol class="step-list">
+      <li>
+        <strong>器具に合った粒度から始める。</strong><br>
+        ドリップなら中挽き〜中細挽き、フレンチプレスなら粗挽きなどを目安にします。
+      </li>
+      <li>
+        <strong>粉とお湯の量を揃える。</strong><br>
+        同じ条件で比べられるよう、粉の量、お湯の量、湯温などを記録します。
+      </li>
+      <li>
+        <strong>抽出の様子を確認する。</strong><br>
+        お湯の流れ方や抽出時間、飲んだときの濃さや風味を確認します。
+      </li>
+      <li>
+        <strong>挽き目を少しずつ変える。</strong><br>
+        抽出が速すぎる場合は少し細かく、遅すぎる場合は少し粗くする方法を試します。
+      </li>
+      <li>
+        <strong>変更前後を飲み比べる。</strong><br>
+        味の違いを記録し、自分の好みに合う設定を見つけます。
+      </li>
+    </ol>
+
+    <h3>調整するときの考え方</h3>
+    <ul>
+      <li>味が薄く感じる場合は、挽き目だけでなく粉とお湯の比率も確認します。</li>
+      <li>苦味や渋みが強い場合は、挽き目や抽出時間などを少しずつ見直します。</li>
+      <li>抽出に時間がかかりすぎる場合は、細かすぎる挽き目やフィルターの詰まりを確認します。</li>
+      <li>豆を変更したときは、以前と同じ設定が最適とは限らないため、再調整します。</li>
+    </ul>
+
+    <div class="info-note">
+      挽き目を変えたら、ほかの条件はできるだけ変えずに比較しましょう。
+      一度に複数の条件を変えると、味が変わった原因を判断しにくくなります。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="storage" aria-labelledby="storage-title">
+    <p class="section-label">06 / STORAGE</p>
+    <h2 id="storage-title">挽いた豆の保存</h2>
+    <p>
+      コーヒー豆は挽くと表面積が大きくなり、空気に触れる部分が増えます。
+      そのため、挽いた粉は豆のままの状態よりも香りの変化が進みやすくなります。
+      香りを楽しみたい場合は、必要な量を抽出直前に挽く方法がおすすめです。
+    </p>
+
+    <h3>保存するときのポイント</h3>
+    <ul>
+      <li>空気に触れる機会を減らし、密閉できる容器に入れる。</li>
+      <li>高温や直射日光を避け、湿気の少ない場所で保管する。</li>
+      <li>濡れたスプーンなどを粉に入れず、器具を清潔に保つ。</li>
+      <li>一度に大量に挽くより、必要な量を少しずつ挽くことを検討する。</li>
+    </ul>
+
+    <p>
+      保存期間は、焙煎状態、包装、温度、湿度などによって変わります。
+      すべてのコーヒー粉に共通する保存期限を一律に決めることはできないため、
+      商品の表示や保存方法を確認しましょう。
+    </p>
+
+    <div class="info-note">
+      ミルの内部に古い粉や油分が残ると、次に挽いたコーヒーの風味に影響することがあります。
+      ミルの説明書に従って、定期的に清掃してください。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="next-card" aria-labelledby="next-title">
+    <p class="section-label">NEXT STEP</p>
+    <h2 id="next-title">次に学ぶこと</h2>
+    <p>
+      挽き方の基本が分かったら、実際の抽出方法や豆の種類も確認してみましょう。
+      挽き目と抽出方法を組み合わせて考えると、味の調整がしやすくなります。
+    </p>
+    <div class="next-links">
+      <a class="next-link primary" href="knowledgeindex.html">知識目次に戻る</a>
+      <a class="next-link" href="brewing.html">コーヒーの淹れ方を見る</a>
+      <a class="next-link" href="beans.html">豆の種類を学ぶ</a>
+      <a class="next-link" href="../beginner/beginner.html">初心者向けガイドを見る</a>
+    </div>
+  </section>
 </main>
 
-<footer>
-&copy; 2026 CoffeeSite
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="フッターナビゲーション">
+    <a href="../index.html">ホーム</a>
+    <a href="../beginner/beginner.html">初心者</a>
+    <a href="knowledgeindex.html">知識</a>
+    <a href="../blog/blogindex.html">ブログ</a>
+  </nav>
+  <small>&copy; 2026 COFFEE GUIDE</small>
 </footer>
 </body>
 </html>
+```
