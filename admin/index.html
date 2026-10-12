@@ -1,88 +1,256 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>管理画面 | COFFEE GUIDE</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>COFFEE GUIDE — コンテンツ管理</title>
 <style>
-:root{--ink:#302a24;--bg:#f6f3ee;--line:#e5ded4;--accent:#554333;--muted:#746b62;--soft:#eee5db}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
-header{padding:22px 30px;background:var(--ink);color:white}header h1{margin:0;font-size:22px}header p{margin:7px 0 0;color:#ddd2c5;font-size:13px}
-main{max-width:1180px;margin:26px auto;padding:0 18px}h2{font-size:25px;margin:18px 0 10px}.muted{color:var(--muted);line-height:1.75;font-size:14px}
-button{border:0;border-radius:7px;padding:10px 14px;background:var(--accent);color:white;cursor:pointer;font:inherit;font-size:14px}button:hover{opacity:.86}.secondary{background:var(--soft);color:var(--ink)}.danger{background:#8b342b}.hidden{display:none!important}
-input,textarea{width:100%;padding:11px;border:1px solid #d8cec2;border-radius:7px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:140px;resize:vertical;line-height:1.7}label{display:block;font-weight:600;margin:16px 0 7px}
-.panel,.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card h3{margin:0 0 8px;font-size:18px}.path{font-size:12px;color:#8a6b4c;overflow-wrap:anywhere;margin:10px 0}
-.status{display:inline-block;background:#f1e6d8;padding:5px 9px;border-radius:5px;font-size:12px;margin:3px 4px 3px 0}.notice{margin:16px 0;padding:14px;background:#fff8e9;border:1px solid #dfc9a9;border-radius:9px;font-size:14px;line-height:1.8}
-.preview{border:1px solid var(--line);border-radius:8px;padding:16px;margin-top:16px;overflow-wrap:anywhere}.image-preview{max-width:100%;max-height:320px;object-fit:contain;border-radius:8px;margin-top:12px}
-.actions,.tabs{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}.list{display:grid;gap:10px}.item{padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff}.small{font-size:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:650px){header{padding:20px}main{margin-top:18px}.panel,.card{padding:16px}.row{grid-template-columns:1fr}}
-</style></head>
+:root{
+  --bg:#f5f3ef;--surface:#fff;--surface-2:#faf8f4;--ink:#282720;--muted:#77746b;
+  --line:#e7e2d9;--line-strong:#d5cec1;--brand:#554536;--brand-hover:#3f3328;
+  --accent:#b88b5a;--accent-soft:#f4eadc;--green:#386a50;--green-soft:#e9f2ec;
+  --red:#a13e35;--red-soft:#f8eae8;--blue:#42677c;--blue-soft:#eaf1f5;
+  --shadow:0 12px 34px rgba(43,35,26,.06);--radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-size:14px;line-height:1.65}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #c89d6a;outline-offset:2px}
+a{color:inherit}
+.app-header{height:72px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:36px;height:36px;background:var(--brand);color:#fff;border-radius:11px;display:grid;place-items:center;font-family:Georgia,serif;font-size:21px}
+.brand-name{font-size:15px;font-weight:750;letter-spacing:.09em}
+.brand-sub{display:block;color:var(--muted);font-size:11px;letter-spacing:.04em;margin-top:-2px}
+.header-right{display:flex;align-items:center;gap:10px}
+.env-pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #e5d7c4;background:#fbf5eb;color:#755b3e;padding:6px 10px;border-radius:99px;font-size:11px;font-weight:700}
+.env-dot{width:6px;height:6px;border-radius:50%;background:#bd8b4f}
+.layout{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:228px minmax(0,1fr);min-height:calc(100vh - 72px)}
+.sidebar{border-right:1px solid var(--line);padding:25px 15px;background:#f8f6f2}
+.nav-label{font-size:10px;font-weight:800;color:#9a958a;letter-spacing:.13em;padding:0 12px;margin:0 0 8px}
+.nav-group{margin-bottom:26px}
+.nav-button{width:100%;display:flex;align-items:center;gap:11px;border:0;background:transparent;color:#6d695f;text-align:left;padding:11px 12px;border-radius:9px;font-weight:600;margin:2px 0}
+.nav-button:hover{background:#eeeae3;color:var(--ink)}
+.nav-button.active{background:var(--brand);color:#fff;box-shadow:0 4px 10px #5545361a}
+.nav-icon{width:18px;text-align:center;font-size:16px;opacity:.9}
+.sidebar-note{margin:34px 5px 0;padding:14px;background:#f0ebe2;border-radius:11px;color:#70685c;font-size:11px;line-height:1.75}
+.sidebar-note strong{display:block;color:#4a4135;font-size:12px;margin-bottom:4px}
+.main{padding:32px clamp(18px,3vw,42px) 54px;min-width:0}
+.page-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:25px}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.15em;color:#9b805f;margin-bottom:7px}
+h1{font-size:27px;line-height:1.3;letter-spacing:-.035em;margin:0;font-weight:750}
+.page-lead{margin:9px 0 0;color:var(--muted);max-width:680px;line-height:1.8;font-size:13px}
+.heading-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{border:1px solid transparent;border-radius:8px;padding:10px 14px;font-weight:650;font-size:12px;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:background .15s,border-color .15s;white-space:nowrap}
+.btn-primary{background:var(--brand);color:#fff}.btn-primary:hover{background:var(--brand-hover)}
+.btn-secondary{background:#fff;border-color:var(--line-strong);color:var(--ink)}.btn-secondary:hover{background:var(--surface-2)}
+.btn-quiet{background:transparent;color:var(--muted);border-color:transparent}.btn-quiet:hover{background:#eeeae3;color:var(--ink)}
+.btn-danger{background:var(--red-soft);color:var(--red);border-color:#f0d3d0}
+.btn-sm{padding:7px 10px;font-size:11px}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px}
+.metric{padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.metric-top{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}
+.metric-value{font-size:27px;font-weight:750;letter-spacing:-.04em;margin-top:7px}
+.metric-foot{font-size:11px;color:#918b80;margin-top:3px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.panel-head{padding:19px 21px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.panel-title{font-size:14px;font-weight:750;margin:0}
+.panel-subtitle{font-size:11px;color:var(--muted);margin:4px 0 0}
+.panel-body{padding:20px}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.search-wrap{position:relative;flex:1;min-width:180px}
+.search-wrap input{padding-left:35px}
+.search-symbol{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#938c80}
+.field{display:block;width:100%;border:1px solid var(--line-strong);border-radius:8px;background:#fff;color:var(--ink);padding:11px 12px;min-width:0}
+.field:focus{border-color:#b58a5b;outline:none;box-shadow:0 0 0 3px #b58a5b20}
+textarea.field{min-height:155px;resize:vertical;line-height:1.8}
+.field-label{display:block;font-size:12px;font-weight:700;margin:0 0 7px}
+.field-help{font-size:11px;color:var(--muted);margin:6px 0 0;line-height:1.7}
+.page-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.page-card{border:1px solid var(--line);border-radius:11px;padding:16px;min-width:0;display:flex;flex-direction:column;background:#fff;transition:border-color .15s,transform .15s}
+.page-card:hover{border-color:#c8b49b;transform:translateY(-1px)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.page-card h3{font-size:14px;margin:0;font-weight:750}
+.status{font-size:10px;padding:4px 7px;border-radius:5px;background:#f1eee8;color:#797367;white-space:nowrap}
+.status.draft{background:var(--accent-soft);color:#805e38}
+.card-description{font-size:12px;color:var(--muted);margin:12px 0;line-height:1.75;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:63px}
+.card-path{font-size:10px;color:#9a805f;overflow-wrap:anywhere;margin-top:auto;padding-top:8px}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:13px;padding-top:12px;border-top:1px solid #f0ede7}
+.empty{padding:38px 20px;text-align:center;color:var(--muted);font-size:13px}
+.editor-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:18px;align-items:start}
+.editor-panel{padding:22px}
+.form-section + .form-section{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.form-section-title{font-size:12px;font-weight:800;margin:0 0 14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:17px}
+.editor-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.preview-frame{background:#eeeae3;padding:15px;border-radius:11px}
+.preview-site{background:#fff;min-height:290px;padding:25px 22px;border-radius:7px;box-shadow:0 2px 8px #342b1c0a}
+.preview-brand{font-family:Georgia,serif;font-size:10px;letter-spacing:.18em;color:#9b805f}
+.preview-site h2{font-family:Georgia,"Yu Mincho",serif;font-size:25px;line-height:1.45;margin:22px 0 13px}
+.preview-site p{white-space:pre-wrap;color:#69645b;font-size:12px;line-height:2}
+.preview-meta{font-size:10px;color:#aaa397;margin-top:22px;border-top:1px solid var(--line);padding-top:12px}
+.notice{padding:12px 14px;background:#f9f4eb;border:1px solid #ebdfcd;border-radius:8px;font-size:11px;line-height:1.8;color:#77674f}
+.notice strong{color:#5e4932}
+.blog-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;align-items:start}
+.blog-item{padding:15px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+.blog-item h3{font-size:13px;margin:0 0 5px}.blog-meta{font-size:10px;color:var(--muted)}.blog-summary{font-size:12px;color:#6f6a61;line-height:1.7;margin:9px 0}
+.blog-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.upload-zone{border:1px dashed #c9bba8;border-radius:12px;padding:25px;text-align:center;background:#fcfaf7}
+.upload-icon{font-size:27px;color:#9b805f}.upload-zone p{color:var(--muted);font-size:12px}
+.image-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.image-card{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;min-width:0}
+.image-card img{display:block;width:100%;height:150px;object-fit:contain;background:#f4f1eb}
+.image-card-body{padding:11px}.image-name{font-size:11px;font-weight:700;overflow-wrap:anywhere}.image-detail{font-size:10px;color:var(--muted);margin-top:5px}
+.history-row{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
+.history-dot{width:8px;height:8px;border-radius:50%;background:#b78c5c;margin-top:6px}.history-title{font-size:12px;font-weight:700}.history-detail{font-size:11px;color:var(--muted);margin-top:3px}.history-time{font-size:10px;color:#969084;white-space:nowrap}
+.section{display:none}.section.active{display:block}
+.toast{position:fixed;right:22px;bottom:22px;z-index:40;max-width:min(400px,calc(100vw - 44px));padding:13px 16px;border-radius:10px;background:#302a24;color:#fff;box-shadow:0 10px 30px #0002;font-size:12px;line-height:1.7}
+.toast.error{background:#8d342d}
+.mobile-menu{display:none}
+@media(max-width:1100px){.page-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-layout,.blog-layout{grid-template-columns:1fr}.preview-frame{max-width:none}}
+@media(max-width:760px){.app-header{height:64px;padding:0 16px}.env-pill{font-size:0;padding:8px}.env-dot{width:7px;height:7px}.layout{display:block}.sidebar{display:flex;overflow-x:auto;gap:5px;padding:9px 12px;border-right:0;border-bottom:1px solid var(--line);position:sticky;top:64px;z-index:15}.nav-group{display:flex;gap:4px;margin:0}.nav-label,.sidebar-note{display:none}.nav-button{width:auto;white-space:nowrap;padding:9px 11px;font-size:11px}.nav-icon{display:none}.main{padding:24px 14px 40px}.page-heading{display:block}.heading-actions{justify-content:flex-start;margin-top:16px}.metrics{gap:8px}.metric{padding:13px}.metric-value{font-size:22px}.metric-top{font-size:10px}.metric-foot{font-size:10px}.page-grid{grid-template-columns:1fr}.image-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.form-row{grid-template-columns:1fr}.panel-head{padding:16px}.panel-body{padding:15px}h1{font-size:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
 <body>
-<header><h1>COFFEE GUIDE</h1><p>サイト管理システム — ローカル下書きモード</p></header>
-<main>
-<div class="notice"><strong>試作版：</strong>変更はこのブラウザ内に保存されます。GitHubへの直接保存や本番公開は行いません。ブラウザのデータを消す前に「データを書き出す」でバックアップしてください。</div>
-<nav class="tabs" aria-label="管理メニュー"><button data-tab="pagesTab">ページ管理</button><button data-tab="blogTab">ブログ管理</button><button data-tab="imagesTab">画像管理</button><button data-tab="dataTab">バックアップ・履歴</button></nav>
-<section id="pagesTab"><h2>ページ管理</h2><p class="muted">タイトルと説明文を編集できます。実際のHTML本文全体は読み込まれていません。</p>
-<label for="pageSearch">ページを検索</label><input id="pageSearch" type="search" placeholder="ページ名やファイルパスで検索"><div id="pageList" class="grid" style="margin-top:14px"></div>
-<section id="pageEditor" class="panel hidden" style="margin-top:20px"><button id="backPages" class="secondary">← 一覧へ戻る</button><h2 id="editHeading">ページ編集</h2><p id="editPath" class="path"></p>
-<label for="pageTitle">ページのタイトル</label><input id="pageTitle" maxlength="180"><label for="pageText">説明文・紹介文</label><textarea id="pageText" maxlength="20000"></textarea>
-<div class="actions"><button id="previewPage">プレビュー</button><button id="savePage">下書きを保存</button><button id="exportHtml" class="secondary">簡易HTMLを出力</button></div>
-<div id="pagePreview" class="preview hidden"><span class="status">プレビュー</span><h2 id="previewTitle"></h2><p id="previewText"></p></div><p id="pageMessage" class="muted" aria-live="polite"></p>
-<div class="notice">簡易HTML出力は入力したタイトルと説明文だけを含みます。既存ページのレイアウトや本文を再現・置換するものではありません。</div></section></section>
-<section id="blogTab" class="hidden"><h2>ブログ管理</h2><p class="muted">記事の下書きをこのブラウザ内で管理します。公開サイトには反映されません。</p><div class="panel">
-<input id="blogId" type="hidden"><label for="blogTitle">記事タイトル</label><input id="blogTitle" maxlength="180" placeholder="記事タイトル"><label for="blogDate">日付</label><input id="blogDate" type="date"><label for="blogSummary">概要</label><textarea id="blogSummary" maxlength="5000" placeholder="記事の概要"></textarea><label for="blogBody">本文</label><textarea id="blogBody" maxlength="30000" placeholder="記事本文（プレーンテキスト）"></textarea>
-<div class="actions"><button id="saveBlog">記事を保存</button><button id="clearBlog" class="secondary">入力をクリア</button></div><p id="blogMessage" class="muted" aria-live="polite"></p></div><h3 style="margin-top:22px">保存済みの下書き</h3><div id="blogList" class="list"></div></section>
-<section id="imagesTab" class="hidden"><h2>画像管理</h2><p class="muted">画像のプレビューと情報確認ができます。選択した画像はアップロードされません。</p><div class="panel"><label for="imageFile">画像ファイルを選択</label><input id="imageFile" type="file" accept="image/*"><img id="imagePreview" class="image-preview hidden" alt="選択した画像のプレビュー"><p id="imageInfo" class="muted" aria-live="polite"></p><div class="actions"><button id="downloadImage" class="secondary" disabled>選択画像をダウンロード</button><button id="clearImage" class="secondary">画像を解除</button></div><p class="small muted">サイトへの保存には、後でGitHubへの安全なアップロード機能が必要です。</p></div></section>
-<section id="dataTab" class="hidden"><h2>バックアップ・履歴</h2><div class="panel"><h3>データのバックアップ</h3><p class="muted">ページ下書きとブログ下書きをJSONで書き出せます。</p><div class="actions"><button id="exportData">データを書き出す</button><button id="importDataButton" class="secondary">バックアップを読み込む</button><input id="importData" type="file" accept="application/json,.json" class="hidden"></div><p id="dataMessage" class="muted" aria-live="polite"></p></div>
-<div class="panel" style="margin-top:16px"><h3>変更履歴</h3><p class="muted">保存した編集の直近50件を記録します。</p><div id="historyList" class="list"></div><div class="actions"><button id="clearHistory" class="secondary">履歴を消去</button></div></div></section>
-</main>
+<header class="app-header">
+  <div class="brand"><div class="brand-mark" aria-hidden="true">C</div><div><div class="brand-name">COFFEE GUIDE</div><span class="brand-sub">CONTENT STUDIO</span></div></div>
+  <div class="header-right"><span class="env-pill"><span class="env-dot"></span>下書き環境</span><button class="btn btn-secondary btn-sm" id="headerBackup">バックアップ</button></div>
+</header>
+<div class="layout">
+  <aside class="sidebar" aria-label="管理メニュー">
+    <div class="nav-group">
+      <div class="nav-label">WORKSPACE</div>
+      <button class="nav-button active" data-view="pages"><span class="nav-icon">▤</span>ページ管理</button>
+      <button class="nav-button" data-view="blog"><span class="nav-icon">✎</span>ブログ</button>
+      <button class="nav-button" data-view="media"><span class="nav-icon">▧</span>画像ライブラリ</button>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">SYSTEM</div>
+      <button class="nav-button" data-view="history"><span class="nav-icon">◷</span>変更履歴</button>
+      <button class="nav-button" data-view="settings"><span class="nav-icon">⚙</span>データ管理</button>
+    </div>
+    <div class="sidebar-note"><strong>ローカル下書きモード</strong>変更はこのブラウザに保存されます。公開サイトやGitHubのファイルは変更されません。</div>
+  </aside>
+  <main class="main">
+    <section id="view-pages" class="section active">
+      <div class="page-heading"><div><div class="eyebrow">CONTENT WORKSPACE</div><h1>ページ管理</h1><p class="page-lead">COFFEE GUIDE のコンテンツ下書きを整理・編集します。変更は保存前にプレビューで確認できます。</p></div><div class="heading-actions"><button class="btn btn-secondary" id="pageExportAll">ページ下書きを書き出す</button></div></div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-top">管理対象ページ <span>▤</span></div><div class="metric-value" id="metricPages">17</div><div class="metric-foot">登録されているページ</div></div>
+        <div class="metric"><div class="metric-top">下書きあり <span>✎</span></div><div class="metric-value" id="metricDrafts">0</div><div class="metric-foot">このブラウザに保存済み</div></div>
+        <div class="metric"><div class="metric-top">ブログ下書き <span>▤</span></div><div class="metric-value" id="metricBlogs">0</div><div class="metric-foot">未公開の記事</div></div>
+      </div>
+      <div class="panel"><div class="panel-head"><div><h2 class="panel-title">サイトページ</h2><p class="panel-subtitle">ページを選択して編集を開始</p></div><span class="status">編集対象一覧</span></div><div class="panel-body"><div class="toolbar"><div class="search-wrap"><span class="search-symbol">⌕</span><input class="field" id="pageSearch" type="search" placeholder="ページ名・ファイルパスを検索" aria-label="ページを検索"></div><select class="field" id="pageFilter" style="width:auto;min-width:140px" aria-label="下書き状態で絞り込み"><option value="all">すべてのページ</option><option value="draft">下書きあり</option><option value="clean">未編集</option></select></div><div id="pageGrid" class="page-grid"></div></div></div>
+    </section>
+    <section id="view-editor" class="section">
+      <div class="page-heading"><div><div class="eyebrow">CONTENT EDITOR</div><h1 id="editorHeading">ページを編集</h1><p id="editorLead" class="page-lead"></p></div><div class="heading-actions"><button class="btn btn-secondary" id="editorBack">← ページ一覧</button></div></div>
+      <div class="editor-layout">
+        <div class="panel"><div class="panel-head"><div><h2 class="panel-title">コンテンツ編集</h2><p class="panel-subtitle">入力した内容は下書きとして保存できます</p></div><span id="editorStatus" class="status">未編集</span></div><div class="panel-body">
+          <div class="form-section"><h3 class="form-section-title">基本情報</h3><div class="form-group"><label class="field-label" for="editTitle">ページタイトル</label><input id="editTitle" class="field" maxlength="180" placeholder="タイトルを入力"></div><div class="form-group"><label class="field-label" for="editDescription">説明文・紹介文</label><textarea id="editDescription" class="field" maxlength="20000" placeholder="ページの説明文を入力"></textarea><p class="field-help">現段階では、登録したタイトルと説明文を管理します。既存HTMLの全本文を読み込む機能はまだありません。</p></div></div>
+          <div class="editor-actions"><button class="btn btn-primary" id="savePage">下書きを保存</button><button class="btn btn-secondary" id="previewPage">プレビューを更新</button><button class="btn btn-secondary" id="exportPage">簡易HTMLを出力</button></div>
+          <div class="notice" style="margin-top:18px"><strong>公開について：</strong>保存しても本番サイトは変わりません。出力されるHTMLはタイトルと説明文だけの簡易ファイルです。</div>
+          <p id="editorMessage" class="field-help" role="status"></p>
+        </div></div>
+        <div><div class="panel"><div class="panel-head"><div><h2 class="panel-title">表示プレビュー</h2><p class="panel-subtitle">入力内容の確認用イメージ</p></div><span class="status">Preview</span></div><div class="panel-body"><div class="preview-frame"><article class="preview-site"><div class="preview-brand">COFFEE GUIDE</div><h2 id="previewTitle">ページタイトル</h2><p id="previewDescription">ここに説明文が表示されます。</p><div class="preview-meta" id="previewPath">ページパス</div></article></div><p class="field-help">実際のサイトデザインを再現したものではなく、入力内容の簡易プレビューです。</p></div></div>
+        <div class="panel" style="margin-top:15px"><div class="panel-head"><h2 class="panel-title">編集情報</h2></div><div class="panel-body"><div class="field-help">対象ファイル</div><div id="editorPath" style="font-size:12px;overflow-wrap:anywhere;margin:5px 0 15px"></div><div class="field-help">最終保存</div><div id="editorUpdated" style="font-size:12px;margin-top:5px">まだ保存されていません</div></div></div></div>
+      </div>
+    </section>
+    <section id="view-blog" class="section">
+      <div class="page-heading"><div><div class="eyebrow">EDITORIAL</div><h1>ブログ管理</h1><p class="page-lead">記事の下書きを作成・編集・削除します。記事はこのブラウザ内に保存され、公開はされません。</p></div><div class="heading-actions"><button class="btn btn-primary" id="newBlog">＋ 新しい記事</button></div></div>
+      <div class="blog-layout"><div class="panel"><div class="panel-head"><div><h2 class="panel-title">記事一覧</h2><p class="panel-subtitle" id="blogCount">0件</p></div></div><div class="panel-body"><div class="search-wrap" style="margin-bottom:14px"><span class="search-symbol">⌕</span><input id="blogSearch" class="field" type="search" placeholder="記事を検索" aria-label="記事を検索"></div><div id="blogList"></div></div></div>
+      <div class="panel"><div class="panel-head"><div><h2 class="panel-title" id="blogFormHeading">記事を作成</h2><p class="panel-subtitle">タイトル・概要・本文を入力</p></div><span class="status">下書き</span></div><div class="panel-body"><input id="blogId" type="hidden">
+        <div class="form-group"><label class="field-label" for="blogTitle">記事タイトル</label><input id="blogTitle" class="field" maxlength="180" placeholder="例：コーヒー豆の保存方法"></div>
+        <div class="form-row"><div class="form-group"><label class="field-label" for="blogDate">掲載日（下書き用）</label><input id="blogDate" class="field" type="date"></div><div class="form-group"><label class="field-label" for="blogCategory">カテゴリー</label><input id="blogCategory" class="field" maxlength="80" placeholder="例：基礎知識"></div></div>
+        <div class="form-group"><label class="field-label" for="blogSummary">概要</label><textarea id="blogSummary" class="field" style="min-height:85px" maxlength="5000" placeholder="記事一覧に表示する紹介文"></textarea></div>
+        <div class="form-group"><label class="field-label" for="blogBody">本文</label><textarea id="blogBody" class="field" style="min-height:220px" maxlength="30000" placeholder="記事本文を入力（プレーンテキスト）"></textarea><p class="field-help">入力した改行はデータとして保存されます。HTMLへの自動変換・公開は行いません。</p></div>
+        <div class="editor-actions"><button class="btn btn-primary" id="saveBlog">記事を保存</button><button class="btn btn-secondary" id="clearBlog">入力をクリア</button></div><p id="blogMessage" class="field-help" role="status"></p>
+      </div></div></div>
+    </section>
+    <section id="view-media" class="section">
+      <div class="page-heading"><div><div class="eyebrow">ASSET LIBRARY</div><h1>画像ライブラリ</h1><p class="page-lead">画像を選択してプレビューし、ファイル情報を確認できます。ここではアップロードやサイトへの反映は行いません。</p></div></div>
+      <div class="panel"><div class="panel-head"><div><h2 class="panel-title">画像を追加</h2><p class="panel-subtitle">複数の画像を一時的にプレビューできます</p></div></div><div class="panel-body"><label class="upload-zone" for="mediaFiles" style="display:block;cursor:pointer"><div class="upload-icon">＋</div><strong>画像ファイルを選択</strong><p>クリックしてファイルを選択（複数選択可）</p><input id="mediaFiles" type="file" accept="image/*" multiple class="field" style="max-width:330px;margin:12px auto 0"></label><div class="notice"><strong>保存について：</strong>画像はページを閉じると一覧から消える一時プレビューです。GitHubにはアップロードされません。</div><div id="mediaGrid" class="image-grid"></div><div class="actions"><button class="btn btn-secondary" id="clearMedia">一時画像をすべて解除</button></div></div></div>
+    </section>
+    <section id="view-history" class="section">
+      <div class="page-heading"><div><div class="eyebrow">ACTIVITY LOG</div><h1>変更履歴</h1><p class="page-lead">このブラウザで行った下書き保存や削除操作の履歴です。履歴は最大100件まで記録します。</p></div><div class="heading-actions"><button class="btn btn-secondary" id="exportHistory">履歴を書き出す</button><button class="btn btn-secondary" id="clearHistory">履歴を消去</button></div></div>
+      <div class="panel"><div class="panel-head"><h2 class="panel-title">最近の操作</h2><span class="status" id="historyCount">0件</span></div><div class="panel-body" id="historyList"></div></div>
+    </section>
+    <section id="view-settings" class="section">
+      <div class="page-heading"><div><div class="eyebrow">DATA & SAFETY</div><h1>データ管理</h1><p class="page-lead">下書きのバックアップと復元を行います。ブラウザの保存領域に依存するため、定期的なバックアップをおすすめします。</p></div></div>
+      <div class="panel"><div class="panel-head"><h2 class="panel-title">バックアップ</h2></div><div class="panel-body"><p class="muted">ページ下書き、ブログ下書き、変更履歴をJSONファイルに書き出します。</p><div class="actions"><button class="btn btn-primary" id="exportBackup">JSONバックアップをダウンロード</button><button class="btn btn-secondary" id="importBackupButton">バックアップを復元</button><input id="importBackup" type="file" accept="application/json,.json" class="hidden"></div><p id="backupMessage" class="field-help" role="status"></p></div></div>
+      <div class="panel" style="margin-top:16px"><div class="panel-head"><h2 class="panel-title">現在の保存状況</h2></div><div class="panel-body"><div class="form-row"><div><div class="field-help">ページ下書き</div><div class="metric-value" id="settingsDrafts">0</div></div><div><div class="field-help">ブログ下書き</div><div class="metric-value" id="settingsBlogs">0</div></div></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><div class="notice"><strong>重要：</strong>この試作版にはログイン認証やサーバー側保存はありません。管理画面を公開サイトに置くだけでは安全な管理システムにはなりません。GitHubへの書き込みトークンをHTMLに埋め込まないでください。</div><div class="actions"><button class="btn btn-danger" id="resetDrafts">このブラウザの下書きをすべて削除</button></div></div></div>
+    </section>
+  </main>
+</div>
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 <script>
 "use strict";
-const STORAGE_KEY="coffee-guide-admin-v2",HISTORY_KEY="coffee-guide-admin-history-v1";
-const pages=[
-{title:"トップページ",path:"index.html",text:"COFFEE GUIDEのトップページです。"},
-{title:"初心者向けガイド",path:"beginner/beginner.html",text:"初心者向けコンテンツの入口です。"},
-{title:"初心者向けトップ",path:"beginner/index.html",text:"初心者向けページのトップです。"},
-{title:"道具",path:"beginner/step1.html",text:"コーヒーに使う道具について。"},
-{title:"ドリップ",path:"beginner/step2.html",text:"ドリップの基本について。"},
-{title:"初心者ガイド Step 3",path:"beginner/step3.html",text:"初心者向けガイドのページです。"},
-{title:"初心者ガイド Step 4",path:"beginner/step4.html",text:"初心者向けガイドのページです。"},
-{title:"初心者ガイド Step 5",path:"beginner/step5.html",text:"初心者向けガイドのページです。"},
-{title:"ブログ",path:"blog/blogindex.html",text:"ブログ記事一覧です。"},
-{title:"コーヒーの基礎",path:"knowledge/basics.html",text:"コーヒーの基本知識です。"},
-{title:"豆の知識",path:"knowledge/beans.html",text:"コーヒー豆について。"},
-{title:"抽出方法",path:"knowledge/brewing.html",text:"抽出方法について。"},
-{title:"挽き目",path:"knowledge/grind.html",text:"コーヒーの挽き目について。"},
-{title:"焙煎",path:"knowledge/roasting.html",text:"焙煎について。"},
-{title:"味わい",path:"knowledge/taste.html",text:"コーヒーの味について。"},
-{title:"道具の知識",path:"knowledge/tools.html",text:"コーヒー器具について。"},
-{title:"知識一覧",path:"knowledge/knowledgeindex.html",text:"コーヒー知識ページの一覧です。"}];
-const $=id=>document.getElementById(id);let state={pages:{},blogs:[]},history=[],currentPath=null,imageUrl=null,imageFile=null;
-function readJson(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}}
-function loadState(){const s=readJson(STORAGE_KEY,{});state={pages:s.pages&&typeof s.pages==="object"?s.pages:{},blogs:Array.isArray(s.blogs)?s.blogs:[]};history=readJson(HISTORY_KEY,[]);if(!Array.isArray(history))history=[]}
-function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
-function recordHistory(action,detail){history.unshift({at:new Date().toISOString(),action,detail});history=history.slice(0,50);localStorage.setItem(HISTORY_KEY,JSON.stringify(history));renderHistory()}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function download(name,data,type="text/plain;charset=utf-8"){const blob=data instanceof Blob?data:new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function getPage(p){return state.pages[p.path]||{title:p.title,text:p.text}}
-function renderPages(){const root=$("pageList");root.replaceChildren();const q=$("pageSearch").value.trim().toLowerCase();pages.filter(p=>(p.title+" "+p.path).toLowerCase().includes(q)).forEach(p=>{const d=getPage(p),card=document.createElement("article");card.className="card";const h=document.createElement("h3");h.textContent=d.title;const desc=document.createElement("p");desc.className="muted";desc.textContent=d.text;const path=document.createElement("div");path.className="path";path.textContent=p.path;const status=document.createElement("span");status.className="status";status.textContent=state.pages[p.path]?"下書きあり":"未編集";const b=document.createElement("button");b.textContent="編集";b.addEventListener("click",()=>openPage(p));card.append(h,desc,path,status,b);root.append(card)})}
-function openPage(p){currentPath=p.path;$("editHeading").textContent=p.title+"を編集";$("editPath").textContent="対象ファイル："+p.path+"（ファイル自体はまだ変更されません）";const d=getPage(p);$("pageTitle").value=d.title;$("pageText").value=d.text;$("pageMessage").textContent="";$("pagePreview").classList.add("hidden");$("pageEditor").classList.remove("hidden");window.scrollTo(0,0)}
-function renderPreview(){$("previewTitle").textContent=$("pageTitle").value;$("previewText").textContent=$("pageText").value;$("pagePreview").classList.remove("hidden")}
-function savePage(){if(!currentPath)return;const title=$("pageTitle").value.trim();if(!title){$("pageMessage").textContent="タイトルを入力してください。";return}state.pages[currentPath]={title,text:$("pageText").value,updatedAt:new Date().toISOString()};try{saveState();recordHistory("ページ下書き保存",currentPath);$("pageMessage").textContent="下書きを保存しました。このブラウザ内に保存されています。";renderPages()}catch{$("pageMessage").textContent="保存できませんでした。ブラウザの保存容量を確認してください。"}}
-function exportSimpleHtml(){if(!currentPath)return;const title=$("pageTitle").value,text=$("pageText").value;const html='<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>'+esc(title)+'</title>\n</head>\n<body>\n<main>\n<h1>'+esc(title)+'</h1>\n<p>'+esc(text).replace(/\n/g,"<br>")+'</p>\n</main>\n</body>\n</html>\n';download(currentPath.split("/").pop().replace(/\.html$/,"")+".draft.html",html,"text/html;charset=utf-8");$("pageMessage").textContent="簡易HTMLをダウンロードしました。既存ページ全体の複製ではありません。"}
-function switchTab(id){["pagesTab","blogTab","imagesTab","dataTab"].forEach(t=>$(t).classList.toggle("hidden",t!==id));if(id==="pagesTab")renderPages();if(id==="blogTab")renderBlogs();if(id==="dataTab")renderHistory();window.scrollTo(0,0)}
-document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
-$("pageSearch").addEventListener("input",renderPages);$("backPages").addEventListener("click",()=>{$("pageEditor").classList.add("hidden");currentPath=null;renderPages();window.scrollTo(0,0)});$("previewPage").addEventListener("click",renderPreview);$("savePage").addEventListener("click",savePage);$("exportHtml").addEventListener("click",exportSimpleHtml);
-function resetBlogForm(){$("blogId").value="";$("blogTitle").value="";$("blogDate").value=new Date().toISOString().slice(0,10);$("blogSummary").value="";$("blogBody").value=""}
-function renderBlogs(){const root=$("blogList");root.replaceChildren();if(!state.blogs.length){root.textContent="ブログ下書きはまだありません。";return}state.blogs.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")).forEach(blog=>{const item=document.createElement("article");item.className="item";const h=document.createElement("h3");h.textContent=blog.title;const meta=document.createElement("p");meta.className="muted";meta.textContent=(blog.date||"日付なし")+" · "+(blog.summary||"概要なし");const edit=document.createElement("button");edit.textContent="編集";edit.addEventListener("click",()=>{$("blogId").value=blog.id;$("blogTitle").value=blog.title;$("blogDate").value=blog.date||"";$("blogSummary").value=blog.summary||"";$("blogBody").value=blog.body||"";window.scrollTo(0,0)});const del=document.createElement("button");del.textContent="削除";del.className="danger";del.addEventListener("click",()=>{if(!confirm("この記事の下書きを削除しますか？"))return;state.blogs=state.blogs.filter(x=>x.id!==blog.id);saveState();recordHistory("ブログ下書き削除",blog.title);renderBlogs()});item.append(h,meta,edit,document.createTextNode(" "),del);root.append(item)})}
-$("saveBlog").addEventListener("click",()=>{const title=$("blogTitle").value.trim();if(!title){$("blogMessage").textContent="記事タイトルを入力してください。";return}const id=$("blogId").value||("blog-"+Date.now()+"-"+Math.random().toString(36).slice(2,7)),entry={id,title,date:$("blogDate").value,summary:$("blogSummary").value,body:$("blogBody").value,updatedAt:new Date().toISOString()},idx=state.blogs.findIndex(b=>b.id===id);if(idx>=0)state.blogs[idx]=entry;else state.blogs.push(entry);try{saveState();recordHistory(idx>=0?"ブログ下書き更新":"ブログ下書き作成",title);$("blogMessage").textContent="記事の下書きを保存しました。公開サイトには反映されていません。";resetBlogForm();renderBlogs()}catch{$("blogMessage").textContent="保存に失敗しました。ブラウザの保存容量を確認してください。"}});
-$("clearBlog").addEventListener("click",resetBlogForm);
-$("imageFile").addEventListener("change",()=>{const f=$("imageFile").files[0];if(!f)return;if(!f.type.startsWith("image/")){$("imageInfo").textContent="画像ファイルを選択してください。";$("imageFile").value="";return}if(imageUrl)URL.revokeObjectURL(imageUrl);imageFile=f;imageUrl=URL.createObjectURL(f);$("imagePreview").src=imageUrl;$("imagePreview").classList.remove("hidden");$("imageInfo").textContent=`${f.name} · ${(f.size/1024).toFixed(1)} KB · ${f.type}。まだアップロードされていません。`;$("downloadImage").disabled=false});
-$("downloadImage").addEventListener("click",()=>{if(imageFile)download(imageFile.name,imageFile,imageFile.type)});
-$("clearImage").addEventListener("click",()=>{if(imageUrl)URL.revokeObjectURL(imageUrl);imageUrl=null;imageFile=null;$("imageFile").value="";$("imagePreview").removeAttribute("src");$("imagePreview").classList.add("hidden");$("imageInfo").textContent="画像を解除しました。";$("downloadImage").disabled=true});
-$("exportData").addEventListener("click",()=>{download("coffee-guide-admin-backup.json",JSON.stringify({format:"coffee-guide-admin-backup-v1",exportedAt:new Date().toISOString(),state,history},null,2),"application/json;charset=utf-8");$("dataMessage").textContent="バックアップを書き出しました。安全な場所に保管してください。"});
-$("importDataButton").addEventListener("click",()=>$("importData").click());
-$("importData").addEventListener("change",async()=>{const f=$("importData").files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj||obj.format!=="coffee-guide-admin-backup-v1"||!obj.state||!obj.state.pages||!Array.isArray(obj.state.blogs))throw Error("invalid");if(!confirm("現在の下書きを読み込んだデータで置き換えます。先に現在のデータをバックアップしましたか？"))return;state={pages:obj.state.pages,blogs:obj.state.blogs};history=Array.isArray(obj.history)?obj.history.slice(0,50):history;saveState();localStorage.setItem(HISTORY_KEY,JSON.stringify(history));recordHistory("バックアップ読み込み",f.name);renderPages();renderBlogs();$("dataMessage").textContent="バックアップを読み込みました。"}catch{$("dataMessage").textContent="読み込めませんでした。対応するCOFFEE GUIDEのJSONバックアップを選択してください。"}finally{$("importData").value=""}});
-function renderHistory(){const root=$("historyList");if(!root)return;root.replaceChildren();if(!history.length){root.textContent="履歴はありません。";return}history.slice(0,50).forEach(h=>{const div=document.createElement("div");div.className="item";const strong=document.createElement("strong");strong.textContent=h.action;const p=document.createElement("p");p.className="muted";p.textContent=(h.detail||"")+" · "+new Date(h.at).toLocaleString("ja-JP");div.append(strong,p);root.append(div)})}
-$("clearHistory").addEventListener("click",()=>{if(!confirm("変更履歴を消去しますか？"))return;history=[];localStorage.setItem(HISTORY_KEY,"[]");renderHistory()});
-loadState();renderPages();renderBlogs();renderHistory();resetBlogForm();
-</script></body></html>
+const STORAGE_KEY="coffee-guide-content-studio-v3";
+const HISTORY_KEY="coffee-guide-content-studio-history-v1";
+const pageDefinitions=[
+{title:"トップページ",path:"index.html",description:"COFFEE GUIDEのトップページです。"},
+{title:"初心者向けガイド",path:"beginner/beginner.html",description:"初心者向けコンテンツの入口です。"},
+{title:"初心者向けトップ",path:"beginner/index.html",description:"初心者向けページのトップです。"},
+{title:"道具",path:"beginner/step1.html",description:"コーヒーに使う道具について。"},
+{title:"ドリップ",path:"beginner/step2.html",description:"ドリップの基本について。"},
+{title:"初心者ガイド Step 3",path:"beginner/step3.html",description:"初心者向けガイドのページです。"},
+{title:"初心者ガイド Step 4",path:"beginner/step4.html",description:"初心者向けガイドのページです。"},
+{title:"初心者ガイド Step 5",path:"beginner/step5.html",description:"初心者向けガイドのページです。"},
+{title:"ブログ",path:"blog/blogindex.html",description:"ブログ記事一覧です。"},
+{title:"コーヒーの基礎",path:"knowledge/basics.html",description:"コーヒーの基本知識です。"},
+{title:"豆の知識",path:"knowledge/beans.html",description:"コーヒー豆について。"},
+{title:"抽出方法",path:"knowledge/brewing.html",description:"抽出方法について。"},
+{title:"挽き目",path:"knowledge/grind.html",description:"コーヒーの挽き目について。"},
+{title:"焙煎",path:"knowledge/roasting.html",description:"焙煎について。"},
+{title:"味わい",path:"knowledge/taste.html",description:"コーヒーの味について。"},
+{title:"道具の知識",path:"knowledge/tools.html",description:"コーヒー器具について。"},
+{title:"知識一覧",path:"knowledge/knowledgeindex.html",description:"コーヒー知識ページの一覧です。"}
+];
+const $=id=>document.getElementById(id);
+let state={pages:{},blogs:[]},history=[],activePagePath=null,toastTimer=null,mediaUrls=[];
+function safeRead(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch{return fallback}}
+function loadData(){const old=safeRead("coffee-guide-admin-drafts-v1",{});const saved=safeRead(STORAGE_KEY,null);if(saved&&typeof saved==="object"){state={pages:saved.pages&&typeof saved.pages==="object"?saved.pages:{},blogs:Array.isArray(saved.blogs)?saved.blogs:[]}}else{state={pages:old&&typeof old==="object"?old:{},blogs:[]}}history=safeRead(HISTORY_KEY,[]);if(!Array.isArray(history))history=[]}
+function persist(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function notify(message,error=false){const t=$("toast");t.textContent=message;t.classList.remove("hidden","error");if(error)t.classList.add("error");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add("hidden"),3600)}
+function logAction(action,detail){history.unshift({id:Date.now()+"-"+Math.random().toString(36).slice(2,6),at:new Date().toISOString(),action,detail});history=history.slice(0,100);try{localStorage.setItem(HISTORY_KEY,JSON.stringify(history))}catch{}renderHistory()}
+function safeText(s){return String(s??"")}
+function escapeHtml(s){return safeText(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function downloadFile(name,data,type="text/plain;charset=utf-8"){const blob=data instanceof Blob?data:new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200)}
+function getPage(def){return state.pages[def.path]||{title:def.title,description:def.description}}
+function pageIsDraft(def){return Object.prototype.hasOwnProperty.call(state.pages,def.path)}
+function updateMetrics(){$("metricPages").textContent=pageDefinitions.length;$("metricDrafts").textContent=Object.keys(state.pages).filter(k=>pageDefinitions.some(p=>p.path===k)).length;$("metricBlogs").textContent=state.blogs.length;$("settingsDrafts").textContent=Object.keys(state.pages).length;$("settingsBlogs").textContent=state.blogs.length}
+function renderPages(){const grid=$("pageGrid");grid.replaceChildren();const query=$("pageSearch").value.trim().toLocaleLowerCase("ja"),filter=$("pageFilter").value;const matches=pageDefinitions.filter(p=>{const d=getPage(p),q=(p.title+" "+p.path+" "+d.title+" "+d.description).toLocaleLowerCase("ja");return(!query||q.includes(query))&&(filter==="all"||(filter==="draft"&&pageIsDraft(p))||(filter==="clean"&&!pageIsDraft(p)))});if(!matches.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">該当するページがありません。検索語や絞り込み条件を変更してください。</div>';updateMetrics();return}matches.forEach(p=>{const d=getPage(p),card=document.createElement("article");card.className="page-card";const top=document.createElement("div");top.className="card-top";const title=document.createElement("h3");title.textContent=d.title;const badge=document.createElement("span");badge.className="status"+(pageIsDraft(p)?" draft":"");badge.textContent=pageIsDraft(p)?"下書きあり":"未編集";top.append(title,badge);const desc=document.createElement("p");desc.className="card-description";desc.textContent=d.description;const path=document.createElement("div");path.className="card-path";path.textContent=p.path;const bottom=document.createElement("div");bottom.className="card-bottom";const small=document.createElement("span");small.className="field-help";small.textContent=pageIsDraft(p)&&d.updatedAt?"保存済み":"ページ設定";const btn=document.createElement("button");btn.className="btn btn-secondary btn-sm";btn.textContent="編集する →";btn.addEventListener("click",()=>openEditor(p));bottom.append(small,btn);card.append(top,desc,path,bottom);grid.append(card)});updateMetrics()}
+function showView(name){document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));const target=$("view-"+name);if(target)target.classList.add("active");document.querySelectorAll(".nav-button").forEach(b=>b.classList.toggle("active",b.dataset.view===name||(name==="editor"&&b.dataset.view==="pages")));if(name==="pages")renderPages();if(name==="blog")renderBlogs();if(name==="history")renderHistory();if(name==="settings")updateMetrics();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav-button").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+function openEditor(def){activePagePath=def.path;const data=getPage(def);$("editorHeading").textContent=data.title;$("editorLead").textContent="ページの表示内容を整理します。保存は下書きとして行われます。";$("editorPath").textContent=def.path;$("editorStatus").textContent=pageIsDraft(def)?"下書きあり":"未編集";$("editTitle").value=data.title;$("editDescription").value=data.description;$("editorUpdated").textContent=data.updatedAt?new Date(data.updatedAt).toLocaleString("ja-JP"):"まだ保存されていません";$("editorMessage").textContent="";renderPagePreview();showView("editor")}
+function renderPagePreview(){$("previewTitle").textContent=$("editTitle").value||"ページタイトル";$("previewDescription").textContent=$("editDescription").value||"説明文がここに表示されます。";$("previewPath").textContent=activePagePath||"ページパス"}
+$("editTitle").addEventListener("input",renderPagePreview);$("editDescription").addEventListener("input",renderPagePreview);
+$("savePage").addEventListener("click",()=>{if(!activePagePath)return;const title=$("editTitle").value.trim();if(!title){$("editorMessage").textContent="ページタイトルを入力してください。";notify("タイトルを入力してください。",true);return}const def=pageDefinitions.find(p=>p.path===activePagePath);state.pages[activePagePath]={title,description:$("editDescription").value,updatedAt:new Date().toISOString()};try{persist();logAction("ページ下書きを保存",title+" · "+activePagePath);$("editorStatus").textContent="下書きあり";$("editorUpdated").textContent=new Date(state.pages[activePagePath].updatedAt).toLocaleString("ja-JP");$("editorMessage").textContent="このブラウザに下書きを保存しました。公開サイトは変更されていません。";renderPages();updateMetrics();notify("ページの下書きを保存しました。")}catch{$("editorMessage").textContent="保存できませんでした。バックアップを確認し、ブラウザの保存領域を確認してください。";notify("保存できませんでした。",true)}});
+$("previewPage").addEventListener("click",()=>{renderPagePreview();notify("プレビューを更新しました。")});
+$("editorBack").addEventListener("click",()=>showView("pages"));
+$("exportPage").addEventListener("click",()=>{if(!activePagePath)return;const title=$("editTitle").value,description=$("editDescription").value;const html='<!doctype html>\\n<html lang="ja">\\n<head>\\n<meta charset="utf-8">\\n<meta name="viewport" content="width=device-width, initial-scale=1">\\n<title>'+escapeHtml(title)+'</title>\\n</head>\\n<body>\\n<main>\\n<h1>'+escapeHtml(title)+'</h1>\\n<p>'+escapeHtml(description).replace(/\\n/g,"<br>")+'</p>\\n</main>\\n</body>\\n</html>\\n';downloadFile(activePagePath.split("/").pop().replace(/\\.html$/,"")+".draft.html",html,"text/html;charset=utf-8");notify("簡易HTMLを出力しました。既存ページ全体の代わりには使えません。")});
+$("pageSearch").addEventListener("input",renderPages);$("pageFilter").addEventListener("change",renderPages);
+$("pageExportAll").addEventListener("click",exportBackup);$("headerBackup").addEventListener("click",exportBackup);
+function resetBlogForm(){ $("blogId").value="";$("blogTitle").value="";$("blogDate").value=new Date().toISOString().slice(0,10);$("blogCategory").value="";$("blogSummary").value="";$("blogBody").value="";$("blogFormHeading").textContent="記事を作成"}
+function renderBlogs(){const root=$("blogList");root.replaceChildren();const q=$("blogSearch").value.trim().toLocaleLowerCase("ja");const list=state.blogs.filter(b=>(b.title+" "+b.summary+" "+b.category).toLocaleLowerCase("ja").includes(q)).sort((a,b)=>(b.updatedAt||"").localeCompare(a.updatedAt||""));$("blogCount").textContent=list.length+"件";if(!list.length){const empty=document.createElement("div");empty.className="empty";empty.textContent=state.blogs.length?"一致する記事がありません。":"記事はまだありません。右側のフォームから作成できます。";root.append(empty)}list.forEach(blog=>{const item=document.createElement("article");item.className="blog-item";const h=document.createElement("h3");h.textContent=blog.title;const meta=document.createElement("div");meta.className="blog-meta";meta.textContent=(blog.date||"日付未設定")+" · "+(blog.category||"カテゴリーなし");const summary=document.createElement("p");summary.className="blog-summary";summary.textContent=blog.summary||"概要は未入力です。";const actions=document.createElement("div");actions.className="blog-actions";const edit=document.createElement("button");edit.className="btn btn-secondary btn-sm";edit.textContent="編集";edit.addEventListener("click",()=>editBlog(blog.id));const del=document.createElement("button");del.className="btn btn-danger btn-sm";del.textContent="削除";del.addEventListener("click",()=>deleteBlog(blog.id));actions.append(edit,del);item.append(h,meta,summary,actions);root.append(item)});updateMetrics()}
+function editBlog(id){const b=state.blogs.find(x=>x.id===id);if(!b)return;$("blogId").value=b.id;$("blogTitle").value=b.title;$("blogDate").value=b.date||"";$("blogCategory").value=b.category||"";$("blogSummary").value=b.summary||"";$("blogBody").value=b.body||"";$("blogFormHeading").textContent="記事を編集";showView("blog");$("blogTitle").focus()}
+function deleteBlog(id){const b=state.blogs.find(x=>x.id===id);if(!b||!confirm("「"+b.title+"」の下書きを削除しますか？"))return;state.blogs=state.blogs.filter(x=>x.id!==id);try{persist();logAction("ブログ下書きを削除",b.title);renderBlogs();updateMetrics();notify("ブログ下書きを削除しました。")}catch{notify("削除を保存できませんでした。",true)}}
+$("newBlog").addEventListener("click",()=>{resetBlogForm();$("blogTitle").focus()});$("clearBlog").addEventListener("click",resetBlogForm);$("blogSearch").addEventListener("input",renderBlogs);
+$("saveBlog").addEventListener("click",()=>{const title=$("blogTitle").value.trim();if(!title){$("blogMessage").textContent="記事タイトルを入力してください。";notify("記事タイトルを入力してください。",true);return}const existingId=$("blogId").value,id=existingId||("blog-"+Date.now()+"-"+Math.random().toString(36).slice(2,8));const item={id,title,date:$("blogDate").value,category:$("blogCategory").value.trim(),summary:$("blogSummary").value,body:$("blogBody").value,updatedAt:new Date().toISOString()};const index=state.blogs.findIndex(b=>b.id===id);if(index>=0)state.blogs[index]=item;else state.blogs.push(item);try{persist();logAction(index>=0?"ブログ下書きを更新":"ブログ下書きを作成",title);resetBlogForm();$("blogMessage").textContent="下書きを保存しました。公開サイトには反映されていません。";renderBlogs();updateMetrics();notify("ブログの下書きを保存しました。")}catch{notify("保存できませんでした。バックアップを確認してください。",true)}});
+$("mediaFiles").addEventListener("change",()=>{const files=Array.from($("mediaFiles").files||[]);files.forEach(file=>{if(!file.type.startsWith("image/"))return;const url=URL.createObjectURL(file);mediaUrls.push(url);const card=document.createElement("article");card.className="image-card";const img=document.createElement("img");img.src=url;img.alt=file.name;const body=document.createElement("div");body.className="image-card-body";const name=document.createElement("div");name.className="image-name";name.textContent=file.name;const detail=document.createElement("div");detail.className="image-detail";detail.textContent=(file.size/1024).toFixed(1)+" KB · "+file.type;body.append(name,detail);card.append(img,body);$("mediaGrid").append(card)});if(files.length)notify("画像を一時プレビューに追加しました。まだアップロードされていません。");$("mediaFiles").value=""});
+$("clearMedia").addEventListener("click",()=>{mediaUrls.forEach(URL.revokeObjectURL);mediaUrls=[];$("mediaGrid").replaceChildren();notify("一時画像を解除しました。")});
+function exportBackup(){const payload={format:"coffee-guide-content-studio-backup-v1",exportedAt:new Date().toISOString(),state,history};downloadFile("coffee-guide-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(payload,null,2),"application/json;charset=utf-8");notify("バックアップをダウンロードしました。安全な場所に保管してください。")}
+$("exportBackup").addEventListener("click",exportBackup);
+$("importBackupButton").addEventListener("click",()=>$("importBackup").click());
+$("importBackup").addEventListener("change",async()=>{const file=$("importBackup").files[0];if(!file)return;try{const obj=JSON.parse(await file.text());if(!obj||obj.format!=="coffee-guide-content-studio-backup-v1"||!obj.state||typeof obj.state.pages!=="object"||!Array.isArray(obj.state.blogs))throw Error("invalid");if(!confirm("現在の下書きをバックアップの内容で置き換えます。現在のデータを先に書き出しましたか？"))return;state={pages:obj.state.pages,blogs:obj.state.blogs};history=Array.isArray(obj.history)?obj.history.slice(0,100):history;persist();localStorage.setItem(HISTORY_KEY,JSON.stringify(history));logAction("バックアップを復元",file.name);renderPages();renderBlogs();updateMetrics();$("backupMessage").textContent="バックアップを復元しました。";notify("バックアップを復元しました。")}catch{$("backupMessage").textContent="読み込めませんでした。対応するCOFFEE GUIDEのJSONバックアップを選んでください。";notify("バックアップを読み込めませんでした。",true)}finally{$("importBackup").value=""}});
+function renderHistory(){const root=$("historyList");if(!root)return;root.replaceChildren();$("historyCount").textContent=history.length+"件";if(!history.length){const e=document.createElement("div");e.className="empty";e.textContent="履歴はまだありません。";root.append(e);return}history.forEach(h=>{const row=document.createElement("div");row.className="history-row";const dot=document.createElement("span");dot.className="history-dot";const main=document.createElement("div");const title=document.createElement("div");title.className="history-title";title.textContent=h.action;const detail=document.createElement("div");detail.className="history-detail";detail.textContent=h.detail||"";main.append(title,detail);const time=document.createElement("time");time.className="history-time";time.textContent=new Date(h.at).toLocaleString("ja-JP");row.append(dot,main,time);root.append(row)})}
+$("exportHistory").addEventListener("click",()=>downloadFile("coffee-guide-history.json",JSON.stringify(history,null,2),"application/json;charset=utf-8"));
+$("clearHistory").addEventListener("click",()=>{if(!confirm("変更履歴をすべて消去しますか？"))return;history=[];localStorage.setItem(HISTORY_KEY,"[]");renderHistory();notify("履歴を消去しました。")});
+$("resetDrafts").addEventListener("click",()=>{if(!confirm("このブラウザに保存されたページ下書きとブログ下書きをすべて削除します。この操作は取り消せません。先にバックアップしましたか？"))return;state={pages:{},blogs:[]};try{persist();logAction("すべての下書きを削除","ローカル保存データをリセット");renderPages();renderBlogs();updateMetrics();$("backupMessage").textContent="下書きを削除しました。";notify("下書きを削除しました。")}catch{notify("処理できませんでした。",true)}});
+loadData();renderPages();renderBlogs();renderHistory();updateMetrics();resetBlogForm();
+</script>
+</body>
+</html>
