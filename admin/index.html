@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>管理画面 | COFFEE GUIDE</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", sans-serif;
+      background: #f6f3ee;
+      color: #302a24;
+    }
+    header {
+      padding: 24px 32px;
+      background: #302a24;
+      color: white;
+    }
+    header h1 { margin: 0; font-size: 22px; }
+    header p { margin: 8px 0 0; color: #ddd2c5; font-size: 13px; }
+    main { max-width: 1000px; margin: 36px auto; padding: 0 20px; }
+    .intro { margin-bottom: 28px; }
+    .intro h2 { font-size: 26px; margin-bottom: 8px; }
+    .intro p { color: #746b62; line-height: 1.8; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      display: block;
+      padding: 24px;
+      background: white;
+      border: 1px solid #e5ded4;
+      border-radius: 12px;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 18px; }
+    .card p { color: #746b62; font-size: 14px; line-height: 1.7; }
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 5px;
+      background: #f1e6d8;
+      font-size: 12px;
+    }
+    .notice {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid #dfc9a9;
+      border-radius: 10px;
+      background: #fffaf1;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+    footer { padding: 28px 20px; text-align: center; color: #82786d; font-size: 12px; }
+    @media (max-width: 600px) {
+      header { padding: 22px 20px; }
+      main { margin-top: 24px; }
+      .intro h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>COFFEE GUIDE</h1>
+    <p>サイト管理システム</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <span class="status">管理画面の試作版</span>
+      <h2>サイト管理</h2>
+      <p>
+        COFFEE GUIDE のページやブログ記事を管理するための画面です。
+        ここから編集機能を順番に追加していきます。
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>ページ管理</h3>
+        <p>トップページや初心者向けガイド、コーヒー知識ページを編集する機能を追加します。</p>
+        <span class="status">準備中</span>
+      </div>
+      <div class="card">
+        <h3>画像管理</h3>
+        <p>サイト内の画像を追加・差し替えできる機能を追加します。</p>
+        <span class="status">準備中</span>
+      </div>
+      <div class="card">
+        <h3>ブログ管理</h3>
+        <p>ブログ記事の作成・編集・削除を管理できるようにします。</p>
+        <span class="status">準備中</span>
+      </div>
+      <div class="card">
+        <h3>プレビュー・公開</h3>
+        <p>変更内容を確認し、承認してから公開する機能を追加します。</p>
+        <span class="status">準備中</span>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>現在は画面の試作段階です。</strong><br>
+      この画面にはまだログイン認証や編集・保存・公開機能はありません。
+      それらを安全に実装してから運用します。
+    </div>
+  </main>
+
+  <footer>COFFEE GUIDE — 管理システム</footer>
+</body>
+</html>
