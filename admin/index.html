@@ -24,20 +24,17 @@
     .intro { margin-bottom: 28px; }
     .intro h2 { font-size: 26px; margin-bottom: 8px; }
     .intro p { color: #746b62; line-height: 1.8; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-    .card {
+    .pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+    .page {
       display: block;
-      padding: 24px;
+      padding: 22px;
       background: white;
       border: 1px solid #e5ded4;
       border-radius: 12px;
     }
-    .card h3 { margin: 0 0 10px; font-size: 18px; }
-    .card p { color: #746b62; font-size: 14px; line-height: 1.7; }
+    .page h3 { margin: 0 0 10px; font-size: 17px; }
+    .page p { color: #746b62; font-size: 13px; line-height: 1.7; }
+    .path { color: #8a6b4c; font-size: 12px; overflow-wrap: anywhere; }
     .status {
       display: inline-block;
       padding: 5px 9px;
@@ -71,40 +68,101 @@
   <main>
     <section class="intro">
       <span class="status">管理画面の試作版</span>
-      <h2>サイト管理</h2>
-      <p>
-        COFFEE GUIDE のページやブログ記事を管理するための画面です。
-        ここから編集機能を順番に追加していきます。
-      </p>
+      <h2>ページ管理</h2>
+      <p>編集対象にするページの一覧です。現在は一覧表示のみで、編集・保存機能はまだありません。</p>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h3>ページ管理</h3>
-        <p>トップページや初心者向けガイド、コーヒー知識ページを編集する機能を追加します。</p>
-        <span class="status">準備中</span>
-      </div>
-      <div class="card">
-        <h3>画像管理</h3>
-        <p>サイト内の画像を追加・差し替えできる機能を追加します。</p>
-        <span class="status">準備中</span>
-      </div>
-      <div class="card">
-        <h3>ブログ管理</h3>
-        <p>ブログ記事の作成・編集・削除を管理できるようにします。</p>
-        <span class="status">準備中</span>
-      </div>
-      <div class="card">
-        <h3>プレビュー・公開</h3>
-        <p>変更内容を確認し、承認してから公開する機能を追加します。</p>
-        <span class="status">準備中</span>
-      </div>
+    <section class="pages">
+      <article class="page">
+        <h3>トップページ</h3>
+        <p>サイトの入口となるページ。</p>
+        <div class="path">index.html</div>
+      </article>
+      <article class="page">
+        <h3>初心者向けガイド</h3>
+        <p>初心者向けコンテンツの入口。</p>
+        <div class="path">beginner/beginner.html</div>
+      </article>
+      <article class="page">
+        <h3>初心者向けトップ</h3>
+        <p>初心者向けページのトップ。</p>
+        <div class="path">beginner/index.html</div>
+      </article>
+      <article class="page">
+        <h3>道具</h3>
+        <p>コーヒーに使う道具について。</p>
+        <div class="path">beginner/step1.html</div>
+      </article>
+      <article class="page">
+        <h3>ドリップ</h3>
+        <p>ドリップの基本について。</p>
+        <div class="path">beginner/step2.html</div>
+      </article>
+      <article class="page">
+        <h3>初心者ガイド Step 3</h3>
+        <p>初心者向けガイドのページ。</p>
+        <div class="path">beginner/step3.html</div>
+      </article>
+      <article class="page">
+        <h3>初心者ガイド Step 4</h3>
+        <p>初心者向けガイドのページ。</p>
+        <div class="path">beginner/step4.html</div>
+      </article>
+      <article class="page">
+        <h3>初心者ガイド Step 5</h3>
+        <p>初心者向けガイドのページ。</p>
+        <div class="path">beginner/step5.html</div>
+      </article>
+      <article class="page">
+        <h3>ブログ</h3>
+        <p>ブログ記事一覧。</p>
+        <div class="path">blog/blogindex.html</div>
+      </article>
+      <article class="page">
+        <h3>コーヒーの基礎</h3>
+        <p>コーヒーの基本知識。</p>
+        <div class="path">knowledge/basics.html</div>
+      </article>
+      <article class="page">
+        <h3>豆の知識</h3>
+        <p>コーヒー豆について。</p>
+        <div class="path">knowledge/beans.html</div>
+      </article>
+      <article class="page">
+        <h3>抽出方法</h3>
+        <p>抽出方法について。</p>
+        <div class="path">knowledge/brewing.html</div>
+      </article>
+      <article class="page">
+        <h3>挽き目</h3>
+        <p>コーヒーの挽き目について。</p>
+        <div class="path">knowledge/grind.html</div>
+      </article>
+      <article class="page">
+        <h3>焙煎</h3>
+        <p>焙煎について。</p>
+        <div class="path">knowledge/roasting.html</div>
+      </article>
+      <article class="page">
+        <h3>味わい</h3>
+        <p>コーヒーの味について。</p>
+        <div class="path">knowledge/taste.html</div>
+      </article>
+      <article class="page">
+        <h3>道具の知識</h3>
+        <p>コーヒー器具について。</p>
+        <div class="path">knowledge/tools.html</div>
+      </article>
+      <article class="page">
+        <h3>知識一覧</h3>
+        <p>コーヒー知識ページの入口。</p>
+        <div class="path">knowledge/knowledgeindex.html</div>
+      </article>
     </section>
 
     <div class="notice">
-      <strong>現在は画面の試作段階です。</strong><br>
-      この画面にはまだログイン認証や編集・保存・公開機能はありません。
-      それらを安全に実装してから運用します。
+      <strong>現在はページ一覧の試作段階です。</strong><br>
+      表示しているページ名とパスは、既存サイトの構成をもとにした候補です。実際のファイルと照合したうえで、編集・保存機能を実装します。
     </div>
   </main>
 
