@@ -1,464 +1,88 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>管理画面 | COFFEE GUIDE</title>
-
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", sans-serif;
-  background: #f6f3ee;
-  color: #302a24;
-}
-
-header {
-  padding: 24px 32px;
-  background: #302a24;
-  color: white;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 22px;
-}
-
-header p {
-  margin: 8px 0 0;
-  color: #ddd2c5;
-  font-size: 13px;
-}
-
-main {
-  max-width: 1050px;
-  margin: 32px auto;
-  padding: 0 20px;
-}
-
-h2 {
-  font-size: 26px;
-}
-
-.muted {
-  color: #746b62;
-  line-height: 1.8;
-}
-
-.pages {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 16px;
-}
-
-.card,
-.panel {
-  background: white;
-  border: 1px solid #e5ded4;
-  border-radius: 12px;
-  padding: 22px;
-}
-
-.card h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-}
-
-.path {
-  font-size: 12px;
-  color: #8a6b4c;
-  overflow-wrap: anywhere;
-  margin: 12px 0;
-}
-
-button {
-  border: 0;
-  border-radius: 7px;
-  padding: 10px 16px;
-  background: #554333;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-button:hover {
-  opacity: 0.85;
-}
-
-.secondary {
-  background: #eee5db;
-  color: #302a24;
-}
-
-.hidden {
-  display: none;
-}
-
-label {
-  display: block;
-  font-weight: 600;
-  margin: 18px 0 8px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #d8cec2;
-  border-radius: 7px;
-  font: inherit;
-  background: #fff;
-}
-
-textarea {
-  min-height: 160px;
-  resize: vertical;
-  line-height: 1.7;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.notice {
-  margin-top: 22px;
-  padding: 16px;
-  background: #fff8e9;
-  border: 1px solid #dfc9a9;
-  border-radius: 9px;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.status {
-  display: inline-block;
-  background: #f1e6d8;
-  padding: 5px 9px;
-  border-radius: 5px;
-  font-size: 12px;
-}
-
-.image-preview {
-  max-width: 100%;
-  max-height: 320px;
-  object-fit: contain;
-  margin-top: 16px;
-  border-radius: 8px;
-}
-
-#imagePreview[hidden] {
-  display: none;
-}
-
-@media (max-width: 600px) {
-  header {
-    padding: 22px 20px;
-  }
-
-  main {
-    margin-top: 20px;
-  }
-
-  .card,
-  .panel {
-    padding: 18px;
-  }
-}
-</style>
-</head>
-
+:root{--ink:#302a24;--bg:#f6f3ee;--line:#e5ded4;--accent:#554333;--muted:#746b62;--soft:#eee5db}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+header{padding:22px 30px;background:var(--ink);color:white}header h1{margin:0;font-size:22px}header p{margin:7px 0 0;color:#ddd2c5;font-size:13px}
+main{max-width:1180px;margin:26px auto;padding:0 18px}h2{font-size:25px;margin:18px 0 10px}.muted{color:var(--muted);line-height:1.75;font-size:14px}
+button{border:0;border-radius:7px;padding:10px 14px;background:var(--accent);color:white;cursor:pointer;font:inherit;font-size:14px}button:hover{opacity:.86}.secondary{background:var(--soft);color:var(--ink)}.danger{background:#8b342b}.hidden{display:none!important}
+input,textarea{width:100%;padding:11px;border:1px solid #d8cec2;border-radius:7px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:140px;resize:vertical;line-height:1.7}label{display:block;font-weight:600;margin:16px 0 7px}
+.panel,.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.card h3{margin:0 0 8px;font-size:18px}.path{font-size:12px;color:#8a6b4c;overflow-wrap:anywhere;margin:10px 0}
+.status{display:inline-block;background:#f1e6d8;padding:5px 9px;border-radius:5px;font-size:12px;margin:3px 4px 3px 0}.notice{margin:16px 0;padding:14px;background:#fff8e9;border:1px solid #dfc9a9;border-radius:9px;font-size:14px;line-height:1.8}
+.preview{border:1px solid var(--line);border-radius:8px;padding:16px;margin-top:16px;overflow-wrap:anywhere}.image-preview{max-width:100%;max-height:320px;object-fit:contain;border-radius:8px;margin-top:12px}
+.actions,.tabs{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}.list{display:grid;gap:10px}.item{padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff}.small{font-size:12px}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:650px){header{padding:20px}main{margin-top:18px}.panel,.card{padding:16px}.row{grid-template-columns:1fr}}
+</style></head>
 <body>
-<header>
-  <h1>COFFEE GUIDE</h1>
-  <p>サイト管理システム</p>
-</header>
-
+<header><h1>COFFEE GUIDE</h1><p>サイト管理システム — ローカル下書きモード</p></header>
 <main>
-  <section id="listView">
-    <span class="status">管理画面の試作版</span>
-    <h2>ページ管理</h2>
-    <p class="muted">
-      編集したいページを選択してください。
-      現在は入力内容を試すための画面です。
-    </p>
-
-    <div class="pages" id="pageList"></div>
-
-    <div class="panel" style="margin-top:24px">
-      <h2>画像管理</h2>
-      <p class="muted">
-        画像を選択するとプレビューが表示されます。
-        画像のアップロードや公開はまだ行われません。
-      </p>
-
-      <label for="imageFile">画像ファイルを選択</label>
-      <input
-        id="imageFile"
-        type="file"
-        accept="image/*"
-      >
-
-      <img
-        id="imagePreview"
-        class="image-preview"
-        alt="選択した画像のプレビュー"
-        hidden
-      >
-
-      <div class="actions">
-        <button
-          id="clearImageButton"
-          class="secondary"
-          type="button"
-        >
-          画像を解除
-        </button>
-      </div>
-
-      <p id="imageMessage" class="muted" aria-live="polite"></p>
-    </div>
-  </section>
-
-  <section id="editView" class="hidden">
-    <button class="secondary" id="backButton" type="button">
-      ← ページ一覧へ戻る
-    </button>
-
-    <h2 id="editHeading">ページ編集</h2>
-    <p class="muted" id="editPath"></p>
-
-    <div class="panel">
-      <label for="pageTitle">ページの見出し（試作用）</label>
-      <input id="pageTitle" type="text">
-
-      <label for="pageText">説明文（試作用）</label>
-      <textarea id="pageText"></textarea>
-
-      <div class="actions">
-        <button id="previewButton" type="button">
-          入力内容をプレビュー
-        </button>
-        <button id="saveDraftButton" type="button">
-          試作内容を一時保存
-        </button>
-      </div>
-
-      <div id="preview" class="notice hidden">
-        <strong>プレビュー</strong>
-        <h3 id="previewTitle"></h3>
-        <p id="previewText"></p>
-      </div>
-
-      <p id="message" class="muted" aria-live="polite"></p>
-    </div>
-
-    <div class="notice">
-      <strong>注意：</strong>
-      ここで編集するのは管理画面内の試作用データだけです。
-      既存のHTMLファイルや公開中のサイトは変更されません。
-      本物の保存・公開機能は、認証と安全なサーバー処理を実装した後に追加します。
-    </div>
-  </section>
+<div class="notice"><strong>試作版：</strong>変更はこのブラウザ内に保存されます。GitHubへの直接保存や本番公開は行いません。ブラウザのデータを消す前に「データを書き出す」でバックアップしてください。</div>
+<nav class="tabs" aria-label="管理メニュー"><button data-tab="pagesTab">ページ管理</button><button data-tab="blogTab">ブログ管理</button><button data-tab="imagesTab">画像管理</button><button data-tab="dataTab">バックアップ・履歴</button></nav>
+<section id="pagesTab"><h2>ページ管理</h2><p class="muted">タイトルと説明文を編集できます。実際のHTML本文全体は読み込まれていません。</p>
+<label for="pageSearch">ページを検索</label><input id="pageSearch" type="search" placeholder="ページ名やファイルパスで検索"><div id="pageList" class="grid" style="margin-top:14px"></div>
+<section id="pageEditor" class="panel hidden" style="margin-top:20px"><button id="backPages" class="secondary">← 一覧へ戻る</button><h2 id="editHeading">ページ編集</h2><p id="editPath" class="path"></p>
+<label for="pageTitle">ページのタイトル</label><input id="pageTitle" maxlength="180"><label for="pageText">説明文・紹介文</label><textarea id="pageText" maxlength="20000"></textarea>
+<div class="actions"><button id="previewPage">プレビュー</button><button id="savePage">下書きを保存</button><button id="exportHtml" class="secondary">簡易HTMLを出力</button></div>
+<div id="pagePreview" class="preview hidden"><span class="status">プレビュー</span><h2 id="previewTitle"></h2><p id="previewText"></p></div><p id="pageMessage" class="muted" aria-live="polite"></p>
+<div class="notice">簡易HTML出力は入力したタイトルと説明文だけを含みます。既存ページのレイアウトや本文を再現・置換するものではありません。</div></section></section>
+<section id="blogTab" class="hidden"><h2>ブログ管理</h2><p class="muted">記事の下書きをこのブラウザ内で管理します。公開サイトには反映されません。</p><div class="panel">
+<input id="blogId" type="hidden"><label for="blogTitle">記事タイトル</label><input id="blogTitle" maxlength="180" placeholder="記事タイトル"><label for="blogDate">日付</label><input id="blogDate" type="date"><label for="blogSummary">概要</label><textarea id="blogSummary" maxlength="5000" placeholder="記事の概要"></textarea><label for="blogBody">本文</label><textarea id="blogBody" maxlength="30000" placeholder="記事本文（プレーンテキスト）"></textarea>
+<div class="actions"><button id="saveBlog">記事を保存</button><button id="clearBlog" class="secondary">入力をクリア</button></div><p id="blogMessage" class="muted" aria-live="polite"></p></div><h3 style="margin-top:22px">保存済みの下書き</h3><div id="blogList" class="list"></div></section>
+<section id="imagesTab" class="hidden"><h2>画像管理</h2><p class="muted">画像のプレビューと情報確認ができます。選択した画像はアップロードされません。</p><div class="panel"><label for="imageFile">画像ファイルを選択</label><input id="imageFile" type="file" accept="image/*"><img id="imagePreview" class="image-preview hidden" alt="選択した画像のプレビュー"><p id="imageInfo" class="muted" aria-live="polite"></p><div class="actions"><button id="downloadImage" class="secondary" disabled>選択画像をダウンロード</button><button id="clearImage" class="secondary">画像を解除</button></div><p class="small muted">サイトへの保存には、後でGitHubへの安全なアップロード機能が必要です。</p></div></section>
+<section id="dataTab" class="hidden"><h2>バックアップ・履歴</h2><div class="panel"><h3>データのバックアップ</h3><p class="muted">ページ下書きとブログ下書きをJSONで書き出せます。</p><div class="actions"><button id="exportData">データを書き出す</button><button id="importDataButton" class="secondary">バックアップを読み込む</button><input id="importData" type="file" accept="application/json,.json" class="hidden"></div><p id="dataMessage" class="muted" aria-live="polite"></p></div>
+<div class="panel" style="margin-top:16px"><h3>変更履歴</h3><p class="muted">保存した編集の直近50件を記録します。</p><div id="historyList" class="list"></div><div class="actions"><button id="clearHistory" class="secondary">履歴を消去</button></div></div></section>
 </main>
-
 <script>
-const pages = [
-  {title:"トップページ",path:"index.html",text:"COFFEE GUIDEのトップページです。"},
-  {title:"初心者向けガイド",path:"beginner/beginner.html",text:"初心者向けコンテンツの入口です。"},
-  {title:"初心者向けトップ",path:"beginner/index.html",text:"初心者向けページのトップです。"},
-  {title:"道具",path:"beginner/step1.html",text:"コーヒーに使う道具について。"},
-  {title:"ドリップ",path:"beginner/step2.html",text:"ドリップの基本について。"},
-  {title:"初心者ガイド Step 3",path:"beginner/step3.html",text:"初心者向けガイドのページです。"},
-  {title:"初心者ガイド Step 4",path:"beginner/step4.html",text:"初心者向けガイドのページです。"},
-  {title:"初心者ガイド Step 5",path:"beginner/step5.html",text:"初心者向けガイドのページです。"},
-  {title:"ブログ",path:"blog/blogindex.html",text:"ブログ記事一覧です。"},
-  {title:"コーヒーの基礎",path:"knowledge/basics.html",text:"コーヒーの基本知識です。"},
-  {title:"豆の知識",path:"knowledge/beans.html",text:"コーヒー豆について。"},
-  {title:"抽出方法",path:"knowledge/brewing.html",text:"抽出方法について。"},
-  {title:"挽き目",path:"knowledge/grind.html",text:"コーヒーの挽き目について。"},
-  {title:"焙煎",path:"knowledge/roasting.html",text:"焙煎について。"},
-  {title:"味わい",path:"knowledge/taste.html",text:"コーヒーの味について。"},
-  {title:"道具の知識",path:"knowledge/tools.html",text:"コーヒー器具について。"},
-  {title:"知識一覧",path:"knowledge/knowledgeindex.html",text:"コーヒー知識ページの一覧です。"}
-];
-
-const STORAGE_KEY = "coffee-guide-admin-drafts-v1";
-
-const listView = document.getElementById("listView");
-const editView = document.getElementById("editView");
-const pageList = document.getElementById("pageList");
-const pageTitle = document.getElementById("pageTitle");
-const pageText = document.getElementById("pageText");
-const message = document.getElementById("message");
-const preview = document.getElementById("preview");
-
-let currentPage = null;
-
-function loadDrafts() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : {};
-  } catch (error) {
-    return {};
-  }
-}
-
-function getPageData(page) {
-  const drafts = loadDrafts();
-  const saved = drafts[page.path];
-
-  return saved
-    ? { title: saved.title, text: saved.text }
-    : { title: page.title, text: page.text };
-}
-
-function openEditor(page) {
-  currentPage = page;
-  const data = getPageData(page);
-
-  document.getElementById("editHeading").textContent =
-    page.title + "を編集";
-
-  document.getElementById("editPath").textContent =
-    "対象ファイル（表示のみ）：" + page.path;
-
-  pageTitle.value = data.title;
-  pageText.value = data.text;
-  message.textContent = "";
-  preview.classList.add("hidden");
-  listView.classList.add("hidden");
-  editView.classList.remove("hidden");
-
-  window.scrollTo(0, 0);
-}
-
-function renderPages() {
-  pageList.replaceChildren();
-
-  const drafts = loadDrafts();
-
-  pages.forEach(page => {
-    const card = document.createElement("article");
-    card.className = "card";
-
-    const heading = document.createElement("h3");
-    heading.textContent = page.title;
-
-    const description = document.createElement("p");
-    description.className = "muted";
-    description.textContent = page.text;
-
-    const path = document.createElement("div");
-    path.className = "path";
-    path.textContent = page.path;
-
-    const status = document.createElement("span");
-    status.className = "status";
-    status.textContent = drafts[page.path]
-      ? "一時保存済み"
-      : "未編集";
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = "このページを編集";
-    button.addEventListener("click", () => openEditor(page));
-
-    card.append(heading, description, path, status, button);
-    pageList.appendChild(card);
-  });
-}
-
-document.getElementById("backButton").addEventListener("click", () => {
-  editView.classList.add("hidden");
-  listView.classList.remove("hidden");
-  renderPages();
-  window.scrollTo(0, 0);
-});
-
-document.getElementById("previewButton").addEventListener("click", () => {
-  document.getElementById("previewTitle").textContent = pageTitle.value;
-  document.getElementById("previewText").textContent = pageText.value;
-  preview.classList.remove("hidden");
-
-  message.textContent =
-    "プレビューを表示しました。実際のサイトには反映されていません。";
-});
-
-document.getElementById("saveDraftButton").addEventListener("click", () => {
-  if (!currentPage) return;
-
-  try {
-    const drafts = loadDrafts();
-
-    drafts[currentPage.path] = {
-      title: pageTitle.value,
-      text: pageText.value,
-      updatedAt: new Date().toISOString()
-    };
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(drafts));
-
-    message.textContent =
-      "一時保存しました。このブラウザで再読み込みしても内容は残ります。";
-  } catch (error) {
-    message.textContent =
-      "保存できませんでした。ブラウザの保存設定や空き容量を確認してください。";
-  }
-});
-
-// 画像プレビュー機能
-const imageFile = document.getElementById("imageFile");
-const imagePreview = document.getElementById("imagePreview");
-const imageMessage = document.getElementById("imageMessage");
-const clearImageButton = document.getElementById("clearImageButton");
-
-let imagePreviewUrl = null;
-
-imageFile.addEventListener("change", () => {
-  const file = imageFile.files[0];
-
-  if (!file) return;
-
-  if (!file.type.startsWith("image/")) {
-    imageMessage.textContent = "画像ファイルを選択してください。";
-    imageFile.value = "";
-    return;
-  }
-
-  if (imagePreviewUrl) {
-    URL.revokeObjectURL(imagePreviewUrl);
-  }
-
-  imagePreviewUrl = URL.createObjectURL(file);
-  imagePreview.src = imagePreviewUrl;
-  imagePreview.hidden = false;
-
-  imageMessage.textContent =
-    "プレビュー中です。まだアップロード・保存されていません。";
-});
-
-clearImageButton.addEventListener("click", () => {
-  if (imagePreviewUrl) {
-    URL.revokeObjectURL(imagePreviewUrl);
-  }
-
-  imagePreviewUrl = null;
-  imagePreview.removeAttribute("src");
-  imagePreview.hidden = true;
-  imageFile.value = "";
-
-  imageMessage.textContent = "選択した画像を解除しました。";
-});
-
-renderPages();
-</script>
-</body>
-</html>
+"use strict";
+const STORAGE_KEY="coffee-guide-admin-v2",HISTORY_KEY="coffee-guide-admin-history-v1";
+const pages=[
+{title:"トップページ",path:"index.html",text:"COFFEE GUIDEのトップページです。"},
+{title:"初心者向けガイド",path:"beginner/beginner.html",text:"初心者向けコンテンツの入口です。"},
+{title:"初心者向けトップ",path:"beginner/index.html",text:"初心者向けページのトップです。"},
+{title:"道具",path:"beginner/step1.html",text:"コーヒーに使う道具について。"},
+{title:"ドリップ",path:"beginner/step2.html",text:"ドリップの基本について。"},
+{title:"初心者ガイド Step 3",path:"beginner/step3.html",text:"初心者向けガイドのページです。"},
+{title:"初心者ガイド Step 4",path:"beginner/step4.html",text:"初心者向けガイドのページです。"},
+{title:"初心者ガイド Step 5",path:"beginner/step5.html",text:"初心者向けガイドのページです。"},
+{title:"ブログ",path:"blog/blogindex.html",text:"ブログ記事一覧です。"},
+{title:"コーヒーの基礎",path:"knowledge/basics.html",text:"コーヒーの基本知識です。"},
+{title:"豆の知識",path:"knowledge/beans.html",text:"コーヒー豆について。"},
+{title:"抽出方法",path:"knowledge/brewing.html",text:"抽出方法について。"},
+{title:"挽き目",path:"knowledge/grind.html",text:"コーヒーの挽き目について。"},
+{title:"焙煎",path:"knowledge/roasting.html",text:"焙煎について。"},
+{title:"味わい",path:"knowledge/taste.html",text:"コーヒーの味について。"},
+{title:"道具の知識",path:"knowledge/tools.html",text:"コーヒー器具について。"},
+{title:"知識一覧",path:"knowledge/knowledgeindex.html",text:"コーヒー知識ページの一覧です。"}];
+const $=id=>document.getElementById(id);let state={pages:{},blogs:[]},history=[],currentPath=null,imageUrl=null,imageFile=null;
+function readJson(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}}
+function loadState(){const s=readJson(STORAGE_KEY,{});state={pages:s.pages&&typeof s.pages==="object"?s.pages:{},blogs:Array.isArray(s.blogs)?s.blogs:[]};history=readJson(HISTORY_KEY,[]);if(!Array.isArray(history))history=[]}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function recordHistory(action,detail){history.unshift({at:new Date().toISOString(),action,detail});history=history.slice(0,50);localStorage.setItem(HISTORY_KEY,JSON.stringify(history));renderHistory()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function download(name,data,type="text/plain;charset=utf-8"){const blob=data instanceof Blob?data:new Blob([data],{type}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function getPage(p){return state.pages[p.path]||{title:p.title,text:p.text}}
+function renderPages(){const root=$("pageList");root.replaceChildren();const q=$("pageSearch").value.trim().toLowerCase();pages.filter(p=>(p.title+" "+p.path).toLowerCase().includes(q)).forEach(p=>{const d=getPage(p),card=document.createElement("article");card.className="card";const h=document.createElement("h3");h.textContent=d.title;const desc=document.createElement("p");desc.className="muted";desc.textContent=d.text;const path=document.createElement("div");path.className="path";path.textContent=p.path;const status=document.createElement("span");status.className="status";status.textContent=state.pages[p.path]?"下書きあり":"未編集";const b=document.createElement("button");b.textContent="編集";b.addEventListener("click",()=>openPage(p));card.append(h,desc,path,status,b);root.append(card)})}
+function openPage(p){currentPath=p.path;$("editHeading").textContent=p.title+"を編集";$("editPath").textContent="対象ファイル："+p.path+"（ファイル自体はまだ変更されません）";const d=getPage(p);$("pageTitle").value=d.title;$("pageText").value=d.text;$("pageMessage").textContent="";$("pagePreview").classList.add("hidden");$("pageEditor").classList.remove("hidden");window.scrollTo(0,0)}
+function renderPreview(){$("previewTitle").textContent=$("pageTitle").value;$("previewText").textContent=$("pageText").value;$("pagePreview").classList.remove("hidden")}
+function savePage(){if(!currentPath)return;const title=$("pageTitle").value.trim();if(!title){$("pageMessage").textContent="タイトルを入力してください。";return}state.pages[currentPath]={title,text:$("pageText").value,updatedAt:new Date().toISOString()};try{saveState();recordHistory("ページ下書き保存",currentPath);$("pageMessage").textContent="下書きを保存しました。このブラウザ内に保存されています。";renderPages()}catch{$("pageMessage").textContent="保存できませんでした。ブラウザの保存容量を確認してください。"}}
+function exportSimpleHtml(){if(!currentPath)return;const title=$("pageTitle").value,text=$("pageText").value;const html='<!doctype html>\n<html lang="ja">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>'+esc(title)+'</title>\n</head>\n<body>\n<main>\n<h1>'+esc(title)+'</h1>\n<p>'+esc(text).replace(/\n/g,"<br>")+'</p>\n</main>\n</body>\n</html>\n';download(currentPath.split("/").pop().replace(/\.html$/,"")+".draft.html",html,"text/html;charset=utf-8");$("pageMessage").textContent="簡易HTMLをダウンロードしました。既存ページ全体の複製ではありません。"}
+function switchTab(id){["pagesTab","blogTab","imagesTab","dataTab"].forEach(t=>$(t).classList.toggle("hidden",t!==id));if(id==="pagesTab")renderPages();if(id==="blogTab")renderBlogs();if(id==="dataTab")renderHistory();window.scrollTo(0,0)}
+document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>switchTab(b.dataset.tab)));
+$("pageSearch").addEventListener("input",renderPages);$("backPages").addEventListener("click",()=>{$("pageEditor").classList.add("hidden");currentPath=null;renderPages();window.scrollTo(0,0)});$("previewPage").addEventListener("click",renderPreview);$("savePage").addEventListener("click",savePage);$("exportHtml").addEventListener("click",exportSimpleHtml);
+function resetBlogForm(){$("blogId").value="";$("blogTitle").value="";$("blogDate").value=new Date().toISOString().slice(0,10);$("blogSummary").value="";$("blogBody").value=""}
+function renderBlogs(){const root=$("blogList");root.replaceChildren();if(!state.blogs.length){root.textContent="ブログ下書きはまだありません。";return}state.blogs.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")).forEach(blog=>{const item=document.createElement("article");item.className="item";const h=document.createElement("h3");h.textContent=blog.title;const meta=document.createElement("p");meta.className="muted";meta.textContent=(blog.date||"日付なし")+" · "+(blog.summary||"概要なし");const edit=document.createElement("button");edit.textContent="編集";edit.addEventListener("click",()=>{$("blogId").value=blog.id;$("blogTitle").value=blog.title;$("blogDate").value=blog.date||"";$("blogSummary").value=blog.summary||"";$("blogBody").value=blog.body||"";window.scrollTo(0,0)});const del=document.createElement("button");del.textContent="削除";del.className="danger";del.addEventListener("click",()=>{if(!confirm("この記事の下書きを削除しますか？"))return;state.blogs=state.blogs.filter(x=>x.id!==blog.id);saveState();recordHistory("ブログ下書き削除",blog.title);renderBlogs()});item.append(h,meta,edit,document.createTextNode(" "),del);root.append(item)})}
+$("saveBlog").addEventListener("click",()=>{const title=$("blogTitle").value.trim();if(!title){$("blogMessage").textContent="記事タイトルを入力してください。";return}const id=$("blogId").value||("blog-"+Date.now()+"-"+Math.random().toString(36).slice(2,7)),entry={id,title,date:$("blogDate").value,summary:$("blogSummary").value,body:$("blogBody").value,updatedAt:new Date().toISOString()},idx=state.blogs.findIndex(b=>b.id===id);if(idx>=0)state.blogs[idx]=entry;else state.blogs.push(entry);try{saveState();recordHistory(idx>=0?"ブログ下書き更新":"ブログ下書き作成",title);$("blogMessage").textContent="記事の下書きを保存しました。公開サイトには反映されていません。";resetBlogForm();renderBlogs()}catch{$("blogMessage").textContent="保存に失敗しました。ブラウザの保存容量を確認してください。"}});
+$("clearBlog").addEventListener("click",resetBlogForm);
+$("imageFile").addEventListener("change",()=>{const f=$("imageFile").files[0];if(!f)return;if(!f.type.startsWith("image/")){$("imageInfo").textContent="画像ファイルを選択してください。";$("imageFile").value="";return}if(imageUrl)URL.revokeObjectURL(imageUrl);imageFile=f;imageUrl=URL.createObjectURL(f);$("imagePreview").src=imageUrl;$("imagePreview").classList.remove("hidden");$("imageInfo").textContent=`${f.name} · ${(f.size/1024).toFixed(1)} KB · ${f.type}。まだアップロードされていません。`;$("downloadImage").disabled=false});
+$("downloadImage").addEventListener("click",()=>{if(imageFile)download(imageFile.name,imageFile,imageFile.type)});
+$("clearImage").addEventListener("click",()=>{if(imageUrl)URL.revokeObjectURL(imageUrl);imageUrl=null;imageFile=null;$("imageFile").value="";$("imagePreview").removeAttribute("src");$("imagePreview").classList.add("hidden");$("imageInfo").textContent="画像を解除しました。";$("downloadImage").disabled=true});
+$("exportData").addEventListener("click",()=>{download("coffee-guide-admin-backup.json",JSON.stringify({format:"coffee-guide-admin-backup-v1",exportedAt:new Date().toISOString(),state,history},null,2),"application/json;charset=utf-8");$("dataMessage").textContent="バックアップを書き出しました。安全な場所に保管してください。"});
+$("importDataButton").addEventListener("click",()=>$("importData").click());
+$("importData").addEventListener("change",async()=>{const f=$("importData").files[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(!obj||obj.format!=="coffee-guide-admin-backup-v1"||!obj.state||!obj.state.pages||!Array.isArray(obj.state.blogs))throw Error("invalid");if(!confirm("現在の下書きを読み込んだデータで置き換えます。先に現在のデータをバックアップしましたか？"))return;state={pages:obj.state.pages,blogs:obj.state.blogs};history=Array.isArray(obj.history)?obj.history.slice(0,50):history;saveState();localStorage.setItem(HISTORY_KEY,JSON.stringify(history));recordHistory("バックアップ読み込み",f.name);renderPages();renderBlogs();$("dataMessage").textContent="バックアップを読み込みました。"}catch{$("dataMessage").textContent="読み込めませんでした。対応するCOFFEE GUIDEのJSONバックアップを選択してください。"}finally{$("importData").value=""}});
+function renderHistory(){const root=$("historyList");if(!root)return;root.replaceChildren();if(!history.length){root.textContent="履歴はありません。";return}history.slice(0,50).forEach(h=>{const div=document.createElement("div");div.className="item";const strong=document.createElement("strong");strong.textContent=h.action;const p=document.createElement("p");p.className="muted";p.textContent=(h.detail||"")+" · "+new Date(h.at).toLocaleString("ja-JP");div.append(strong,p);root.append(div)})}
+$("clearHistory").addEventListener("click",()=>{if(!confirm("変更履歴を消去しますか？"))return;history=[];localStorage.setItem(HISTORY_KEY,"[]");renderHistory()});
+loadState();renderPages();renderBlogs();renderHistory();resetBlogForm();
+</script></body></html>
