@@ -12,6 +12,167 @@
       font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", sans-serif;
       background: #f6f3ee;
       color: #302a24;
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>管理画面 | COFFEE GUIDE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Yu Gothic",sans-serif;background:#f6f3ee;color:#302a24}
+header{padding:24px 32px;background:#302a24;color:white}
+header h1{margin:0;font-size:22px}
+header p{margin:8px 0 0;color:#ddd2c5;font-size:13px}
+main{max-width:1050px;margin:32px auto;padding:0 20px}
+h2{font-size:26px}
+.muted{color:#746b62;line-height:1.8}
+.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card,.panel{background:white;border:1px solid #e5ded4;border-radius:12px;padding:22px}
+.card h3{margin:0 0 8px;font-size:18px}
+.path{font-size:12px;color:#8a6b4c;overflow-wrap:anywhere;margin:12px 0}
+button{border:0;border-radius:7px;padding:10px 16px;background:#554333;color:white;cursor:pointer;font-size:14px}
+button:hover{opacity:.85}
+.secondary{background:#eee5db;color:#302a24}
+.hidden{display:none}
+label{display:block;font-weight:600;margin:18px 0 8px}
+input,textarea{width:100%;padding:12px;border:1px solid #d8cec2;border-radius:7px;font:inherit;background:#fff}
+textarea{min-height:160px;resize:vertical;line-height:1.7}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.notice{margin-top:22px;padding:16px;background:#fff8e9;border:1px solid #dfc9a9;border-radius:9px;font-size:14px;line-height:1.8}
+.status{display:inline-block;background:#f1e6d8;padding:5px 9px;border-radius:5px;font-size:12px}
+@media(max-width:600px){header{padding:22px 20px}main{margin-top:20px}.card,.panel{padding:18px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>COFFEE GUIDE</h1>
+  <p>サイト管理システム</p>
+</header>
+
+<main>
+  <section id="listView">
+    <span class="status">管理画面の試作版</span>
+    <h2>ページ管理</h2>
+    <p class="muted">編集したいページを選択してください。現在は入力内容を試すための画面です。</p>
+    <div class="pages" id="pageList"></div>
+  </section>
+
+  <section id="editView" class="hidden">
+    <button class="secondary" id="backButton" type="button">← ページ一覧へ戻る</button>
+    <h2 id="editHeading">ページ編集</h2>
+    <p class="muted" id="editPath"></p>
+
+    <div class="panel">
+      <label for="pageTitle">ページの見出し（試作用）</label>
+      <input id="pageTitle" type="text">
+
+      <label for="pageText">説明文（試作用）</label>
+      <textarea id="pageText"></textarea>
+
+      <div class="actions">
+        <button id="previewButton" type="button">入力内容をプレビュー</button>
+        <button id="saveDraftButton" type="button">試作内容を一時保存</button>
+      </div>
+
+      <div id="preview" class="notice hidden">
+        <strong>プレビュー</strong>
+        <h3 id="previewTitle"></h3>
+        <p id="previewText"></p>
+      </div>
+      <p id="message" class="muted" aria-live="polite"></p>
+    </div>
+
+    <div class="notice">
+      <strong>注意：</strong>
+      ここで編集するのは管理画面内の試作用データだけです。
+      既存のHTMLファイルや公開中のサイトは変更されません。
+      本物の保存・公開機能は、認証と安全なサーバー処理を実装した後に追加します。
+    </div>
+  </section>
+</main>
+
+<script>
+const pages = [
+  {title:"トップページ",path:"index.html",text:"COFFEE GUIDEのトップページです。"},
+  {title:"初心者向けガイド",path:"beginner/beginner.html",text:"初心者向けコンテンツの入口です。"},
+  {title:"初心者向けトップ",path:"beginner/index.html",text:"初心者向けページのトップです。"},
+  {title:"道具",path:"beginner/step1.html",text:"コーヒーに使う道具について。"},
+  {title:"ドリップ",path:"beginner/step2.html",text:"ドリップの基本について。"},
+  {title:"初心者ガイド Step 3",path:"beginner/step3.html",text:"初心者向けガイドのページです。"},
+  {title:"初心者ガイド Step 4",path:"beginner/step4.html",text:"初心者向けガイドのページです。"},
+  {title:"初心者ガイド Step 5",path:"beginner/step5.html",text:"初心者向けガイドのページです。"},
+  {title:"ブログ",path:"blog/blogindex.html",text:"ブログ記事一覧です。"},
+  {title:"コーヒーの基礎",path:"knowledge/basics.html",text:"コーヒーの基本知識です。"},
+  {title:"豆の知識",path:"knowledge/beans.html",text:"コーヒー豆について。"},
+  {title:"抽出方法",path:"knowledge/brewing.html",text:"抽出方法について。"},
+  {title:"挽き目",path:"knowledge/grind.html",text:"コーヒーの挽き目について。"},
+  {title:"焙煎",path:"knowledge/roasting.html",text:"焙煎について。"},
+  {title:"味わい",path:"knowledge/taste.html",text:"コーヒーの味について。"},
+  {title:"道具の知識",path:"knowledge/tools.html",text:"コーヒー器具について。"},
+  {title:"知識一覧",path:"knowledge/knowledgeindex.html",text:"コーヒー知識ページの一覧です。"}
+];
+
+const listView = document.getElementById("listView");
+const editView = document.getElementById("editView");
+const pageList = document.getElementById("pageList");
+const pageTitle = document.getElementById("pageTitle");
+const pageText = document.getElementById("pageText");
+const message = document.getElementById("message");
+let currentPage = null;
+
+function openEditor(page){
+  currentPage = page;
+  document.getElementById("editHeading").textContent = page.title + "を編集";
+  document.getElementById("editPath").textContent = "対象ファイル（表示のみ）：" + page.path;
+  pageTitle.value = page.title;
+  pageText.value = page.text;
+  message.textContent = "";
+  document.getElementById("preview").classList.add("hidden");
+  listView.classList.add("hidden");
+  editView.classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+pages.forEach(page=>{
+  const card = document.createElement("article");
+  card.className = "card";
+  const heading = document.createElement("h3");
+  heading.textContent = page.title;
+  const description = document.createElement("p");
+  description.className = "muted";
+  description.textContent = page.text;
+  const path = document.createElement("div");
+  path.className = "path";
+  path.textContent = page.path;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "このページを編集";
+  button.addEventListener("click",()=>openEditor(page));
+  card.append(heading,description,path,button);
+  pageList.appendChild(card);
+});
+
+document.getElementById("backButton").addEventListener("click",()=>{
+  editView.classList.add("hidden");
+  listView.classList.remove("hidden");
+  window.scrollTo(0,0);
+});
+
+document.getElementById("previewButton").addEventListener("click",()=>{
+  document.getElementById("previewTitle").textContent = pageTitle.value;
+  document.getElementById("previewText").textContent = pageText.value;
+  document.getElementById("preview").classList.remove("hidden");
+  message.textContent = "プレビューを表示しました。実際のサイトには反映されていません。";
+});
+
+document.getElementById("saveDraftButton").addEventListener("click",()=>{
+  message.textContent = "入力内容をこの画面内で確認しました。まだ保存されていません。ページを再読み込みすると元に戻ります。";
+});
+</script>
+</body>
+</html>
+
     }
     header {
       padding: 24px 32px;
