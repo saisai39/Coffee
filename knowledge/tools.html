@@ -1,89 +1,1006 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>道具 - コーヒー知識アーカイブ</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="コーヒーを淹れるための基本的な道具や抽出器具の種類、選び方、手入れ方法を初心者にも分かりやすく解説します。">
+<title>コーヒーに必要な道具 | COFFEE GUIDE</title>
 <style>
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:1000px; margin:40px auto; padding:0 20px; }
-h1,h2,h3 { text-align:center; }
-.section-card { background:#e7d9ce; padding:25px; border-radius:12px; margin-bottom:30px; box-shadow:2px 2px 8px rgba(0,0,0,0.2); }
-.section-card h2, .section-card h3 { margin-top:20px; margin-bottom:15px; }
-.section-card p, .section-card ul, .section-card ol { line-height:1.7; margin-bottom:15px; }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
+:root {
+  --bg: #f8f5ef;
+  --surface: #fffdf8;
+  --brown: #493326;
+  --brown-light: #654b39;
+  --text: #302820;
+  --muted: #74685d;
+  --border: #e5dbce;
+  --accent: #c7a783;
+  --soft: #eee5da;
+  --shadow: 0 8px 24px rgba(73, 51, 38, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--brown-light);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--brown);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 24px;
+}
+
+.site-nav a {
+  color: var(--brown-light);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.breadcrumb a:hover,
+.footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(199, 167, 131, 0.18), transparent 38%),
+    var(--brown);
+  color: #fffdf8;
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 24px 72px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #e0c8ad;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+}
+
+.hero-description {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: #f0e7dd;
+  font-size: 1rem;
+}
+
+.hero-note {
+  max-width: 760px;
+  margin-top: 28px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.06);
+  color: #f0e7dd;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 76px;
+}
+
+.breadcrumb {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #b2a393;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.content-card {
+  margin-bottom: 28px;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 24px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: #987451;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.content-card h2 {
+  margin: 0 0 18px;
+  color: var(--brown);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.5;
+}
+
+.content-card h3 {
+  margin: 26px 0 10px;
+  color: var(--brown-light);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.content-card p {
+  margin: 0 0 16px;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+.content-card ul,
+.content-card ol {
+  margin: 12px 0 18px;
+  padding-left: 1.5em;
+}
+
+.content-card li {
+  margin-bottom: 7px;
+  padding-left: 3px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.intro-item {
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.intro-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--brown);
+}
+
+.intro-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brown);
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toc-list a:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.toc-number {
+  color: #a47d56;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.tool-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.tool-card h3 {
+  margin: 0 0 10px;
+  color: var(--brown);
+}
+
+.tool-card p {
+  margin-bottom: 10px;
+  font-size: 0.94rem;
+}
+
+.tool-card p:last-child {
+  margin-bottom: 0;
+}
+
+.tool-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--brown-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  width: 100%;
+  margin: 18px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  text-align: left;
+}
+
+th,
+td {
+  min-width: 120px;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--soft);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.step-list {
+  counter-reset: tool-step;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-list li {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 14px 16px 14px 52px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  counter-increment: tool-step;
+}
+
+.step-list li::before {
+  content: counter(tool-step, decimal-leading-zero);
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  color: #a47d56;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.info-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: #f5eee5;
+  color: #5d5044;
+  font-size: 0.92rem;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tip-item {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.tip-item strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brown);
+}
+
+.tip-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.next-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.next-card h2 {
+  margin: 0 0 8px;
+  color: var(--brown);
+  font-size: 1.3rem;
+}
+
+.next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.next-link {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 1px solid var(--brown);
+  border-radius: 8px;
+  color: var(--brown);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next-link.primary {
+  background: var(--brown);
+  color: #fffdf8;
+}
+
+.next-link:hover {
+  opacity: 0.82;
+}
+
+.site-footer {
+  padding: 30px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-bottom: 18px;
+}
+
+.footer-nav a {
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-footer small {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    gap: 8px 18px;
+  }
+
+  .hero-inner {
+    padding: 54px 20px 50px;
+  }
+
+  main {
+    padding: 24px 16px 54px;
+  }
+
+  .intro-grid,
+  .tool-grid,
+  .toc-list,
+  .tip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-card {
+    border-radius: 12px;
+  }
+
+  .next-card {
+    padding: 22px;
+  }
+
+  th,
+  td {
+    padding: 11px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 </head>
-<body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
+
+<body id="top">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">COFFEE GUIDE</a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="../beginner/beginner.html">初心者</a>
+      <a href="knowledgeindex.html" aria-current="page">知識</a>
+      <a href="../blog/blogindex.html">ブログ</a>
+    </nav>
+  </div>
 </header>
 
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero-inner">
+    <p class="eyebrow">COFFEE KNOWLEDGE / 05</p>
+    <h1 id="page-title">コーヒーに必要な道具</h1>
+    <p class="hero-description">
+      コーヒーを淹れる道具には、最初に揃えたい基本の道具から、
+      抽出方法に合わせて選ぶ専用器具までさまざまな種類があります。
+      それぞれの役割と特徴を知り、自分の飲み方に合った道具を選びましょう。
+    </p>
+    <div class="hero-note">
+      最初からすべて揃える必要はありません。まずは使いたい抽出方法を決め、
+      必要な道具から少しずつ揃えていくと始めやすくなります。
+    </div>
+  </div>
+</section>
+
 <main>
-<section class="section-card">
-<h1>コーヒーに必要な道具</h1>
-<p>コーヒーを美味しく淹れるには、道具選びがとても重要です。ここでは、家庭で揃えるべき基本道具から、より高度な抽出に使える器具まで詳しく紹介します。</p>
-</section>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="knowledgeindex.html">知識アーカイブ</a></li>
+      <li aria-current="page">コーヒーに必要な道具</li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>1. コーヒーを淹れるための基本道具</h2>
-<ul>
-<li><strong>コーヒーミル：</strong>豆を挽く道具。手動と電動があり、粒度の均一性が味を左右します。</li>
-<li><strong>ドリッパー：</strong>ペーパードリップやハンドドリップ用。形状によって抽出速度や味が変化。</li>
-<li><strong>フィルター：</strong>ペーパー、布、金属など。味のクリアさや油分の抽出に影響。</li>
-<li><strong>ポット：</strong>お湯を注ぐためのケトル。細口で注ぎやすいものが好ましい。</li>
-<li><strong>スケール：</strong>粉量とお湯量の管理に必要。正確な計量で味の再現性が高まる。</li>
-<li><strong>タイマー：</strong>抽出時間の管理。ペーパードリップやフレンチプレスで特に重要。</li>
-</ul>
-</section>
+  <section class="content-card" aria-labelledby="intro-title">
+    <p class="section-label">OVERVIEW</p>
+    <h2 id="intro-title">このページで学べること</h2>
+    <p>
+      コーヒーの道具は、豆を挽くもの、お湯を注ぐもの、抽出するもの、量や時間を測るものなど、
+      役割によって分けられます。どの道具が必要かは、ハンドドリップ、フレンチプレス、
+      エスプレッソなど、選ぶ抽出方法によって変わります。
+    </p>
 
-<section class="section-card">
-<h2>2. 器具の種類と特徴</h2>
-<h3>ハンドミル（手動ミル）</h3>
-<p>挽き目の調整が可能で香りを逃さず挽ける。初心者でも操作しやすく、豆の挽き体験が楽しい。</p>
-<h3>電動ミル（ブレード・臼式）</h3>
-<p>素早く均一に挽ける。ブレード式は粒度が不均一になりやすく、臼式が理想。エスプレッソやドリップ両方に対応可能。</p>
-<h3>フレンチプレス</h3>
-<p>粗挽き豆で浸漬抽出。オイルや微粉が抽出され、濃厚でフルボディの味わい。</p>
-<h3>エスプレッソマシン</h3>
-<p>高圧抽出で濃厚なエスプレッソを作れる。家庭用でもラテやカプチーノに応用可能。</p>
-<h3>サイフォン</h3>
-<p>真空抽出で上品な味わい。視覚的にも楽しく、抽出温度や時間を細かく調整可能。</p>
-<h3>ネルドリップ</h3>
-<p>布フィルターでまろやかかつ深い味わい。抽出スピードを調整しやすく、香りの再現性が高い。</p>
-</section>
+    <div class="intro-grid">
+      <div class="intro-item">
+        <strong>基本の道具</strong>
+        <p>コーヒーを淹れるときに使う道具と、それぞれの役割を知る。</p>
+      </div>
+      <div class="intro-item">
+        <strong>抽出器具の違い</strong>
+        <p>抽出方法による特徴と、必要になる道具を学ぶ。</p>
+      </div>
+      <div class="intro-item">
+        <strong>選び方と手入れ</strong>
+        <p>予算や使い方に合わせた選び方と、清潔に保つ方法を知る。</p>
+      </div>
+    </div>
+  </section>
 
-<section class="section-card">
-<h2>3. 道具のメンテナンス</h2>
-<ul>
-<li>ミル：毎回豆の油分が付着するため、定期的に掃除して均一な挽き目を維持</li>
-<li>ドリッパー・サーバー：使用後は水で洗い、汚れやカビを防ぐ</li>
-<li>エスプレッソマシン：定期的なスケーリング（カルキ除去）で味の安定性を保つ</li>
-<li>フレンチプレス・ネルフィルター：使用後に完全に乾かし、雑味を防ぐ</li>
-</ul>
-<p>道具の手入れを怠ると味に雑味や変化が出るため、毎回の清掃が重要です。</p>
-</section>
+  <nav class="content-card" aria-labelledby="toc-title">
+    <p class="section-label">CONTENTS</p>
+    <h2 id="toc-title">目次</h2>
+    <ol class="toc-list">
+      <li><a href="#basic-tools"><span class="toc-number">01</span><span>基本の道具と役割</span></a></li>
+      <li><a href="#brewing-tools"><span class="toc-number">02</span><span>抽出器具の種類</span></a></li>
+      <li><a href="#choose"><span class="toc-number">03</span><span>道具の選び方</span></a></li>
+      <li><a href="#maintenance"><span class="toc-number">04</span><span>道具の手入れ</span></a></li>
+      <li><a href="#starter-set"><span class="toc-number">05</span><span>最初に揃える道具</span></a></li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>4. 実践アドバイス</h2>
-<ul>
-<li>初めての家庭用抽出ならペーパードリップ＋手動ミルがおすすめ</li>
-<li>フレンチプレスやエスプレッソに挑戦する場合は、豆の挽き方や抽出時間を調整しながら少量で練習</li>
-<li>器具を揃えすぎるよりも、まずは基本道具で抽出をマスターすることが大切</li>
-<li>道具の選び方は予算や好みによるが、使いやすさ・手入れのしやすさも重視する</li>
-</ul>
-<p>道具を正しく使い、手入れをすることで、家庭でもプロ並みの味を再現可能です。</p>
-</section>
+  <section class="content-card" id="basic-tools" aria-labelledby="basic-tools-title">
+    <p class="section-label">01 / BASIC TOOLS</p>
+    <h2 id="basic-tools-title">基本の道具と役割</h2>
+    <p>
+      道具を選ぶ前に、それぞれが何のために使われるのかを知っておきましょう。
+      すべての道具が必須というわけではありませんが、量を測ったり、抽出方法に合った器具を使ったりすると、
+      同じ条件でコーヒーを淹れやすくなります。
+    </p>
 
-<a href="knowledgeindex.html" class="top-link">知識目次に戻る</a>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <span class="tool-label">豆を挽く</span>
+        <h3>コーヒーミル</h3>
+        <p>
+          焙煎したコーヒー豆を粉にする道具です。手動式と電動式があり、
+          挽き目を調整できる範囲や、粒の揃いやすさ、手入れの方法は製品によって異なります。
+        </p>
+        <p>粉の状態で購入すれば、ミルを使わずにコーヒーを淹れることもできます。</p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">粉を入れて抽出する</span>
+        <h3>ドリッパー</h3>
+        <p>
+          ペーパードリップなどで、コーヒー粉にお湯を通すための器具です。
+          形状や穴の構造によってお湯の流れ方が変わるため、フィルターや注ぎ方との組み合わせも大切です。
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">粉を受け止める</span>
+        <h3>フィルター</h3>
+        <p>
+          コーヒー粉と抽出液を分けるための道具です。
+          ペーパー、布、金属などの種類があり、粉や油分が抽出液にどの程度含まれるかなどに違いが出ます。
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">お湯を注ぐ</span>
+        <h3>ケトル・ポット</h3>
+        <p>
+          お湯を温めたり、抽出器具に注いだりするために使います。
+          ハンドドリップでは、注ぐ量や位置を調整しやすい細口のケトルが便利です。
+        </p>
+        <p>使用する熱源や温度調整機能の有無も確認しましょう。</p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">量を測る</span>
+        <h3>スケール</h3>
+        <p>
+          コーヒー粉やお湯の量を測るためのはかりです。
+          分量を揃えやすくなるため、前回と同じ条件で淹れたり、味の違いを比較したりするときに役立ちます。
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">時間を測る</span>
+        <h3>タイマー</h3>
+        <p>
+          抽出時間を確認するために使います。
+          専用のタイマーがなくても、手元の時計やスマートフォンなどで代用できます。
+          同じ時間を目安にすると、抽出条件を比較しやすくなります。
+        </p>
+      </div>
+
+      <div class="tool-card">
+        <span class="tool-label">抽出液を受ける</span>
+        <h3>サーバー・マグカップ</h3>
+        <p>
+          抽出したコーヒーを受けるための容器です。
+          一度に複数人分を淹れるならサーバー、1杯分を直接淹れるならマグカップなど、
+          作る量や使い方に合わせて選べます。
+        </p>
+      </div>
+    </div>
+
+    <div class="info-note">
+      豆を挽くところから始めたい場合はミルが必要ですが、粉のコーヒーを使うなら必須ではありません。
+      自分がどこまで準備したいかを考えて、必要な道具を選びましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="brewing-tools" aria-labelledby="brewing-tools-title">
+    <p class="section-label">02 / BREWING TOOLS</p>
+    <h2 id="brewing-tools-title">抽出器具の種類</h2>
+    <p>
+      コーヒーの抽出器具にはさまざまな種類があります。
+      それぞれ仕組みや準備する道具が異なるため、使いやすさや飲みたいコーヒーに合わせて選びましょう。
+    </p>
+
+    <h3>ペーパードリップ</h3>
+    <p>
+      ドリッパーにペーパーフィルターをセットし、コーヒー粉にお湯を注いで抽出する方法です。
+      ドリッパー、対応するフィルター、お湯を注ぐケトルなどを使います。
+      粉の量や挽き目、お湯の注ぎ方を調整して、味の違いを試しやすい方法です。
+    </p>
+
+    <h3>フレンチプレス</h3>
+    <p>
+      コーヒー粉とお湯を容器の中で一定時間浸し、金属製フィルターを押し下げて抽出する器具です。
+      ペーパーフィルターとは異なり、コーヒーの油分や細かな粉が飲み物に残ることがあります。
+      粉の量、お湯の量、浸す時間を揃えると比較しやすくなります。
+    </p>
+
+    <h3>エスプレッソマシン</h3>
+    <p>
+      圧力を利用してコーヒーを抽出するための機器です。
+      エスプレッソを作るには、マシンに加えて、機種に合った挽き目を設定できるミルなどが必要になる場合があります。
+      ミルの調整や機器の清掃など、ほかの抽出方法とは異なる準備も必要です。
+    </p>
+
+    <h3>サイフォン</h3>
+    <p>
+      加熱による水蒸気の圧力差を利用してお湯を移動させ、コーヒー粉とお湯を接触させて抽出する器具です。
+      ガラス製の部品や加熱器具などを使用するため、製品の説明書を確認し、安全に取り扱うことが大切です。
+    </p>
+
+    <h3>ネルドリップ</h3>
+    <p>
+      布製のフィルターを使ってコーヒーを抽出する方法です。
+      布の状態や管理方法によって抽出の様子が変わります。
+      使用後は粉を取り除き、製品や使い方に合った方法で洗浄・保管する必要があります。
+    </p>
+
+    <h3>エアロプレス</h3>
+    <p>
+      専用の筒状の器具にコーヒー粉とお湯を入れ、押し出す力を使って抽出する方法です。
+      ペーパーフィルターなどを使用するタイプがあり、手順や挽き目はレシピによって異なります。
+      比較的コンパクトな器具を探している人にも選択肢のひとつです。
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">抽出方法</th>
+            <th scope="col">主な道具</th>
+            <th scope="col">選ぶときのポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ペーパードリップ</td>
+            <td>ドリッパー、ペーパー、ケトル</td>
+            <td>フィルターの形、注ぎやすさ、洗いやすさ</td>
+          </tr>
+          <tr>
+            <td>フレンチプレス</td>
+            <td>プレス本体、計量用の道具</td>
+            <td>容量、分解・洗浄のしやすさ</td>
+          </tr>
+          <tr>
+            <td>エスプレッソ</td>
+            <td>マシン、必要に応じて専用ミル</td>
+            <td>設置場所、調整機能、手入れの手順</td>
+          </tr>
+          <tr>
+            <td>サイフォン</td>
+            <td>サイフォン本体、加熱器具</td>
+            <td>安全性、部品の扱いやすさ、洗浄方法</td>
+          </tr>
+          <tr>
+            <td>ネルドリップ</td>
+            <td>ネルフィルター、対応する器具</td>
+            <td>使用後の管理、保管方法、手入れの手間</td>
+          </tr>
+          <tr>
+            <td>エアロプレス</td>
+            <td>本体、対応フィルター</td>
+            <td>容量、使用するフィルター、レシピ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-note">
+      器具によって必要な道具や手順は異なります。
+      購入前に付属品と対応する消耗品を確認し、使用時はメーカーの説明書を優先してください。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="choose" aria-labelledby="choose-title">
+    <p class="section-label">03 / HOW TO CHOOSE</p>
+    <h2 id="choose-title">道具の選び方</h2>
+    <p>
+      道具選びで大切なのは、価格や機能の多さだけで判断せず、
+      自分がどのようにコーヒーを楽しみたいかを考えることです。
+      初めてなら、使い方が分かりやすく、手入れしやすいものから検討してみましょう。
+    </p>
+
+    <div class="tip-grid">
+      <div class="tip-item">
+        <strong>何杯分淹れるか</strong>
+        <p>
+          1杯分が中心なのか、家族や来客の分も淹れるのかによって、
+          適した容量や一度に扱える粉の量が変わります。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>どの抽出方法を使うか</strong>
+        <p>
+          ドリップ、浸漬式、エスプレッソなど、使いたい方法を先に決めると、
+          必要な道具を絞り込みやすくなります。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>どこに置くか</strong>
+        <p>
+          キッチンのスペースや収納場所も考慮しましょう。
+          電動器具を選ぶ場合は、電源や設置面積も確認します。
+        </p>
+      </div>
+      <div class="tip-item">
+        <strong>手入れにかけられる時間</strong>
+        <p>
+          分解して洗う部品が多い器具や、使用後の管理が必要な器具もあります。
+          毎日無理なく使えるかを考えて選びましょう。
+        </p>
+      </div>
+    </div>
+
+    <h3>手動ミルと電動ミル</h3>
+    <p>
+      手動ミルは電源を必要としない製品が多く、少量ずつ挽きたい場合などに選択肢になります。
+      一方、電動ミルはスイッチ操作で豆を挽けるため、手で回す作業を減らしたい場合に便利です。
+      粒度の調整幅や均一性は製品ごとに違うため、使う抽出方法に対応しているかを確認しましょう。
+    </p>
+
+    <h3>予算と使いやすさ</h3>
+    <p>
+      高機能な道具が、すべての人にとって必要とは限りません。
+      まずは予算を決め、使用頻度、片付けやすさ、消耗品の入手しやすさなどを比較してみましょう。
+      必要性が分かってから、道具を買い足す方法もあります。
+    </p>
+
+    <div class="info-note">
+      道具の組み合わせに迷ったら、作りたいコーヒーの種類を先に決めましょう。
+      その抽出方法に必要なものだけを揃えると、購入する道具を整理しやすくなります。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="maintenance" aria-labelledby="maintenance-title">
+    <p class="section-label">04 / MAINTENANCE</p>
+    <h2 id="maintenance-title">道具の手入れ</h2>
+    <p>
+      コーヒーの粉や油分、水分が器具に残ると、次に淹れるコーヒーの風味や器具の状態に影響することがあります。
+      使用後は、各器具の説明書に従って洗浄・乾燥・保管しましょう。
+    </p>
+
+    <h3>コーヒーミル</h3>
+    <p>
+      内部に粉や油分が残ることがあります。
+      使用頻度に応じて清掃し、分解できる範囲や清掃方法はメーカーの説明書で確認してください。
+      水洗いできない部品もあるため、濡らしてよいかを事前に確認することが大切です。
+    </p>
+
+    <h3>ドリッパー・サーバー</h3>
+    <p>
+      使用後はコーヒー粉を捨て、対応する方法で洗浄します。
+      洗剤を使う場合は十分にすすぎ、保管する前に水分を切りましょう。
+      素材によって耐熱性や取り扱い方法が異なるため、製品の表示を確認してください。
+    </p>
+
+    <h3>フレンチプレス</h3>
+    <p>
+      使用後は粉を取り除き、フィルターやプランジャーなどの部品を洗浄します。
+      細かな粉が網目に残ることがあるため、部品の構造に合わせて丁寧に洗いましょう。
+      分解できる範囲は製品によって異なります。
+    </p>
+
+    <h3>エスプレッソマシン</h3>
+    <p>
+      抽出口やフィルターバスケットなど、使用後に清掃が必要な部分があります。
+      水垢の除去や内部洗浄の方法・頻度は機種や水質によって異なるため、
+      メーカーが指定する手順を確認してください。
+    </p>
+
+    <h3>ネルフィルター</h3>
+    <p>
+      使用後は粉を取り除き、フィルターの説明書や適切な管理方法に従って洗浄・保管します。
+      布を乾燥させる方法や保管方法は製品・運用によって異なるため、
+      一律の方法で管理せず、使用する器具に合った手順を確認しましょう。
+    </p>
+
+    <div class="info-note">
+      電気を使う器具や加熱器具は、電源を切る・冷ますなどの安全手順を守ってから手入れしてください。
+      本体を水に浸けてよいかどうかも、必ず説明書で確認しましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="starter-set" aria-labelledby="starter-set-title">
+    <p class="section-label">05 / STARTER SET</p>
+    <h2 id="starter-set-title">最初に揃える道具</h2>
+    <p>
+      初めてコーヒーを淹れるなら、最初から多くの道具を購入する必要はありません。
+      どの抽出方法で始めるかによって、必要なものを選びましょう。
+    </p>
+
+    <h3>ペーパードリップから始める場合</h3>
+    <ol class="step-list">
+      <li>
+        <strong>ドリッパーと対応するペーパーフィルター</strong><br>
+        コーヒー粉を入れて抽出するために必要です。サイズや形状が合う組み合わせを選びます。
+      </li>
+      <li>
+        <strong>コーヒー豆または挽いたコーヒー粉</strong><br>
+        豆から挽く場合はミルも用意します。粉で始めるならミルは後から検討できます。
+      </li>
+      <li>
+        <strong>お湯を沸かす道具と注ぐためのケトル</strong><br>
+        使用する抽出方法や自宅の設備に合わせて選びます。ハンドドリップでは注ぎやすさも確認しましょう。
+      </li>
+      <li>
+        <strong>マグカップまたはサーバー</strong><br>
+        抽出したコーヒーを受ける容器です。淹れる量に合った容量を選びます。
+      </li>
+      <li>
+        <strong>必要に応じてスケールやタイマー</strong><br>
+        粉とお湯の量、抽出時間を揃えたいときに役立ちます。最初は手元の時計などで代用することもできます。
+      </li>
+    </ol>
+
+    <h3>フレンチプレスから始める場合</h3>
+    <p>
+      フレンチプレス本体、コーヒー豆または粉、お湯を用意します。
+      豆から挽く場合はミルも必要です。分量や浸漬時間を揃えたい場合は、
+      スケールやタイマーを追加すると比較しやすくなります。
+    </p>
+
+    <h3>購入前に確認したいこと</h3>
+    <ul>
+      <li>必要なフィルターや消耗品を継続して購入できるか。</li>
+      <li>使用するカップやサーバーに器具のサイズが合っているか。</li>
+      <li>保管場所や洗浄場所を確保できるか。</li>
+      <li>使いたい抽出方法に対応した挽き目を、手持ちのミルで用意できるか。</li>
+    </ul>
+
+    <div class="info-note">
+      道具を揃える目的は、数を増やすことではなく、自分が続けやすい方法でコーヒーを楽しむことです。
+      まずはひとつの抽出方法を試し、必要を感じた道具から追加していきましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="next-card" aria-labelledby="next-title">
+    <p class="section-label">NEXT STEP</p>
+    <h2 id="next-title">次に学ぶこと</h2>
+    <p>
+      道具の役割が分かったら、コーヒー豆の種類や挽き方、実際の淹れ方も確認してみましょう。
+      道具と抽出方法を組み合わせて考えると、自分に合ったコーヒーの楽しみ方を見つけやすくなります。
+    </p>
+    <div class="next-links">
+      <a class="next-link primary" href="knowledgeindex.html">知識目次に戻る</a>
+      <a class="next-link" href="grind.html">コーヒーの挽き方を見る</a>
+      <a class="next-link" href="brewing.html">コーヒーの淹れ方を見る</a>
+      <a class="next-link" href="beans.html">豆の種類を学ぶ</a>
+      <a class="next-link" href="../beginner/beginner.html">初心者向けガイドを見る</a>
+    </div>
+  </section>
 </main>
 
-<footer>
-&copy; 2026 CoffeeSite
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="フッターナビゲーション">
+    <a href="../index.html">ホーム</a>
+    <a href="../beginner/beginner.html">初心者</a>
+    <a href="knowledgeindex.html">知識</a>
+    <a href="../blog/blogindex.html">ブログ</a>
+  </nav>
+  <small>&copy; 2026 COFFEE GUIDE</small>
 </footer>
 </body>
 </html>
