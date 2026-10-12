@@ -1,96 +1,1135 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>基本知識 - コーヒー知識アーカイブ</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="コーヒーの歴史、品種、成分、保存方法、味わいの基本をわかりやすく紹介します。">
+<title>コーヒーの基本知識 | COFFEE GUIDE</title>
+
 <style>
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:1000px; margin:40px auto; padding:0 20px; }
-h1,h2,h3 { text-align:center; }
-.section-card { background:#e7d9ce; padding:25px; border-radius:12px; margin-bottom:30px; box-shadow:2px 2px 8px rgba(0,0,0,0.2); }
-.section-card h2, .section-card h3 { margin-top:20px; margin-bottom:15px; }
-.section-card p, .section-card ul, .section-card ol { line-height:1.7; margin-bottom:15px; }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
+:root {
+    --bg: #f8f5ef;
+    --surface: #fffdf8;
+    --brown: #493326;
+    --brown-light: #654b39;
+    --text: #302820;
+    --muted: #74685d;
+    --border: #e5dbce;
+    --accent: #c7a783;
+    --soft: #eee5da;
+    --shadow: 0 8px 24px rgba(73, 51, 38, 0.07);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Meiryo,
+        sans-serif;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.site-header {
+    position: relative;
+    z-index: 2;
+    background: var(--surface);
+    border-top: 4px solid var(--brown);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    width: min(1120px, calc(100% - 40px));
+    min-height: 76px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    flex-shrink: 0;
+    color: var(--brown);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 26px;
+}
+
+.main-nav a {
+    padding: 8px 0;
+    color: var(--brown-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+    color: #a47d53;
+}
+
+/* ヒーロー */
+.hero {
+    position: relative;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--brown);
+    color: var(--surface);
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+}
+
+.hero::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(55, 34, 23, 0.96) 0%,
+        rgba(55, 34, 23, 0.86) 42%,
+        rgba(55, 34, 23, 0.38) 72%,
+        rgba(55, 34, 23, 0.12) 100%
+    );
+    content: "";
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 54px 0;
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+    color: #e5c9a7;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.77rem;
+    letter-spacing: 0.18em;
+}
+
+.hero h1 {
+    margin: 0;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+}
+
+.hero-description {
+    max-width: 620px;
+    margin: 20px 0 0;
+    color: #eee3d7;
+    font-size: 0.96rem;
+    line-height: 2;
+}
+
+.hero-note {
+    display: inline-block;
+    max-width: 620px;
+    margin-top: 22px;
+    padding: 10px 15px;
+    border-left: 2px solid var(--accent);
+    background: rgba(255, 253, 248, 0.09);
+    color: #f2e6d9;
+    font-size: 0.85rem;
+}
+
+/* パンくず */
+.breadcrumb {
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding-top: 18px;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.breadcrumb li + li::before {
+    margin-right: 8px;
+    color: #b8a796;
+    content: "/";
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* メイン */
+main {
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 26px 0 70px;
+}
+
+.section-card {
+    margin-bottom: 22px;
+    padding: clamp(23px, 4vw, 36px);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    scroll-margin-top: 20px;
+}
+
+.section-heading {
+    margin: 0 0 20px;
+    color: var(--brown);
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-size: clamp(1.3rem, 3vw, 1.75rem);
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.section-heading::after {
+    display: block;
+    width: 42px;
+    height: 3px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background: var(--accent);
+    content: "";
+}
+
+.section-number {
+    display: block;
+    margin-bottom: 5px;
+    color: #a47d53;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.76rem;
+    letter-spacing: 0.15em;
+}
+
+.section-card p {
+    margin: 0 0 16px;
+}
+
+.section-card p:last-child {
+    margin-bottom: 0;
+}
+
+.section-card h3 {
+    margin: 25px 0 10px;
+    color: var(--brown-light);
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
+
+.section-card h3:first-of-type {
+    margin-top: 20px;
+}
+
+.section-card ul,
+.section-card ol {
+    margin: 10px 0 20px;
+    padding-left: 1.5em;
+}
+
+.section-card li {
+    margin-bottom: 8px;
+    padding-left: 3px;
+}
+
+.section-card li::marker {
+    color: var(--accent);
+}
+
+.lead {
+    color: var(--muted);
+    font-size: 0.98rem;
+}
+
+/* ページ内目次 */
+.toc-card {
+    background: linear-gradient(135deg, #fffdf8, #f4ece1);
+}
+
+.toc-intro {
+    margin: -5px 0 22px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.toc-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.toc-list li {
+    margin: 0;
+    padding: 0;
+}
+
+.toc-list a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 68px;
+    height: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255, 253, 248, 0.9);
+    color: var(--brown);
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.toc-list a:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    background: #fff;
+}
+
+.toc-number {
+    flex-shrink: 0;
+    color: #a47d53;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.84rem;
+    letter-spacing: 0.06em;
+}
+
+.toc-title {
+    flex: 1;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.toc-arrow {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 1.15rem;
+}
+
+/* 最初の紹介 */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    align-items: center;
+    gap: 30px;
+}
+
+.intro-image {
+    height: 250px;
+    border-radius: 10px;
+}
+
+.intro-points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.intro-point {
+    padding: 13px 10px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--brown-light);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* 写真付き各項目 */
+.feature-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.72fr);
+    align-items: start;
+    gap: 28px;
+}
+
+.feature-image {
+    height: 250px;
+    border-radius: 10px;
+}
+
+.feature-image.tall {
+    height: 320px;
+}
+
+.image-caption {
+    margin-top: 8px !important;
+    color: #8a7b6d;
+    font-size: 0.76rem;
+}
+
+/* 補足 */
+.small-note {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+/* 成分・味わいのカード */
+.taste-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0;
+}
+
+.taste-card {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.taste-card h3 {
+    margin: 0 0 7px;
+    font-size: 1rem;
+}
+
+.taste-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+/* 保存のポイント */
+.storage-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 22px 0 !important;
+    padding: 0 !important;
+    list-style: none;
+}
+
+.storage-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: #fff;
+}
+
+.storage-list li::before {
+    flex-shrink: 0;
+    color: #a47d53;
+    font-weight: 700;
+    content: "✓";
+}
+
+/* 下部ナビゲーション */
+.page-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 36px;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 23px;
+    border: 1px solid var(--brown);
+    border-radius: 8px;
+    background: var(--brown);
+    color: #fffdf8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-button:hover {
+    transform: translateY(-2px);
+    background: var(--brown-light);
+}
+
+.nav-button.secondary {
+    border-color: var(--border);
+    background: var(--surface);
+    color: var(--brown);
+}
+
+.nav-button.secondary:hover {
+    background: var(--soft);
+}
+
+/* フッター */
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.footer-inner {
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.footer-brand {
+    margin: 0;
+    color: var(--brown);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+}
+
+.footer-nav a {
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-decoration: none;
+}
+
+.footer-nav a:hover {
+    color: var(--brown);
+    text-decoration: underline;
+}
+
+.copyright {
+    width: 100%;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+/* タブレット */
+@media (max-width: 760px) {
+    .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 0;
+    }
+
+    .main-nav {
+        justify-content: flex-start;
+        gap: 6px 22px;
+    }
+
+    .intro-grid,
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-image,
+    .feature-image.tall {
+        height: 240px;
+    }
+
+    .intro-image {
+        height: 240px;
+    }
+}
+
+/* スマートフォン */
+@media (max-width: 520px) {
+    .header-inner,
+    .hero-inner,
+    .breadcrumb,
+    main,
+    .footer-inner {
+        width: calc(100% - 32px);
+    }
+
+    .brand {
+        font-size: 1.25rem;
+    }
+
+    .main-nav {
+        gap: 4px 20px;
+    }
+
+    .main-nav a {
+        font-size: 0.85rem;
+    }
+
+    .hero {
+        min-height: 320px;
+    }
+
+    .hero-inner {
+        padding: 42px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding-top: 20px;
+        padding-bottom: 48px;
+    }
+
+    .section-card {
+        margin-bottom: 15px;
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+    .section-heading {
+        font-size: 1.35rem;
+    }
+
+    .section-card p {
+        font-size: 0.92rem;
+    }
+
+    .toc-list,
+    .taste-grid,
+    .storage-list {
+        grid-template-columns: 1fr;
+    }
+
+    .toc-list a {
+        min-height: 60px;
+        padding: 12px 13px;
+    }
+
+    .intro-points {
+        gap: 7px;
+    }
+
+    .intro-point {
+        padding: 10px 5px;
+        font-size: 0.75rem;
+    }
+
+    .intro-image,
+    .feature-image,
+    .feature-image.tall {
+        height: 205px;
+    }
+
+    .page-navigation {
+        flex-direction: column;
+    }
+
+    .nav-button {
+        width: 100%;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
 </style>
 </head>
+
 <body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="../index.html">COFFEE GUIDE</a>
+
+        <nav class="main-nav" aria-label="メインナビゲーション">
+            <a href="../beginner/beginner.html">初心者</a>
+            <a href="knowledgeindex.html" aria-current="page">知識</a>
+            <a href="../blog/blogindex.html">ブログ</a>
+        </nav>
+    </div>
 </header>
 
+<section class="hero" aria-labelledby="page-title">
+    <img
+        class="hero-image"
+        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=2000&q=85"
+        alt=""
+        fetchpriority="high"
+    >
+    <div class="hero-inner">
+        <p class="eyebrow">COFFEE KNOWLEDGE / 01</p>
+        <h1 id="page-title">コーヒーの基本知識</h1>
+        <p class="hero-description">
+            コーヒーは、豆の種類や育った環境、焙煎、抽出によって味わいが変わる飲み物です。
+            歴史や植物としての特徴、成分、保存方法など、コーヒーを知るための基本を紹介します。
+        </p>
+        <div class="hero-note">
+            気になる項目を選んで、知りたいところから読んでみましょう。
+        </div>
+    </div>
+</section>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+        <li><a href="../index.html">トップ</a></li>
+        <li><a href="knowledgeindex.html">知識アーカイブ</a></li>
+        <li aria-current="page">基本知識</li>
+    </ol>
+</nav>
+
 <main>
-<section class="section-card">
-<h1>コーヒーの基本知識</h1>
-<p>コーヒーは世界中で親しまれる嗜好飲料であり、その魅力は香り・味・文化・歴史に深く根ざしています。ここでは、初心者から中級者まで幅広く理解できるよう、基本的な知識から科学的な背景まで詳しく解説します。</p>
-<p>このページを読むことで、豆の選び方、抽出の仕組み、味の違いの理由などが体系的に理解できます。さらに、保存方法や抽出テクニック、味覚の分析などもカバーしており、家庭でもカフェのような味を再現するための知識が得られます。</p>
-</section>
+    <!-- ページ紹介 -->
+    <section class="section-card">
+        <div class="intro-grid">
+            <div>
+                <h2 class="section-heading">コーヒーをもっと知るために</h2>
+                <p class="lead">
+                    コーヒーを理解するための入り口として、歴史、コーヒーノキ、成分、鮮度、味わいの考え方を紹介します。
+                </p>
+                <p>
+                    それぞれのテーマを知ることで、豆選びや淹れ方を学ぶときにも、違いを整理しやすくなります。
+                    まずは気になる項目から読み進めてみてください。
+                </p>
+            </div>
+            <img
+                class="intro-image"
+                src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=1000&q=85"
+                alt="木のテーブルに置かれたコーヒー豆"
+                loading="lazy"
+            >
+        </div>
 
-<section class="section-card">
-<h2>1. コーヒーの歴史と文化</h2>
-<p>コーヒーの起源はエチオピア高原とされ、伝説では山羊飼いカリディが山羊の活発さに気づいたことから始まったと言われています。15世紀にはイエメンの修道院で飲用され、宗教儀式や瞑想の集中力を高めるために利用されました。</p>
-<p>その後、オスマン帝国やヨーロッパに広がり、17世紀にはカフェ文化が花開きました。イギリスのコーヒーハウスでは政治や学問の議論が行われ、フランスでは美術家や哲学者が集う場所となりました。この歴史的背景を知ることで、現代のコーヒー文化をより深く理解できます。</p>
-<p>コーヒーの歴史には、経済的・社会的な要素も関わります。コーヒー貿易は植民地政策と密接に結びつき、産地の人々の生活や環境にも影響を与えてきました。こうした知識は、持続可能なコーヒー消費やフェアトレードの理解にもつながります。</p>
-</section>
+        <div class="intro-points">
+            <div class="intro-point">豆の背景を知る</div>
+            <div class="intro-point">味わいを理解する</div>
+            <div class="intro-point">日々の一杯に活かす</div>
+        </div>
+    </section>
 
-<section class="section-card">
-<h2>2. コーヒーの植物学と品種</h2>
-<h3>コーヒーノキの基礎</h3>
-<p>コーヒーは熱帯性植物で「コーヒーノキ」の種子（豆）を使用します。成長には温度、日照、降雨が重要で、特に標高が高いほど酸味や香りが豊かになります。適した環境で栽培された豆は、風味のバリエーションが広がります。</p>
-<h3>代表的な品種</h3>
-<ul>
-<li><strong>アラビカ種（Coffea arabica）</strong>：標高800〜2200mで栽培。酸味が柔らかく、香りが高い。カフェイン量は低め。</li>
-<li><strong>ロブスタ種（Coffea canephora）</strong>：低地でも栽培可能。苦味・コクが強く、カフェイン量が多い。インスタントコーヒーにも多く使われる。</li>
-<li>リベリカ種やエクセルサ種も存在するが、流通量は限定的。</li>
-</ul>
-<h3>栽培条件による味の変化</h3>
-<p>土壌や標高、日照、降水量により、酸味・苦味・香りの強さが変化します。例えば標高の高い地域のアラビカ豆は、フルーティーで華やかな酸味が特徴です。低地のロブスタ種は苦味と重厚感が強く、カフェオレやブレンドに適しています。</p>
-</section>
+    <!-- ページ内目次 -->
+    <section class="section-card toc-card" aria-labelledby="toc-heading">
+        <h2 class="section-heading" id="toc-heading">このページの目次</h2>
+        <p class="toc-intro">
+            読みたいテーマを選ぶと、その項目へ直接移動できます。
+        </p>
 
-<section class="section-card">
-<h2>3. コーヒーの成分と味覚</h2>
-<h3>カフェイン</h3>
-<p>カフェインは苦味成分で、覚醒作用や代謝促進効果があります。豆の種類、焙煎度によって含有量が変化し、ロブスタ種はアラビカ種の約2倍含まれています。</p>
-<h3>クロロゲン酸</h3>
-<p>酸味や抗酸化作用に関わる成分。浅煎りでは酸味が際立ち、深煎りでは熱分解され苦味が増します。クロロゲン酸は焙煎の進行により香ばしい香気物質に変化し、焙煎香を生みます。</p>
-<h3>脂質・糖類・タンパク質</h3>
-<p>焙煎時の香りやコクに影響します。特に脂質は口当たりのまろやかさ、糖は甘み、タンパク質は香ばしさを生みます。</p>
-<h3>味覚の分析</h3>
-<p>酸味・苦味・甘味・コク・香りのバランスで味を評価します。抽出方法、挽き方、豆の種類、焙煎度が大きく影響します。カッピング用語やSCAAの風味ホイールを理解すると、味の違いを科学的に把握できます。</p>
-</section>
+        <ol class="toc-list">
+            <li>
+                <a href="#history">
+                    <span class="toc-number">01</span>
+                    <span class="toc-title">コーヒーの歴史と文化</span>
+                    <span class="toc-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+            <li>
+                <a href="#plant">
+                    <span class="toc-number">02</span>
+                    <span class="toc-title">コーヒーノキと代表的な品種</span>
+                    <span class="toc-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+            <li>
+                <a href="#components">
+                    <span class="toc-number">03</span>
+                    <span class="toc-title">コーヒーの成分と味わい</span>
+                    <span class="toc-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+            <li>
+                <a href="#freshness">
+                    <span class="toc-number">04</span>
+                    <span class="toc-title">保存と鮮度管理</span>
+                    <span class="toc-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+            <li>
+                <a href="#enjoy">
+                    <span class="toc-number">05</span>
+                    <span class="toc-title">味の違いを楽しむ</span>
+                    <span class="toc-arrow" aria-hidden="true">↓</span>
+                </a>
+            </li>
+        </ol>
+    </section>
 
-<section class="section-card">
-<h2>4. 保存と鮮度管理</h2>
-<p>豆は酸化により香りが飛び、味が変化します。粉にした場合はさらに劣化が早く、数日以内の使用が理想です。基本の保存法は以下：</p>
-<ul>
-<li>密閉容器で冷暗所に保管</li>
-<li>挽く直前に計量</li>
-<li>挽いた粉は2〜3日以内に使用</li>
-<li>冷凍保存も可能だが湿気に注意</li>
-</ul>
-<p>保存方法を工夫すると、家庭でも淹れたての香りと味を長く楽しめます。コーヒーオイルが酸化すると風味が変わるため、銀袋やバルブ付き容器の使用がおすすめです。</p>
-</section>
+    <!-- 01 歴史 -->
+    <section class="section-card" id="history">
+        <span class="section-number">SECTION 01</span>
+        <div class="feature-grid">
+            <div>
+                <h2 class="section-heading">コーヒーの歴史と文化</h2>
 
-<section class="section-card">
-<h2>5. コーヒーの楽しみ方と応用</h2>
-<p>基本知識を理解したら、次は実践的な楽しみ方です。豆の種類や焙煎、挽き方の違いで味わいが変わるため、自分の好みに合った淹れ方を見つけることができます。</p>
-<ul>
-<li>浅煎り：酸味が華やかで、フルーティーな香り</li>
-<li>中煎り：酸味と苦味がバランスよく、香ばしい香り</li>
-<li>深煎り：苦味・コク・香ばしさが強く、ミルクとの相性も良い</li>
-</ul>
-<p>家庭での応用例として、フレンチプレスやハンドドリップで抽出条件を変えて味を比較するのもおすすめです。豆の産地ごとの香りや味の違いを把握することで、コーヒーの世界がさらに広がります。</p>
-</section>
+                <p>
+                    コーヒーの起源については、エチオピアにまつわる伝説が広く知られています。
+                    山羊飼いが山羊の様子の変化に気づいたという物語もありますが、伝説と確認できる歴史的事実は区別して考える必要があります。
+                </p>
 
-<a href="knowledgeindex.html" class="top-link">知識目次に戻る</a>
+                <p>
+                    コーヒーはアラビア半島で飲用文化が広がり、その後、オスマン帝国やヨーロッパなどへ伝わりました。
+                    17世紀ごろのヨーロッパではコーヒーハウスが人々の集まる場所となり、商業や文化、政治などの交流にも関わっていきました。
+                </p>
+
+                <p>
+                    現代のコーヒーは、飲み物としてだけでなく、農業、貿易、地域の暮らしともつながっています。
+                    産地や生産者、流通の仕組みに目を向けることも、コーヒーを知るひとつの方法です。
+                </p>
+            </div>
+
+            <div>
+                <img
+                    class="feature-image tall"
+                    src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=85"
+                    alt="木の家具が並ぶ落ち着いた雰囲気のカフェ"
+                    loading="lazy"
+                >
+                <p class="image-caption">人々が集い、コーヒーを楽しむカフェの風景</p>
+            </div>
+        </div>
+
+        <div class="small-note">
+            歴史の細かな年代や人物に関する説明は、伝承と史料に基づく情報が混在することがあります。
+            詳しく調べる際は、博物館や研究機関などの資料も確認しましょう。
+        </div>
+    </section>
+
+    <!-- 02 品種 -->
+    <section class="section-card" id="plant">
+        <span class="section-number">SECTION 02</span>
+        <div class="feature-grid">
+            <div>
+                <h2 class="section-heading">コーヒーノキと代表的な品種</h2>
+
+                <h3>コーヒー豆は植物の種子</h3>
+                <p>
+                    私たちが「コーヒー豆」と呼んでいるものは、コーヒーノキになる果実の中にある種子です。
+                    果実は熟すと赤色や黄色などになり、収穫後に果肉などを取り除き、乾燥や選別といった工程を経て生豆になります。
+                </p>
+
+                <h3>代表的な種類</h3>
+                <ul>
+                    <li>
+                        <strong>アラビカ種（Coffea arabica）</strong><br>
+                        香りや酸味などに多様な特徴があり、品種や生産条件によって風味が異なります。
+                    </li>
+                    <li>
+                        <strong>カネフォラ種（Coffea canephora）</strong><br>
+                        ロブスタは、この種類を指す名称として広く使われています。
+                        一般にアラビカ種よりカフェイン含有量が多い傾向があります。
+                    </li>
+                    <li>
+                        <strong>その他の種類</strong><br>
+                        リベリカ種など、ほかのコーヒーの種類も存在します。
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <img
+                    class="feature-image"
+                    src="https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=1000&q=85"
+                    alt="コーヒーの果実が実るコーヒーノキ"
+                    loading="lazy"
+                >
+                <h3>産地や環境で味が変わる理由</h3>
+                <p>
+                    コーヒーの風味には、品種、気候、土壌、標高、収穫時の熟度、精製方法などが関係します。
+                    同じ種類の豆でも、生産された場所や加工方法によって味わいに違いが生まれます。
+                </p>
+                <p>
+                    特定の品種や産地が、すべての人にとって最適とは限りません。
+                    特徴を知ったうえで飲み比べ、自分の好みを探すことが大切です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 成分と味 -->
+    <section class="section-card" id="components">
+        <span class="section-number">SECTION 03</span>
+        <div class="feature-grid">
+            <div>
+                <h2 class="section-heading">コーヒーの成分と味わい</h2>
+
+                <h3>カフェイン</h3>
+                <p>
+                    カフェインはコーヒーに含まれる成分のひとつで、中枢神経に作用することで覚醒作用などをもたらします。
+                    含有量は豆の種類だけでなく、使用量、抽出方法、飲む量などによっても変わります。
+                </p>
+
+                <h3>クロロゲン酸などの成分</h3>
+                <p>
+                    生豆にはクロロゲン酸類などの成分が含まれており、焙煎によって量や構成が変化します。
+                    コーヒーの味や香りはひとつの成分だけで決まるものではなく、焙煎中に起きるさまざまな化学変化が関係しています。
+                </p>
+
+                <h3>糖類・脂質・タンパク質など</h3>
+                <p>
+                    コーヒーには糖類、脂質、タンパク質なども含まれています。
+                    焙煎時には複数の成分が反応し、香ばしさや複雑な香りにつながる物質が生まれます。
+                </p>
+            </div>
+
+            <div>
+                <img
+                    class="feature-image"
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85"
+                    alt="カップに注がれたコーヒーと抽出器具"
+                    loading="lazy"
+                >
+
+                <h3>味わいを整理するポイント</h3>
+                <div class="taste-grid">
+                    <article class="taste-card">
+                        <h3>酸味</h3>
+                        <p>果実を思わせる印象や、明るい味わいとして感じられることがあります。</p>
+                    </article>
+                    <article class="taste-card">
+                        <h3>苦味</h3>
+                        <p>焙煎度や抽出条件などによって感じ方が変わります。</p>
+                    </article>
+                    <article class="taste-card">
+                        <h3>甘味</h3>
+                        <p>香りや酸味とのバランスも、甘い印象に関係します。</p>
+                    </article>
+                    <article class="taste-card">
+                        <h3>口当たり・香り</h3>
+                        <p>なめらかさや重厚感、花・果実・ナッツなどに例えられる香りも特徴です。</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            味の感じ方には個人差があります。最初から専門用語を覚えようとするよりも、
+            「苦味が強い」「すっきりしている」「果物のような香りがする」など、
+            自分が感じたことを言葉にしてみましょう。
+        </p>
+    </section>
+
+    <!-- 04 保存 -->
+    <section class="section-card" id="freshness">
+        <span class="section-number">SECTION 04</span>
+        <div class="feature-grid">
+            <div>
+                <h2 class="section-heading">保存と鮮度管理</h2>
+
+                <p>
+                    コーヒー豆は、空気、湿気、熱、光などの影響を受け、
+                    時間の経過とともに香りや風味が変化します。
+                    粉にすると空気に触れる面積が大きくなるため、
+                    豆の状態よりも風味が変わりやすくなります。
+                </p>
+
+                <h3>保存するときの基本</h3>
+                <ul class="storage-list">
+                    <li>高温多湿や直射日光を避ける。</li>
+                    <li>開封後は袋の口を閉じるか、密閉容器を使う。</li>
+                    <li>飲む分だけを挽き、できるだけ早めに使う。</li>
+                    <li>焙煎日や賞味期限、商品の保存方法を確認する。</li>
+                </ul>
+
+                <h3>冷凍保存について</h3>
+                <p>
+                    長期間保存したい場合には、冷凍保存が選択肢になることもあります。
+                    湿気や結露を避けるため、密閉や小分けなどを工夫してください。
+                    保存方法や使用量に応じて扱い方を判断しましょう。
+                </p>
+            </div>
+
+            <div>
+                <img
+                    class="feature-image tall"
+                    src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=1000&q=85"
+                    alt="保存する前のコーヒー豆"
+                    loading="lazy"
+                >
+
+                <div class="small-note">
+                    「挽いた粉は必ず何日以内に使うべき」といった期限は、
+                    保存状態や商品によって変わります。
+                    一律の日数だけで判断せず、商品の表示や保存状態も確認しましょう。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 楽しみ方 -->
+    <section class="section-card" id="enjoy">
+        <span class="section-number">SECTION 05</span>
+        <div class="feature-grid">
+            <div>
+                <h2 class="section-heading">味の違いを楽しむ</h2>
+
+                <p>
+                    コーヒーの味わいは、豆の種類、産地、精製方法、焙煎度、挽き目、湯温、抽出時間など、
+                    さまざまな要素によって変化します。
+                    ひとつの条件だけで味を決めつけず、全体の組み合わせとして考えると違いを理解しやすくなります。
+                </p>
+
+                <h3>焙煎度による傾向</h3>
+                <ul>
+                    <li><strong>浅煎り：</strong>豆によっては果実を思わせる酸味や香りが感じられます。</li>
+                    <li><strong>中煎り：</strong>酸味、苦味、香ばしさなどのバランスが特徴になることがあります。</li>
+                    <li><strong>深煎り：</strong>苦味やロースト感が目立ち、しっかりした印象になることがあります。</li>
+                </ul>
+
+                <p>
+                    これらは一般的な傾向です。実際の味わいは豆の種類や焙煎方法、抽出条件によって異なります。
+                </p>
+            </div>
+
+            <div>
+                <img
+                    class="feature-image tall"
+                    src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=85"
+                    alt="コーヒーを抽出するための道具とカップ"
+                    loading="lazy"
+                >
+
+                <h3>飲み比べてみよう</h3>
+                <p>
+                    同じ道具とレシピを使い、焙煎度の異なる豆を試すと、豆による違いを感じ取りやすくなります。
+                </p>
+                <ol>
+                    <li>豆の種類や焙煎度を記録する。</li>
+                    <li>香り、酸味、苦味、口当たりを観察する。</li>
+                    <li>感じたことや好みを短く書く。</li>
+                    <li>次に飲むコーヒーと違いを比べる。</li>
+                </ol>
+            </div>
+        </div>
+
+        <p>
+            最初から正確に表現できなくても問題ありません。
+            飲んだときの印象を少しずつ記録することで、自分がどのような味わいを好むのか見つけやすくなります。
+        </p>
+    </section>
+
+    <!-- 次のページ -->
+    <section class="section-card">
+        <h2 class="section-heading">次に読みたいテーマ</h2>
+        <p>
+            基本を押さえたら、知識アーカイブで豆、焙煎、挽き方、抽出、味わい、道具について、
+            それぞれのテーマをさらに詳しく見てみましょう。
+        </p>
+
+        <div class="page-navigation">
+            <a class="nav-button secondary" href="knowledgeindex.html">
+                ‹ 知識アーカイブの目次へ
+            </a>
+            <a class="nav-button" href="../beginner/beginner.html">
+                初心者ガイドを見る →
+            </a>
+        </div>
+    </section>
 </main>
 
-<footer>
-&copy; 2026 CoffeeSite
+<footer class="site-footer">
+    <div class="footer-inner">
+        <p class="footer-brand">COFFEE GUIDE</p>
+
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+            <a href="../index.html">トップページ</a>
+            <a href="../beginner/beginner.html">初心者</a>
+            <a href="knowledgeindex.html">知識</a>
+            <a href="../blog/blogindex.html">ブログ</a>
+        </nav>
+
+        <p class="copyright">&copy; 2026 COFFEE GUIDE</p>
+    </div>
 </footer>
 </body>
 </html>
