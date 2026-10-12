@@ -1,97 +1,1042 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>焙煎 - コーヒー知識アーカイブ</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="コーヒーの焙煎の仕組み、浅煎り・中煎り・深煎りの違い、焙煎方法、焙煎後の豆の保存について解説します。">
+<title>コーヒーの焙煎 | COFFEE GUIDE</title>
+
 <style>
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:1000px; margin:40px auto; padding:0 20px; }
-h1,h2,h3 { text-align:center; }
-.section-card { background:#e7d9ce; padding:25px; border-radius:12px; margin-bottom:30px; box-shadow:2px 2px 8px rgba(0,0,0,0.2); }
-.section-card h2, .section-card h3 { margin-top:20px; margin-bottom:15px; }
-.section-card p, .section-card ul, .section-card ol { line-height:1.7; margin-bottom:15px; }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
+:root {
+  --bg: #f8f5ef;
+  --surface: #fffdf8;
+  --brown: #493326;
+  --brown-light: #654b39;
+  --text: #302820;
+  --muted: #74685d;
+  --border: #e5dbce;
+  --accent: #c7a783;
+  --soft: #eee5da;
+  --shadow: 0 8px 24px rgba(73, 51, 38, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--brown-light);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--brown);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 24px;
+}
+
+.site-nav a {
+  color: var(--brown-light);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.breadcrumb a:hover,
+.footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(199, 167, 131, 0.18), transparent 38%),
+    var(--brown);
+  color: #fffdf8;
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 24px 72px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #e0c8ad;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+}
+
+.hero-description {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: #f0e7dd;
+  font-size: 1rem;
+}
+
+.hero-note {
+  max-width: 720px;
+  margin-top: 28px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.06);
+  color: #f0e7dd;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 76px;
+}
+
+.breadcrumb {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #b2a393;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.content-card {
+  margin-bottom: 28px;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 24px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: #987451;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.content-card h2 {
+  margin: 0 0 18px;
+  color: var(--brown);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.5;
+}
+
+.content-card h3 {
+  margin: 26px 0 10px;
+  color: var(--brown-light);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.content-card p {
+  margin: 0 0 16px;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+.content-card ul,
+.content-card ol {
+  margin: 12px 0 18px;
+  padding-left: 1.5em;
+}
+
+.content-card li {
+  margin-bottom: 7px;
+  padding-left: 3px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.intro-item {
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.intro-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--brown);
+}
+
+.intro-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brown);
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toc-list a:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.toc-number {
+  color: #a47d56;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.roast-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.roast-card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.roast-card h3 {
+  margin: 0 0 10px;
+  color: var(--brown);
+}
+
+.roast-card p {
+  margin-bottom: 10px;
+  font-size: 0.94rem;
+}
+
+.roast-card p:last-child {
+  margin-bottom: 0;
+}
+
+.roast-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--soft);
+  color: var(--brown-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.table-wrap {
+  width: 100%;
+  margin: 18px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  text-align: left;
+}
+
+th,
+td {
+  min-width: 120px;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--soft);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.step-list {
+  counter-reset: roast-step;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-list li {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 14px 16px 14px 52px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  counter-increment: roast-step;
+}
+
+.step-list li::before {
+  content: counter(roast-step, decimal-leading-zero);
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  color: #a47d56;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.info-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: #f5eee5;
+  color: #5d5044;
+  font-size: 0.92rem;
+}
+
+.tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tip-item {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.tip-item strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brown);
+}
+
+.tip-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.next-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.next-card h2 {
+  margin: 0 0 8px;
+  color: var(--brown);
+  font-size: 1.3rem;
+}
+
+.next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.next-link {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 1px solid var(--brown);
+  border-radius: 8px;
+  color: var(--brown);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next-link.primary {
+  background: var(--brown);
+  color: #fffdf8;
+}
+
+.next-link:hover {
+  opacity: 0.82;
+}
+
+.site-footer {
+  padding: 30px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-bottom: 18px;
+}
+
+.footer-nav a {
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-footer small {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    gap: 8px 18px;
+  }
+
+  .hero-inner {
+    padding: 54px 20px 50px;
+  }
+
+  main {
+    padding: 24px 16px 54px;
+  }
+
+  .intro-grid,
+  .roast-grid,
+  .toc-list,
+  .tip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .content-card {
+    border-radius: 12px;
+  }
+
+  .next-card {
+    padding: 22px;
+  }
+
+  th,
+  td {
+    padding: 11px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 </head>
-<body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
+
+<body id="top">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">COFFEE GUIDE</a>
+
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="../beginner/beginner.html">初心者</a>
+      <a href="knowledgeindex.html" aria-current="page">知識</a>
+      <a href="../blog/blogindex.html">ブログ</a>
+    </nav>
+  </div>
 </header>
 
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero-inner">
+    <p class="eyebrow">COFFEE KNOWLEDGE / 05</p>
+
+    <h1 id="page-title">コーヒーの焙煎</h1>
+
+    <p class="hero-description">
+      コーヒーの香りや味わいを形づくる焙煎。
+      生豆に熱を加えることで起こる変化から、浅煎り・中煎り・深煎りの違い、
+      焙煎方法や保存の基本まで解説します。
+    </p>
+
+    <div class="hero-note">
+      焙煎度によって味わいの傾向は変わりますが、どの焙煎度が最適かは好みや飲み方によって異なります。
+      まずは違いを知り、自分に合う味わいを探してみましょう。
+    </div>
+  </div>
+</section>
+
 <main>
-<section class="section-card">
-<h1>焙煎の知識</h1>
-<p>焙煎はコーヒー豆の味わいを決定する重要な工程です。豆の特徴を最大限に引き出す焙煎方法を理解すると、家庭でもカフェクオリティの味を再現できます。</p>
-<p>このページでは、焙煎の原理、焙煎度の違い、家庭用焙煎の方法、風味の変化、保存まで幅広く解説します。</p>
-</section>
 
-<section class="section-card">
-<h2>1. 焙煎の原理</h2>
-<p>焙煎は生豆に熱を加え、化学変化を起こして香り・味・色を作る工程です。加熱により水分が蒸発し、メイラード反応や糖のカラメル化が進み、苦味やコク、香ばしい香りが生まれます。</p>
-<p>主な変化：</p>
-<ul>
-<li>水分の蒸発で重量が減少</li>
-<li>膨張して豆の体積が増える</li>
-<li>色は緑→黄→茶→黒へと変化</li>
-<li>香り成分が生成され、酸味・苦味・甘味のバランスが決まる</li>
-</ul>
-<p>焙煎は科学と芸術の両方であり、温度管理や時間の微調整で味が大きく変わります。</p>
-</section>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="knowledgeindex.html">知識アーカイブ</a></li>
+      <li aria-current="page">コーヒーの焙煎</li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>2. 焙煎度と味の変化</h2>
-<h3>浅煎り（ライトロースト）</h3>
-<p>酸味が際立ち、フルーティーで華やかな香り。豆本来の特徴を感じやすく、シングルオリジンに向いています。</p>
-<h3>中煎り（シティロースト〜フルシティロースト）</h3>
-<p>酸味と苦味のバランスが良く、香ばしさも増す。家庭用で最も人気のある焙煎度で、ブレンドにも向きます。</p>
-<h3>深煎り（フレンチロースト〜イタリアンロースト）</h3>
-<p>苦味・コク・香ばしさが強くなり、ミルクとの相性も良い。酸味はほとんど感じません。</p>
-<h3>豆の色・香りで判別</h3>
-<ul>
-<li>浅煎り：明るい茶色、軽やかでフローラルな香り</li>
-<li>中煎り：中間の茶色、香ばしい香り</li>
-<li>深煎り：濃い茶色〜黒、煙香やチョコレート香が強い</li>
-</ul>
-</section>
+  <section class="content-card" aria-labelledby="intro-title">
+    <p class="section-label">OVERVIEW</p>
+    <h2 id="intro-title">このページで学べること</h2>
 
-<section class="section-card">
-<h2>3. 焙煎方法の種類</h2>
-<h3>家庭用焙煎</h3>
-<p>手軽に試せる方法として、フライパン、オーブン、専用の家庭用ロースターがあります。焙煎時は均一に熱を通すことが重要です。</p>
-<h3>業務用焙煎</h3>
-<p>大型のドラム式や熱風式の焙煎機を使用。温度・時間・風量を制御することで、味を一定に保ちます。プロの焙煎士は微妙な香りの変化を感覚で判断します。</p>
-<h3>焙煎プロセスの観察</h3>
-<p>色の変化、豆の膨張、割れの音（クラック）を観察することで焙煎度を判断します。ファーストクラックで浅煎り、セカンドクラックで深煎りが目安です。</p>
-</section>
+    <p>
+      焙煎とは、コーヒーの生豆を加熱し、飲用時の香りや味わいを生み出す工程です。
+      焙煎の進み方によって、豆の色や香り、酸味や苦味の感じ方などが変わります。
+      同じ生豆でも、焙煎の仕方によって異なる風味を楽しめます。
+    </p>
 
-<section class="section-card">
-<h2>4. 焙煎後の豆の取り扱い</h2>
-<p>焙煎した豆は香りが飛びやすいため、速やかに冷却することが重要です。冷却後は空気に触れないよう密閉し、1〜2週間以内に使用するのが理想です。</p>
-<p>粉にした場合は酸化が早く、数日以内に使い切ることを推奨します。焙煎直後の豆はガスを放出するため、密閉容器で24時間ほど置く「ガス抜き」が必要です。</p>
-</section>
+    <div class="intro-grid">
+      <div class="intro-item">
+        <strong>焙煎の仕組み</strong>
+        <p>生豆が加熱によってどのように変化するのかを知る。</p>
+      </div>
 
-<section class="section-card">
-<h2>5. 味覚への影響と実践アドバイス</h2>
-<p>焙煎は味に直接影響します。浅煎りは豆の個性が生き、中煎りはバランスが良く、深煎りは苦味とコクが支配的になります。</p>
-<p>家庭での応用例：</p>
-<ul>
-<li>浅煎り：フルーツ系の香りを楽しむため、ペーパードリップで軽めの抽出</li>
-<li>中煎り：香ばしさと酸味のバランスを楽しむため、ハンドドリップやフレンチプレス</li>
-<li>深煎り：苦味とコクを楽しむため、エスプレッソやカフェラテに適する</li>
-</ul>
-<p>焙煎度に合わせて抽出条件を変えると、豆の個性を最大限に引き出せます。</p>
-</section>
+      <div class="intro-item">
+        <strong>焙煎度の違い</strong>
+        <p>浅煎り・中煎り・深煎りの特徴を比較する。</p>
+      </div>
 
-<a href="knowledgeindex.html" class="top-link">知識目次に戻る</a>
+      <div class="intro-item">
+        <strong>焙煎後の扱い</strong>
+        <p>家庭での焙煎方法や、豆の保存について学ぶ。</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="content-card" aria-labelledby="toc-title">
+    <p class="section-label">CONTENTS</p>
+    <h2 id="toc-title">目次</h2>
+
+    <ol class="toc-list">
+      <li><a href="#principle"><span class="toc-number">01</span><span>焙煎の仕組み</span></a></li>
+      <li><a href="#levels"><span class="toc-number">02</span><span>焙煎度と味わい</span></a></li>
+      <li><a href="#methods"><span class="toc-number">03</span><span>焙煎方法の種類</span></a></li>
+      <li><a href="#process"><span class="toc-number">04</span><span>焙煎中の変化</span></a></li>
+      <li><a href="#home-roasting"><span class="toc-number">05</span><span>家庭で焙煎する</span></a></li>
+      <li><a href="#storage"><span class="toc-number">06</span><span>焙煎後の保存</span></a></li>
+    </ol>
+  </nav>
+
+  <section class="content-card" id="principle" aria-labelledby="principle-title">
+    <p class="section-label">01 / ROASTING BASICS</p>
+    <h2 id="principle-title">焙煎の仕組み</h2>
+
+    <p>
+      コーヒーの生豆は、焙煎前には緑色がかった色をしています。
+      これを加熱すると、水分が抜け、豆の内部でさまざまな化学反応が起こります。
+      その結果、コーヒーらしい香りや味わい、茶色い色合いが形成されます。
+    </p>
+
+    <h3>焙煎中に起こる主な変化</h3>
+
+    <ul>
+      <li><strong>水分の減少：</strong>加熱によって水分が抜け、豆の重量が減少します。</li>
+      <li><strong>色の変化：</strong>加熱が進むにつれて、豆は緑色から黄色、茶色へと変化していきます。</li>
+      <li><strong>膨張：</strong>豆の内部でガスなどが発生し、体積が大きくなります。</li>
+      <li><strong>香りの形成：</strong>メイラード反応などの化学反応によって、さまざまな香りの成分が生まれます。</li>
+      <li><strong>風味の変化：</strong>焙煎の進み方によって、酸味、苦味、香ばしさなどの感じ方が変わります。</li>
+    </ul>
+
+    <h3>焙煎は時間だけでは決まらない</h3>
+
+    <p>
+      焙煎の仕上がりは、加熱時間だけでなく、温度の変化、熱の伝わり方、生豆の種類や状態などにも影響されます。
+      そのため、同じ時間だけ焙煎しても、豆や使用する機器が異なれば同じ仕上がりになるとは限りません。
+    </p>
+
+    <div class="info-note">
+      焙煎では、温度や時間の記録に加えて、豆の色、香り、音なども観察すると、
+      次回の仕上がりを比較しやすくなります。
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="levels" aria-labelledby="levels-title">
+    <p class="section-label">02 / ROAST LEVELS</p>
+    <h2 id="levels-title">焙煎度と味わいの違い</h2>
+
+    <p>
+      焙煎度は、焙煎がどの程度進んでいるかを表す目安です。
+      一般的に浅煎りから深煎りへ進むにつれて、酸味の感じ方や苦味、香ばしさなどが変化します。
+      ただし、実際の味わいは豆の種類や焙煎方法によって異なります。
+    </p>
+
+    <div class="roast-grid">
+      <div class="roast-card">
+        <span class="roast-label">LIGHT</span>
+        <h3>浅煎り</h3>
+        <p>
+          比較的浅い段階で焙煎を終えた豆です。
+          豆によっては、明るい酸味や果実、花を思わせる香りが感じられます。
+        </p>
+        <p>
+          <strong>注目したい点：</strong>酸味や、豆ごとの香りの違い。
+        </p>
+      </div>
+
+      <div class="roast-card">
+        <span class="roast-label">MEDIUM</span>
+        <h3>中煎り</h3>
+        <p>
+          浅煎りと深煎りの中間にあたる焙煎度です。
+          酸味、苦味、香ばしさなどが組み合わさった味わいを楽しめます。
+        </p>
+        <p>
+          <strong>注目したい点：</strong>酸味と苦味、香ばしさのバランス。
+        </p>
+      </div>
+
+      <div class="roast-card">
+        <span class="roast-label">DARK</span>
+        <h3>深煎り</h3>
+        <p>
+          焙煎が進んだ豆です。
+          香ばしさや苦味が目立ちやすく、豆によってはスモーキーな風味なども感じられます。
+        </p>
+        <p>
+          <strong>注目したい点：</strong>苦味や香ばしさ、口当たり。
+        </p>
+      </div>
+    </div>
+
+    <h3>焙煎度による傾向を比較する</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">比較項目</th>
+            <th scope="col">浅煎り</th>
+            <th scope="col">中煎り</th>
+            <th scope="col">深煎り</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">豆の色</th>
+            <td>比較的明るい茶色</td>
+            <td>茶色</td>
+            <td>濃い茶色</td>
+          </tr>
+          <tr>
+            <th scope="row">酸味の傾向</th>
+            <td>感じられやすい</td>
+            <td>豆によってバランスが異なる</td>
+            <td>相対的に目立ちにくくなる傾向</td>
+          </tr>
+          <tr>
+            <th scope="row">苦味の傾向</th>
+            <td>比較的穏やか</td>
+            <td>焙煎の進み方によって変化</td>
+            <td>感じられやすい</td>
+          </tr>
+          <tr>
+            <th scope="row">香りの傾向</th>
+            <td>果実や花を思わせる香りなど</td>
+            <td>酸味や香ばしさなどの組み合わせ</td>
+            <td>香ばしさやロースト香など</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-note">
+      表の内容は一般的な傾向です。浅煎りなら必ず酸味が強い、深煎りなら必ず苦いというわけではなく、
+      生豆の特徴や焙煎条件、抽出方法によっても味わいは変わります。
+    </div>
+
+    <h3>焙煎度の名前について</h3>
+
+    <p>
+      ライトロースト、シティロースト、フレンチローストなどの名称が使われますが、
+      区分や呼び方は業界や焙煎業者によって異なる場合があります。
+      名称だけでなく、豆の色や風味、販売店が示す説明も参考にしましょう。
+    </p>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="methods" aria-labelledby="methods-title">
+    <p class="section-label">03 / ROASTING METHODS</p>
+    <h2 id="methods-title">焙煎方法の種類</h2>
+
+    <p>
+      焙煎には、家庭で試せる方法から、店舗や工場で使われる専用の焙煎機までさまざまな方法があります。
+      使用する機器によって、豆への熱の伝わり方や温度の調整方法が異なります。
+    </p>
+
+    <h3>ドラム式焙煎機</h3>
+
+    <p>
+      回転するドラムの中で豆を加熱する方式です。
+      ドラムや加熱方式などの構造によって熱の伝わり方が異なり、
+      温度や時間などを調整しながら焙煎を進めます。
+    </p>
+
+    <h3>熱風式焙煎機</h3>
+
+    <p>
+      熱した空気を利用して豆を加熱する方式です。
+      空気の温度や流れなどを調整して焙煎を進めます。
+      具体的な仕上がりは機器の構造や設定によって異なります。
+    </p>
+
+    <h3>家庭用の焙煎器具</h3>
+
+    <p>
+      家庭で焙煎する場合は、手網やフライパン、家庭用焙煎機などが選択肢になります。
+      それぞれ扱いやすさや温度の調整方法が異なるため、
+      初めて試す場合は器具の説明書と安全上の注意を確認しましょう。
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">方法</th>
+            <th scope="col">特徴</th>
+            <th scope="col">確認したいこと</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>手網</td>
+            <td>手で動かしながら豆を加熱する</td>
+            <td>火加減、振り方、換気</td>
+          </tr>
+          <tr>
+            <td>フライパン</td>
+            <td>家庭にある器具で試せる場合がある</td>
+            <td>熱の偏り、煙、火傷への対策</td>
+          </tr>
+          <tr>
+            <td>家庭用焙煎機</td>
+            <td>焙煎用に設計された機器で加熱する</td>
+            <td>設定方法、使用量、清掃方法</td>
+          </tr>
+          <tr>
+            <td>業務用焙煎機</td>
+            <td>店舗や工場などで使用される</td>
+            <td>機器ごとの温度管理や操作方法</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-note">
+      焙煎中は高温になり、煙や強いにおいが発生することがあります。
+      家庭で行う場合は十分な換気を確保し、火災ややけどに注意してください。
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="process" aria-labelledby="process-title">
+    <p class="section-label">04 / ROASTING PROCESS</p>
+    <h2 id="process-title">焙煎中の変化を観察する</h2>
+
+    <p>
+      焙煎中は、豆の色、香り、膨らみ方、音などが変化します。
+      これらは焙煎の進行状況を知る手がかりになりますが、
+      ひとつの変化だけで焙煎度を正確に判断できるわけではありません。
+    </p>
+
+    <h3>ファーストクラック</h3>
+
+    <p>
+      加熱が進むと、豆の内部で発生する圧力などによって、
+      豆が割れるような音が聞こえることがあります。
+      この現象はファーストクラックと呼ばれ、焙煎の進行を知る目安のひとつです。
+    </p>
+
+    <p>
+      ファーストクラックが始まった時点で焙煎を終えるとは限りません。
+      その後どれくらい焙煎を続けるかによって、仕上がりは変わります。
+    </p>
+
+    <h3>セカンドクラック</h3>
+
+    <p>
+      焙煎がさらに進むと、セカンドクラックと呼ばれる音が現れることがあります。
+      より焙煎が進んだ段階を知る手がかりですが、
+      豆や焙煎機、焙煎条件によって聞こえ方は異なります。
+    </p>
+
+    <h3>記録して比較する</h3>
+
+    <ul>
+      <li>使用した生豆の種類と量</li>
+      <li>使用した焙煎器具や設定</li>
+      <li>豆の色や香りが変化したタイミング</li>
+      <li>クラックの有無や発生したタイミング</li>
+      <li>焙煎後に抽出したコーヒーの味わい</li>
+    </ul>
+
+    <p>
+      記録を残しておくと、異なる焙煎を比較しやすくなります。
+      少しずつ条件を変えながら、好みに合う仕上がりを探してみましょう。
+    </p>
+
+    <div class="info-note">
+      クラックの音や豆の色は参考になりますが、それだけで焙煎度が決まるわけではありません。
+      複数の変化を観察し、焙煎後の味わいと合わせて判断することが大切です。
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="home-roasting" aria-labelledby="home-roasting-title">
+    <p class="section-label">05 / HOME ROASTING</p>
+    <h2 id="home-roasting-title">家庭で焙煎する</h2>
+
+    <p>
+      家庭での焙煎は、豆の色や香りの変化を観察できる方法のひとつです。
+      ただし、焙煎には高温の熱源を使用するため、安全な環境を整えてから行う必要があります。
+    </p>
+
+    <h3>始める前に確認すること</h3>
+
+    <ol class="step-list">
+      <li>
+        <strong>器具の説明書を確認する。</strong><br>
+        その器具でコーヒー豆を焙煎できるか、使用量や使用方法、安全上の注意を確認します。
+      </li>
+      <li>
+        <strong>換気できる場所を用意する。</strong><br>
+        焙煎中は煙やにおいが発生することがあるため、十分に換気できる環境を確保します。
+      </li>
+      <li>
+        <strong>少量から試す。</strong><br>
+        器具が指定する使用量を守り、無理のない量で変化を観察します。
+      </li>
+      <li>
+        <strong>焙煎中の変化を記録する。</strong><br>
+        色、香り、音、時間などを記録し、次回の焙煎と比較できるようにします。
+      </li>
+      <li>
+        <strong>焙煎後は適切に冷却する。</strong><br>
+        器具の説明書に従い、豆の余熱による変化にも注意しながら冷却します。
+      </li>
+    </ol>
+
+    <h3>家庭焙煎で気をつけたいこと</h3>
+
+    <ul>
+      <li>高温の器具や豆に直接触れない。</li>
+      <li>火や熱源から目を離さない。</li>
+      <li>煙やにおいに配慮し、十分に換気する。</li>
+      <li>焙煎に対応していない器具を使用しない。</li>
+      <li>火災や事故につながるおそれがあるため、器具の安全上の注意を守る。</li>
+    </ul>
+
+    <div class="info-note">
+      家庭での焙煎は、使用する器具によって適切な手順が異なります。
+      具体的な温度や時間を一律に決めず、使用する機器の説明書を優先してください。
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="storage" aria-labelledby="storage-title">
+    <p class="section-label">06 / STORAGE</p>
+    <h2 id="storage-title">焙煎後の豆の保存</h2>
+
+    <p>
+      焙煎後のコーヒー豆は、時間の経過とともに香りや風味が変化します。
+      保存するときは、空気、湿気、熱、光の影響をできるだけ抑えることが大切です。
+    </p>
+
+    <h3>焙煎後の冷却</h3>
+
+    <p>
+      焙煎を終えた豆は余熱によって変化が進むことがあるため、適切に冷却します。
+      冷却方法は使用する器具や焙煎量に応じて選び、高温の豆を扱う際はやけどに注意してください。
+    </p>
+
+    <h3>保存の基本</h3>
+
+    <ul>
+      <li>直射日光や高温になる場所を避ける。</li>
+      <li>湿気が入りにくい、清潔で乾燥した容器を使う。</li>
+      <li>空気との接触をできるだけ抑える。</li>
+      <li>コンロの近くなど、温度が上がりやすい場所を避ける。</li>
+      <li>豆を挽いた粉は表面積が大きくなるため、必要な分を抽出直前に挽くことを検討する。</li>
+    </ul>
+
+    <h3>焙煎直後の豆について</h3>
+
+    <p>
+      焙煎後の豆からは、二酸化炭素などのガスがしばらく放出されます。
+      このため、焙煎直後と時間を置いた後では、抽出時の様子や香りの感じ方が変わる場合があります。
+    </p>
+
+    <p>
+      抽出に適したタイミングは、豆の種類や焙煎度、抽出方法、好みによって異なります。
+      必ず一定の時間を置かなければならないわけではないため、
+      焙煎日を記録して味わいの変化を比較してみるのも方法のひとつです。
+    </p>
+
+    <div class="info-note">
+      保存できる期間は、豆の状態や包装、保管環境によって異なります。
+      一律の期限を決めるのではなく、購入した豆の表示や保存方法を確認しましょう。
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="next-card" aria-labelledby="next-title">
+    <p class="section-label">NEXT STEP</p>
+    <h2 id="next-title">次に学ぶこと</h2>
+
+    <p>
+      焙煎度の違いが分かったら、豆の種類や抽出方法についても学んでみましょう。
+      豆の特徴と焙煎度、抽出方法を組み合わせて考えることで、
+      自分の好みに合ったコーヒーを見つけやすくなります。
+    </p>
+
+    <div class="next-links">
+      <a class="next-link primary" href="knowledgeindex.html">知識目次に戻る</a>
+      <a class="next-link" href="beans.html">コーヒー豆の種類</a>
+      <a class="next-link" href="brewing.html">コーヒーの淹れ方</a>
+      <a class="next-link" href="grind.html">コーヒーの挽き方</a>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-&copy; 2026 CoffeeSite
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="フッターナビゲーション">
+    <a href="../index.html">ホーム</a>
+    <a href="../beginner/beginner.html">初心者</a>
+    <a href="knowledgeindex.html">知識</a>
+    <a href="../blog/blogindex.html">ブログ</a>
+  </nav>
+
+  <small>&copy; 2026 COFFEE GUIDE</small>
 </footer>
+
 </body>
 </html>
+```
