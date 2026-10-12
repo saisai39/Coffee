@@ -1,97 +1,1051 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>淹れ方 - コーヒー知識アーカイブ</title>
-<link rel="stylesheet" href="../css/style.css">
+<meta name="description" content="ペーパードリップ、フレンチプレス、エスプレッソ、ネルドリップ、サイフォン、水出しコーヒーの淹れ方と、味を調整する方法を解説します。">
+<title>コーヒーの淹れ方 | COFFEE GUIDE</title>
 <style>
-body { font-family:"Hiragino Kaku Gothic Pro", sans-serif; background:#fefcf7; color:#000; margin:0; padding:0; }
-header { background:#c7b198; padding:30px 20px; text-align:center; color:#fff; }
-header h1 a { color:#fff; text-decoration:none; font-size:2em; }
-main { max-width:1000px; margin:40px auto; padding:0 20px; }
-h1,h2,h3 { text-align:center; }
-.section-card { background:#e7d9ce; padding:25px; border-radius:12px; margin-bottom:30px; box-shadow:2px 2px 8px rgba(0,0,0,0.2); }
-.section-card h2, .section-card h3 { margin-top:20px; margin-bottom:15px; }
-.section-card p, .section-card ul, .section-card ol { line-height:1.7; margin-bottom:15px; }
-.top-link { display:inline-block; margin:30px auto 0; padding:10px 20px; background:#c7b198; color:#fff; text-decoration:none; border-radius:6px; text-align:center; display:block; width:fit-content; }
-.top-link:hover { background:#b09b7f; }
+:root {
+  --bg: #f8f5ef;
+  --surface: #fffdf8;
+  --brown: #493326;
+  --brown-light: #654b39;
+  --text: #302820;
+  --muted: #74685d;
+  --border: #e5dbce;
+  --accent: #c7a783;
+  --soft: #eee5da;
+  --shadow: 0 8px 24px rgba(73, 51, 38, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--brown-light);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  color: var(--brown);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 24px;
+}
+
+.site-nav a {
+  color: var(--brown-light);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.breadcrumb a:hover,
+.footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(199, 167, 131, 0.18), transparent 38%),
+    var(--brown);
+  color: #fffdf8;
+}
+
+.hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 24px 72px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #e0c8ad;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+}
+
+.hero-description {
+  max-width: 720px;
+  margin: 22px 0 0;
+  color: #f0e7dd;
+  font-size: 1rem;
+}
+
+.hero-note {
+  max-width: 720px;
+  margin-top: 28px;
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 253, 248, 0.22);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, 0.06);
+  color: #f0e7dd;
+  font-size: 0.9rem;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 24px 76px;
+}
+
+.breadcrumb {
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: 8px;
+  color: #b2a393;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.content-card {
+  margin-bottom: 28px;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  scroll-margin-top: 24px;
+}
+
+.section-label {
+  margin: 0 0 8px;
+  color: #987451;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.content-card h2 {
+  margin: 0 0 18px;
+  color: var(--brown);
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  line-height: 1.5;
+}
+
+.content-card h3 {
+  margin: 26px 0 10px;
+  color: var(--brown-light);
+  font-size: 1.15rem;
+  line-height: 1.55;
+}
+
+.content-card p {
+  margin: 0 0 16px;
+}
+
+.content-card p:last-child {
+  margin-bottom: 0;
+}
+
+.content-card ul,
+.content-card ol {
+  margin: 12px 0 18px;
+  padding-left: 1.5em;
+}
+
+.content-card li {
+  margin-bottom: 7px;
+  padding-left: 3px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.intro-item {
+  padding: 18px;
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.intro-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--brown);
+}
+
+.intro-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--brown);
+  font-weight: 650;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toc-list a:hover {
+  background: var(--soft);
+  border-color: var(--accent);
+}
+
+.toc-number {
+  color: #a47d56;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.feature-item {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.feature-item strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--brown);
+}
+
+.feature-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.recipe-box {
+  margin: 20px 0;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.recipe-box h3 {
+  margin-top: 0;
+}
+
+.recipe-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+}
+
+.recipe-item {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.recipe-item span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.recipe-item strong {
+  color: var(--brown);
+  font-size: 1rem;
+}
+
+.step-list {
+  counter-reset: brew-step;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-list li {
+  position: relative;
+  margin: 0 0 12px;
+  padding: 14px 16px 14px 52px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  counter-increment: brew-step;
+}
+
+.step-list li::before {
+  content: counter(brew-step, decimal-leading-zero);
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  color: #a47d56;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.info-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: #f5eee5;
+  color: #5d5044;
+  font-size: 0.92rem;
+}
+
+.table-wrap {
+  width: 100%;
+  margin: 18px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  text-align: left;
+}
+
+th,
+td {
+  min-width: 120px;
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--soft);
+  color: var(--brown);
+  font-weight: 700;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.next-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.next-card h2 {
+  margin: 0 0 8px;
+  color: var(--brown);
+  font-size: 1.3rem;
+}
+
+.next-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.next-link {
+  display: inline-block;
+  padding: 11px 16px;
+  border: 1px solid var(--brown);
+  border-radius: 8px;
+  color: var(--brown);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next-link.primary {
+  background: var(--brown);
+  color: #fffdf8;
+}
+
+.next-link:hover {
+  opacity: 0.82;
+}
+
+.site-footer {
+  padding: 30px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-bottom: 18px;
+}
+
+.footer-nav a {
+  color: var(--brown-light);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-footer small {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    gap: 8px 18px;
+  }
+
+  .hero-inner {
+    padding: 54px 20px 50px;
+  }
+
+  main {
+    padding: 24px 16px 54px;
+  }
+
+  .intro-grid,
+  .feature-grid,
+  .toc-list,
+  .recipe-list {
+    grid-template-columns: 1fr;
+  }
+
+  .content-card {
+    border-radius: 12px;
+  }
+
+  .next-card {
+    padding: 22px;
+  }
+
+  th,
+  td {
+    padding: 11px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 </head>
-<body>
-<header>
-<h1><a href="../index.html">コーヒーサイト</a></h1>
+
+<body id="top">
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="../index.html">COFFEE GUIDE</a>
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a href="../beginner/beginner.html">初心者</a>
+      <a href="knowledgeindex.html" aria-current="page">知識</a>
+      <a href="../blog/blogindex.html">ブログ</a>
+    </nav>
+  </div>
 </header>
 
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero-inner">
+    <p class="eyebrow">COFFEE KNOWLEDGE / 03</p>
+    <h1 id="page-title">コーヒーの淹れ方</h1>
+    <p class="hero-description">
+      同じ豆でも、使う器具や挽き方、お湯の量、抽出時間によって味わいは変わります。
+      代表的な抽出方法の違いと、家庭で再現しやすい基本の手順を学びましょう。
+    </p>
+    <div class="hero-note">
+      ここで紹介する分量や時間は、抽出を始めるための目安です。
+      器具の仕様や豆の状態に合わせて調整してください。
+    </div>
+  </div>
+</section>
+
 <main>
-<section class="section-card">
-<h1>コーヒーの淹れ方</h1>
-<p>抽出方法によって味わいが大きく変わるコーヒー。ここでは、代表的な淹れ方を科学的・実践的に解説し、初心者でも美味しく淹れられるコツを紹介します。</p>
-<p>ペーパードリップ、フレンチプレス、エスプレッソ、ハンドドリップ、浸漬式など多様な方法を理解し、家庭で再現できるようにします。</p>
-</section>
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="knowledgeindex.html">知識アーカイブ</a></li>
+      <li aria-current="page">コーヒーの淹れ方</li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>1. ペーパードリップ</h2>
-<p>最も一般的な家庭用抽出方法。ペーパーフィルターが雑味を吸収し、クリアでバランスの良い味わいになります。</p>
-<ul>
-<li>挽き方：中挽き</li>
-<li>お湯の温度：90〜95℃</li>
-<li>ポイント：お湯を豆全体に均一に注ぐ</li>
-<li>抽出時間：2〜3分程度</li>
-</ul>
-<p>初心者向けで失敗が少なく、豆の個性を引き出せます。</p>
-</section>
+  <section class="content-card" aria-labelledby="intro-title">
+    <p class="section-label">OVERVIEW</p>
+    <h2 id="intro-title">このページで学べること</h2>
+    <p>
+      コーヒーの抽出方法は、大きく分けると、お湯を粉に通す「透過式」と、
+      お湯と粉を一定時間接触させる「浸漬式」があります。
+      ほかにも、圧力を利用するエスプレッソや、水で時間をかけて抽出する方法があります。
+    </p>
 
-<section class="section-card">
-<h2>2. フレンチプレス</h2>
-<p>浸漬式の抽出方法で、コーヒーオイルや微粉も抽出されるため、コクと香りが豊かになります。</p>
-<ul>
-<li>挽き方：粗挽き</li>
-<li>お湯の温度：90〜95℃</li>
-<li>抽出時間：4分程度</li>
-<li>ポイント：プレス後はすぐに注ぐ</li>
-</ul>
-<p>濃厚でフルボディの味わいが特徴。豆の鮮度や粒度が味に直結します。</p>
-</section>
+    <div class="intro-grid">
+      <div class="intro-item">
+        <strong>器具の違い</strong>
+        <p>抽出の仕組みと、味わいに影響する特徴を知る。</p>
+      </div>
+      <div class="intro-item">
+        <strong>基本の手順</strong>
+        <p>分量や時間を目安に、家庭で試せる方法を学ぶ。</p>
+      </div>
+      <div class="intro-item">
+        <strong>味の調整</strong>
+        <p>薄い、酸っぱい、苦いと感じたときの調整方法を知る。</p>
+      </div>
+    </div>
+  </section>
 
-<section class="section-card">
-<h2>3. エスプレッソ</h2>
-<p>高圧で短時間に抽出する方法で、濃厚で香り高いコーヒーが楽しめます。</p>
-<ul>
-<li>挽き方：細挽き</li>
-<li>抽出時間：25〜30秒</li>
-<li>抽出圧力：9気圧程度</li>
-<li>ポイント：タンピング（粉を押す作業）を均一に行う</li>
-</ul>
-<p>家庭用マシンでも応用可能。ミルクと合わせるとラテやカプチーノに最適です。</p>
-</section>
+  <nav class="content-card" aria-labelledby="toc-title">
+    <p class="section-label">CONTENTS</p>
+    <h2 id="toc-title">目次</h2>
+    <ol class="toc-list">
+      <li><a href="#drip"><span class="toc-number">01</span><span>ペーパードリップ</span></a></li>
+      <li><a href="#french-press"><span class="toc-number">02</span><span>フレンチプレス</span></a></li>
+      <li><a href="#espresso"><span class="toc-number">03</span><span>エスプレッソ</span></a></li>
+      <li><a href="#other-methods"><span class="toc-number">04</span><span>その他の抽出方法</span></a></li>
+      <li><a href="#adjust"><span class="toc-number">05</span><span>味の調整方法</span></a></li>
+      <li><a href="#troubleshooting"><span class="toc-number">06</span><span>よくある失敗と対策</span></a></li>
+    </ol>
+  </nav>
 
-<section class="section-card">
-<h2>4. その他の抽出方法</h2>
-<h3>ネルドリップ</h3>
-<p>布フィルターを使用し、まろやかで深い味わいが特徴。抽出スピードを調整しやすく、香りの再現性が高い。</p>
-<h3>サイフォン</h3>
-<p>真空の力で抽出する器具。視覚的にも楽しめ、クリアで上品な味わい。抽出温度・時間を細かく調整可能。</p>
-<h3>コールドブリュー（浸漬式）</h3>
-<p>水で長時間抽出する方法。酸味が穏やかでまろやかな味。夏場や冷たいコーヒーに最適。</p>
-</section>
+  <section class="content-card" id="drip" aria-labelledby="drip-title">
+    <p class="section-label">01 / POUR OVER</p>
+    <h2 id="drip-title">ペーパードリップ</h2>
+    <p>
+      ペーパーフィルターに入れたコーヒー粉へお湯を注ぎ、重力によって抽出する方法です。
+      ペーパーがコーヒーの微粉や油分の一部をとらえるため、比較的すっきりとした口当たりに
+      仕上がりやすい特徴があります。
+    </p>
+    <p>
+      ハンドドリップは、人が手でお湯を注ぐ抽出方法を指す言葉です。
+      ペーパードリップは、ハンドドリップでよく使われる方法のひとつです。
+    </p>
 
-<section class="section-card">
-<h2>5. 味の調整と実践アドバイス</h2>
-<ul>
-<li>お湯の温度や注ぎ方を変えて酸味・苦味を調整</li>
-<li>挽き方を変えることで抽出速度を調整し、濃度をコントロール</li>
-<li>抽出後はすぐに飲むことで香りを最大限に楽しめる</li>
-<li>豆の鮮度や焙煎度も味に影響するので、条件を揃えて抽出</li>
-</ul>
-<p>抽出方法ごとのコツを理解すると、自宅でもカフェのような味を再現できます。</p>
-</section>
+    <div class="recipe-box">
+      <h3>基本レシピの一例</h3>
+      <p>まずは1杯分を量り、同じ条件で淹れてから好みに合わせて調整します。</p>
+      <div class="recipe-list">
+        <div class="recipe-item">
+          <span>コーヒー粉</span>
+          <strong>15g</strong>
+        </div>
+        <div class="recipe-item">
+          <span>お湯</span>
+          <strong>250g</strong>
+        </div>
+        <div class="recipe-item">
+          <span>湯温の目安</span>
+          <strong>92〜96℃</strong>
+        </div>
+        <div class="recipe-item">
+          <span>挽き方の目安</span>
+          <strong>中挽き〜中細挽き</strong>
+        </div>
+        <div class="recipe-item">
+          <span>抽出時間の目安</span>
+          <strong>約2分30秒〜3分</strong>
+        </div>
+        <div class="recipe-item">
+          <span>粉とお湯の比率</span>
+          <strong>1：16.7</strong>
+        </div>
+      </div>
+      <p style="margin-top:16px;">
+        このレシピはHARIO V60などのペーパードリップで試すための一例です。
+        ドリッパーや豆によって適した条件は変わります。
+      </p>
+    </div>
 
-<a href="knowledgeindex.html" class="top-link">知識目次に戻る</a>
+    <h3>淹れ方の手順</h3>
+    <ol class="step-list">
+      <li>
+        <strong>器具を準備する。</strong><br>
+        ドリッパーにペーパーフィルターをセットします。
+        必要に応じてお湯でフィルターをすすぎ、すすいだお湯は捨てます。
+      </li>
+      <li>
+        <strong>粉を量って入れる。</strong><br>
+        コーヒー粉15gを量り、フィルター内に平らになるように入れます。
+      </li>
+      <li>
+        <strong>少量のお湯で蒸らす。</strong><br>
+        粉全体が湿る程度のお湯を注ぎ、約30〜45秒待ちます。
+        蒸らし時間やお湯の量はレシピに応じて調整します。
+      </li>
+      <li>
+        <strong>残りのお湯を注ぐ。</strong><br>
+        粉全体にお湯が行き渡るように、数回に分けて注ぎます。
+        フィルターの縁へ直接大量に注ぐことは避け、注ぐ速さをできるだけ一定にします。
+      </li>
+      <li>
+        <strong>抽出が終わったら取り外す。</strong><br>
+        目標のお湯の量まで注ぎ、ドリッパーから落ちきったら取り外します。
+        最後まで落としきるかどうかは、味の好みやレシピに合わせます。
+      </li>
+    </ol>
+
+    <div class="info-note">
+      抽出時間だけを正解にする必要はありません。味が薄いときは挽き目を少し細かく、
+      苦味や渋みが強いときは少し粗くするなど、ひとつずつ条件を変えて比べてみましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="french-press" aria-labelledby="french-title">
+    <p class="section-label">02 / IMMERSION</p>
+    <h2 id="french-title">フレンチプレス</h2>
+    <p>
+      フレンチプレスは、コーヒー粉をお湯に浸して抽出し、金属製などのフィルターを
+      プランジャーで押し下げて粉と液体を分ける器具です。
+      ペーパーフィルターを使う方法と比べ、油分や微粉が飲み物に残りやすく、
+      豊かな口当たりになりやすい特徴があります。
+    </p>
+
+    <div class="recipe-box">
+      <h3>基本条件の一例</h3>
+      <div class="recipe-list">
+        <div class="recipe-item">
+          <span>コーヒー粉</span>
+          <strong>15g</strong>
+        </div>
+        <div class="recipe-item">
+          <span>お湯</span>
+          <strong>250g</strong>
+        </div>
+        <div class="recipe-item">
+          <span>湯温の目安</span>
+          <strong>92〜96℃</strong>
+        </div>
+        <div class="recipe-item">
+          <span>挽き方の目安</span>
+          <strong>粗挽き</strong>
+        </div>
+        <div class="recipe-item">
+          <span>浸漬時間の目安</span>
+          <strong>約4分</strong>
+        </div>
+      </div>
+      <p style="margin-top:16px;">
+        4分は一般的なフレンチプレスの基本レシピで使われる時間の一例です。
+        粉の量や器具、好みの濃さによって調整できます。
+      </p>
+    </div>
+
+    <h3>淹れ方の手順</h3>
+    <ol class="step-list">
+      <li>
+        <strong>粗挽きの粉を入れる。</strong><br>
+        コーヒー粉を量り、フレンチプレスの容器に入れます。
+      </li>
+      <li>
+        <strong>お湯を注ぐ。</strong><br>
+        粉全体にお湯が触れるように注ぎます。容器の容量を超えないようにしてください。
+      </li>
+      <li>
+        <strong>一定時間浸す。</strong><br>
+        フタを載せ、粉を約4分浸します。器具やレシピに合わせて時間を調整します。
+      </li>
+      <li>
+        <strong>プランジャーをゆっくり押す。</strong><br>
+        急に力を加えず、抵抗を感じたら無理に押し込まないようにします。
+      </li>
+      <li>
+        <strong>抽出液を注ぐ。</strong><br>
+        抽出したコーヒーを長時間容器に残すと、味わいが変わることがあります。
+        飲む分をカップに注ぎ分けます。
+      </li>
+    </ol>
+
+    <div class="info-note">
+      カップの底に粉が残りやすい場合は、粗挽きにする、プランジャーをゆっくり押す、
+      最後の一滴まで無理に注がない、といった方法を試せます。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="espresso" aria-labelledby="espresso-title">
+    <p class="section-label">03 / PRESSURE BREWING</p>
+    <h2 id="espresso-title">エスプレッソ</h2>
+    <p>
+      エスプレッソは、細かく挽いたコーヒー粉に圧力をかけてお湯を通し、
+      少量の濃縮されたコーヒーを抽出する方法です。
+      専用マシンや抽出器具を使い、粉の量、抽出液の量、挽き目などを調整します。
+    </p>
+
+    <h3>基本条件の考え方</h3>
+    <ul>
+      <li><strong>挽き方：</strong>一般に細挽き。抽出の速さを見ながら調整します。</li>
+      <li><strong>抽出時間：</strong>約25〜30秒が目安として使われることがありますが、豆やマシン、レシピによって異なります。</li>
+      <li><strong>圧力：</strong>約9気圧は一般的なエスプレッソ抽出の目安のひとつです。家庭用機器の仕様を確認してください。</li>
+      <li><strong>粉の量と抽出液の量：</strong>使用するバスケットやレシピに合わせて設定します。</li>
+    </ul>
+
+    <h3>抽出の基本手順</h3>
+    <ol class="step-list">
+      <li>
+        <strong>粉を量って挽く。</strong><br>
+        使用するバスケットの容量に合った量を量り、細かく挽きます。
+      </li>
+      <li>
+        <strong>粉を均一に整える。</strong><br>
+        粉の偏りや大きな隙間が残らないように整えます。
+      </li>
+      <li>
+        <strong>タンピングする。</strong><br>
+        タンパーで粉の表面を水平に押し固めます。機器の説明書に従い、無理な力を加えないようにします。
+      </li>
+      <li>
+        <strong>抽出する。</strong><br>
+        マシンの操作手順に従って抽出し、時間だけでなく抽出液の量や流れも確認します。
+      </li>
+      <li>
+        <strong>結果を記録して調整する。</strong><br>
+        味が酸っぱすぎる、苦すぎる、抽出が速すぎるなどの変化を見ながら、
+        挽き目や粉の量、抽出液の量を一度にひとつずつ調整します。
+      </li>
+    </ol>
+
+    <h3>エスプレッソを使った飲み方</h3>
+    <p>
+      エスプレッソはそのまま飲むほか、お湯を加えたアメリカーノや、
+      ミルクを加えたカフェラテ、カプチーノなどにも使われます。
+      飲み方によって必要な濃さや抽出量の考え方も変わります。
+    </p>
+
+    <div class="info-note">
+      エスプレッソは高温・高圧の機器を使うため、マシンの説明書を優先してください。
+      抽出中や使用直後のポルタフィルター、スチームノズル、金属部分などに触れると、
+      やけどをするおそれがあります。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="other-methods" aria-labelledby="other-title">
+    <p class="section-label">04 / OTHER METHODS</p>
+    <h2 id="other-title">その他の抽出方法</h2>
+    <p>
+      ペーパードリップやフレンチプレス以外にも、フィルターの素材や抽出の仕組みが異なる器具があります。
+      特徴を知っておくと、器具選びの幅が広がります。
+    </p>
+
+    <h3>ネルドリップ</h3>
+    <p>
+      布製フィルターを使ってお湯を通す透過式の抽出方法です。
+      布の種類や状態、粉の挽き方、注ぎ方などによって風味や口当たりが変わります。
+      使用後はフィルターの洗浄や保管が必要で、ペーパーフィルターより手入れに手間がかかります。
+    </p>
+
+    <h3>サイフォン</h3>
+    <p>
+      フラスコ内の水を加熱し、蒸気圧などを利用してお湯を移動させ、
+      コーヒー粉と接触させて抽出する器具です。
+      抽出の様子を目で見て楽しめる一方、器具の組み立てや加熱、使用後の取り扱いには注意が必要です。
+    </p>
+
+    <h3>コールドブリュー（水出しコーヒー）</h3>
+    <p>
+      水を使って時間をかけて抽出する方法です。
+      お湯で抽出したコーヒーとは風味の出方が異なり、まろやかに感じられることがあります。
+      水の量、粉の挽き方、抽出時間、冷蔵の有無などで仕上がりが変わります。
+    </p>
+    <p>
+      水出しには、粉を水に浸す浸漬式と、専用器具で水を少しずつ通す方式などがあります。
+      抽出時間や保存方法は、器具の説明書やレシピに従い、清潔な器具と水を使ってください。
+    </p>
+
+    <h3>その他の方法を比較する</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">方法</th>
+            <th scope="col">抽出の仕組み</th>
+            <th scope="col">特徴</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ペーパードリップ</td>
+            <td>透過式</td>
+            <td>比較的すっきりした口当たり</td>
+          </tr>
+          <tr>
+            <td>フレンチプレス</td>
+            <td>浸漬式</td>
+            <td>油分や微粉が残りやすい</td>
+          </tr>
+          <tr>
+            <td>エスプレッソ</td>
+            <td>圧力を利用</td>
+            <td>少量で濃縮された味わい</td>
+          </tr>
+          <tr>
+            <td>ネルドリップ</td>
+            <td>布フィルターの透過式</td>
+            <td>布の状態や抽出操作が風味に影響</td>
+          </tr>
+          <tr>
+            <td>サイフォン</td>
+            <td>加熱と圧力差を利用</td>
+            <td>抽出の工程を目で見て楽しめる</td>
+          </tr>
+          <tr>
+            <td>水出しコーヒー</td>
+            <td>低温の水で抽出</td>
+            <td>お湯での抽出とは異なる風味になりやすい</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="adjust" aria-labelledby="adjust-title">
+    <p class="section-label">05 / TASTE CONTROL</p>
+    <h2 id="adjust-title">味を調整する基本</h2>
+    <p>
+      コーヒーの味は、豆の種類や焙煎度だけでなく、粉とお湯の比率、挽き目、湯温、
+      抽出時間、注ぎ方などの影響を受けます。
+      一度に複数の条件を変えると原因が分かりにくくなるため、まずはひとつずつ変えてみましょう。
+    </p>
+
+    <h3>粉とお湯の比率</h3>
+    <p>
+      お湯に対する粉の量を変えると、飲み物の濃さが変わります。
+      例えば、同じ粉の量でお湯を増やすと薄く感じられやすく、お湯を減らすと濃く感じられやすくなります。
+      ただし、濃さと味のバランスは同じではありません。
+    </p>
+
+    <h3>挽き目</h3>
+    <p>
+      一般に、粉を細かくするとお湯と触れる表面積が増え、抽出が進みやすくなります。
+      粗くすると抽出が進みにくくなる傾向がありますが、実際の流れ方は器具や注ぎ方などにも左右されます。
+    </p>
+
+    <h3>湯温と抽出時間</h3>
+    <p>
+      湯温は成分の溶け出し方に影響し、抽出時間は粉とお湯が接触する時間に関係します。
+      ただし、湯温を上げれば必ずおいしくなるわけでも、時間を長くすれば必ず濃くなるわけでもありません。
+      使用する豆や器具に合う条件を探すことが大切です。
+    </p>
+
+    <h3>調整の進め方</h3>
+    <ol>
+      <li>粉の量とお湯の量を量り、基準となるレシピを決める。</li>
+      <li>味を確認し、濃さ、酸味、苦味、渋みなど気になった点を記録する。</li>
+      <li>挽き目、湯温、注ぎ方などからひとつを選んで変更する。</li>
+      <li>同じ器具と分量で再度淹れ、変更前と比べる。</li>
+      <li>好みの味に近づいたら、その条件を次回も使えるように記録する。</li>
+    </ol>
+
+    <div class="info-note">
+      「酸味がある＝失敗」「苦味がある＝失敗」ではありません。
+      コーヒー本来の風味として感じられる場合もあります。
+      自分が不快に感じる味なのか、好みの範囲なのかを基準に調整してみましょう。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="content-card" id="troubleshooting" aria-labelledby="troubleshooting-title">
+    <p class="section-label">06 / TROUBLESHOOTING</p>
+    <h2 id="troubleshooting-title">よくある失敗と対策</h2>
+    <p>
+      味が思ったとおりにならないときは、すぐに豆を変えるのではなく、
+      抽出条件をひとつずつ見直してみましょう。以下は調整を始めるための目安です。
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <strong>味が薄く、水っぽい</strong>
+        <p>
+          粉に対してお湯が多すぎないか確認します。
+          比率を変えるほか、透過式では挽き目が粗すぎないかも確認します。
+        </p>
+      </div>
+      <div class="feature-item">
+        <strong>酸味が強く感じられる</strong>
+        <p>
+          もともとの豆の風味か、抽出が十分に進んでいないのかを考えます。
+          挽き目や湯温を少しずつ調整して比較します。
+        </p>
+      </div>
+      <div class="feature-item">
+        <strong>苦味や渋みが強い</strong>
+        <p>
+          挽き目が細かすぎないか、抽出が長くなりすぎていないかを確認します。
+          少し粗くするなど、一条件ずつ試します。
+        </p>
+      </div>
+      <div class="feature-item">
+        <strong>抽出に時間がかかりすぎる</strong>
+        <p>
+          粉が細かすぎないか、フィルターや器具が詰まっていないかを確認します。
+          器具に適した挽き目へ調整します。
+        </p>
+      </div>
+      <div class="feature-item">
+        <strong>味が毎回変わる</strong>
+        <p>
+          粉とお湯を量り、注ぐ回数や時間、湯温を記録すると、
+          変化の原因を見つけやすくなります。
+        </p>
+      </div>
+      <div class="feature-item">
+        <strong>香りが弱い</strong>
+        <p>
+          豆の保存状態や焙煎日、挽いてからの時間を確認します。
+          抽出条件だけでなく、豆の状態も味に影響します。
+        </p>
+      </div>
+    </div>
+
+    <div class="info-note">
+      これらの症状には複数の原因が考えられます。ひとつの症状だけで原因を断定せず、
+      分量や時間を記録しながら比較することが大切です。
+    </div>
+    <a class="back-to-top" href="#top">↑ ページ上部へ戻る</a>
+  </section>
+
+  <section class="next-card" aria-labelledby="next-title">
+    <p class="section-label">NEXT STEP</p>
+    <h2 id="next-title">次に学ぶこと</h2>
+    <p>
+      抽出方法の違いが分かったら、豆の種類や焙煎度、挽き方についても学ぶと、
+      自分の好みに合うコーヒーを選びやすくなります。
+    </p>
+    <div class="next-links">
+      <a class="next-link primary" href="knowledgeindex.html">知識目次に戻る</a>
+      <a class="next-link" href="beans.html">豆の種類を学ぶ</a>
+      <a class="next-link" href="../beginner/beginner.html">初心者向けガイドを見る</a>
+    </div>
+  </section>
 </main>
 
-<footer>
-&copy; 2026 CoffeeSite
+<footer class="site-footer">
+  <nav class="footer-nav" aria-label="フッターナビゲーション">
+    <a href="../index.html">ホーム</a>
+    <a href="../beginner/beginner.html">初心者</a>
+    <a href="knowledgeindex.html">知識</a>
+    <a href="../blog/blogindex.html">ブログ</a>
+  </nav>
+  <small>&copy; 2026 COFFEE GUIDE</small>
 </footer>
 </body>
 </html>
+```
