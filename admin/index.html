@@ -2,19 +2,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>管理画面 | COFFEE GUIDE</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Yu Gothic", sans-serif;
-      background: #f6f3ee;
-      color: #302a24;
-<!DOCTYPE html>
-<html lang="ja">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>管理画面 | COFFEE GUIDE</title>
@@ -113,220 +100,114 @@ const pages = [
   {title:"知識一覧",path:"knowledge/knowledgeindex.html",text:"コーヒー知識ページの一覧です。"}
 ];
 
+const STORAGE_KEY = "coffee-guide-admin-drafts-v1";
+
 const listView = document.getElementById("listView");
 const editView = document.getElementById("editView");
 const pageList = document.getElementById("pageList");
 const pageTitle = document.getElementById("pageTitle");
 const pageText = document.getElementById("pageText");
 const message = document.getElementById("message");
+const preview = document.getElementById("preview");
+
 let currentPage = null;
 
-function openEditor(page){
-  currentPage = page;
-  document.getElementById("editHeading").textContent = page.title + "を編集";
-  document.getElementById("editPath").textContent = "対象ファイル（表示のみ）：" + page.path;
-  pageTitle.value = page.title;
-  pageText.value = page.text;
-  message.textContent = "";
-  document.getElementById("preview").classList.add("hidden");
-  listView.classList.add("hidden");
-  editView.classList.remove("hidden");
-  window.scrollTo(0,0);
+function loadDrafts() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  } catch (error) {
+    return {};
+  }
 }
 
-pages.forEach(page=>{
+function getPageData(page) {
+  const drafts = loadDrafts();
+  const saved = drafts[page.path];
+
+  return saved
+    ? { title: saved.title, text: saved.text }
+    : { title: page.title, text: page.text };
+}
+
+function openEditor(page) {
+  currentPage = page;
+  const data = getPageData(page);
+
+  document.getElementById("editHeading").textContent =
+    page.title + "を編集";
+  document.getElementById("editPath").textContent =
+    "対象ファイル（表示のみ）：" + page.path;
+
+  pageTitle.value = data.title;
+  pageText.value = data.text;
+  message.textContent = "";
+  preview.classList.add("hidden");
+  listView.classList.add("hidden");
+  editView.classList.remove("hidden");
+  window.scrollTo(0, 0);
+}
+
+pages.forEach(page => {
   const card = document.createElement("article");
   card.className = "card";
+
   const heading = document.createElement("h3");
   heading.textContent = page.title;
+
   const description = document.createElement("p");
   description.className = "muted";
   description.textContent = page.text;
+
   const path = document.createElement("div");
   path.className = "path";
   path.textContent = page.path;
+
   const button = document.createElement("button");
   button.type = "button";
   button.textContent = "このページを編集";
-  button.addEventListener("click",()=>openEditor(page));
-  card.append(heading,description,path,button);
+  button.addEventListener("click", () => openEditor(page));
+
+  card.append(heading, description, path, button);
   pageList.appendChild(card);
 });
 
-document.getElementById("backButton").addEventListener("click",()=>{
+document.getElementById("backButton").addEventListener("click", () => {
   editView.classList.add("hidden");
   listView.classList.remove("hidden");
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 });
 
-document.getElementById("previewButton").addEventListener("click",()=>{
+document.getElementById("previewButton").addEventListener("click", () => {
   document.getElementById("previewTitle").textContent = pageTitle.value;
   document.getElementById("previewText").textContent = pageText.value;
-  document.getElementById("preview").classList.remove("hidden");
-  message.textContent = "プレビューを表示しました。実際のサイトには反映されていません。";
+  preview.classList.remove("hidden");
+  message.textContent =
+    "プレビューを表示しました。実際のサイトには反映されていません。";
 });
 
-document.getElementById("saveDraftButton").addEventListener("click",()=>{
-  message.textContent = "入力内容をこの画面内で確認しました。まだ保存されていません。ページを再読み込みすると元に戻ります。";
+document.getElementById("saveDraftButton").addEventListener("click", () => {
+  if (!currentPage) return;
+
+  try {
+    const drafts = loadDrafts();
+
+    drafts[currentPage.path] = {
+      title: pageTitle.value,
+      text: pageText.value,
+      updatedAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(drafts));
+
+    message.textContent =
+      "一時保存しました。このブラウザで再読み込みしても内容は残ります。";
+  } catch (error) {
+    message.textContent =
+      "保存できませんでした。ブラウザの保存設定や空き容量を確認してください。";
+  }
 });
 </script>
-</body>
-</html>
 
-    }
-    header {
-      padding: 24px 32px;
-      background: #302a24;
-      color: white;
-    }
-    header h1 { margin: 0; font-size: 22px; }
-    header p { margin: 8px 0 0; color: #ddd2c5; font-size: 13px; }
-    main { max-width: 1000px; margin: 36px auto; padding: 0 20px; }
-    .intro { margin-bottom: 28px; }
-    .intro h2 { font-size: 26px; margin-bottom: 8px; }
-    .intro p { color: #746b62; line-height: 1.8; }
-    .pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
-    .page {
-      display: block;
-      padding: 22px;
-      background: white;
-      border: 1px solid #e5ded4;
-      border-radius: 12px;
-    }
-    .page h3 { margin: 0 0 10px; font-size: 17px; }
-    .page p { color: #746b62; font-size: 13px; line-height: 1.7; }
-    .path { color: #8a6b4c; font-size: 12px; overflow-wrap: anywhere; }
-    .status {
-      display: inline-block;
-      padding: 5px 9px;
-      border-radius: 5px;
-      background: #f1e6d8;
-      font-size: 12px;
-    }
-    .notice {
-      margin-top: 24px;
-      padding: 18px;
-      border: 1px solid #dfc9a9;
-      border-radius: 10px;
-      background: #fffaf1;
-      line-height: 1.8;
-      font-size: 14px;
-    }
-    footer { padding: 28px 20px; text-align: center; color: #82786d; font-size: 12px; }
-    @media (max-width: 600px) {
-      header { padding: 22px 20px; }
-      main { margin-top: 24px; }
-      .intro h2 { font-size: 22px; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>COFFEE GUIDE</h1>
-    <p>サイト管理システム</p>
-  </header>
-
-  <main>
-    <section class="intro">
-      <span class="status">管理画面の試作版</span>
-      <h2>ページ管理</h2>
-      <p>編集対象にするページの一覧です。現在は一覧表示のみで、編集・保存機能はまだありません。</p>
-    </section>
-
-    <section class="pages">
-      <article class="page">
-        <h3>トップページ</h3>
-        <p>サイトの入口となるページ。</p>
-        <div class="path">index.html</div>
-      </article>
-      <article class="page">
-        <h3>初心者向けガイド</h3>
-        <p>初心者向けコンテンツの入口。</p>
-        <div class="path">beginner/beginner.html</div>
-      </article>
-      <article class="page">
-        <h3>初心者向けトップ</h3>
-        <p>初心者向けページのトップ。</p>
-        <div class="path">beginner/index.html</div>
-      </article>
-      <article class="page">
-        <h3>道具</h3>
-        <p>コーヒーに使う道具について。</p>
-        <div class="path">beginner/step1.html</div>
-      </article>
-      <article class="page">
-        <h3>ドリップ</h3>
-        <p>ドリップの基本について。</p>
-        <div class="path">beginner/step2.html</div>
-      </article>
-      <article class="page">
-        <h3>初心者ガイド Step 3</h3>
-        <p>初心者向けガイドのページ。</p>
-        <div class="path">beginner/step3.html</div>
-      </article>
-      <article class="page">
-        <h3>初心者ガイド Step 4</h3>
-        <p>初心者向けガイドのページ。</p>
-        <div class="path">beginner/step4.html</div>
-      </article>
-      <article class="page">
-        <h3>初心者ガイド Step 5</h3>
-        <p>初心者向けガイドのページ。</p>
-        <div class="path">beginner/step5.html</div>
-      </article>
-      <article class="page">
-        <h3>ブログ</h3>
-        <p>ブログ記事一覧。</p>
-        <div class="path">blog/blogindex.html</div>
-      </article>
-      <article class="page">
-        <h3>コーヒーの基礎</h3>
-        <p>コーヒーの基本知識。</p>
-        <div class="path">knowledge/basics.html</div>
-      </article>
-      <article class="page">
-        <h3>豆の知識</h3>
-        <p>コーヒー豆について。</p>
-        <div class="path">knowledge/beans.html</div>
-      </article>
-      <article class="page">
-        <h3>抽出方法</h3>
-        <p>抽出方法について。</p>
-        <div class="path">knowledge/brewing.html</div>
-      </article>
-      <article class="page">
-        <h3>挽き目</h3>
-        <p>コーヒーの挽き目について。</p>
-        <div class="path">knowledge/grind.html</div>
-      </article>
-      <article class="page">
-        <h3>焙煎</h3>
-        <p>焙煎について。</p>
-        <div class="path">knowledge/roasting.html</div>
-      </article>
-      <article class="page">
-        <h3>味わい</h3>
-        <p>コーヒーの味について。</p>
-        <div class="path">knowledge/taste.html</div>
-      </article>
-      <article class="page">
-        <h3>道具の知識</h3>
-        <p>コーヒー器具について。</p>
-        <div class="path">knowledge/tools.html</div>
-      </article>
-      <article class="page">
-        <h3>知識一覧</h3>
-        <p>コーヒー知識ページの入口。</p>
-        <div class="path">knowledge/knowledgeindex.html</div>
-      </article>
-    </section>
-
-    <div class="notice">
-      <strong>現在はページ一覧の試作段階です。</strong><br>
-      表示しているページ名とパスは、既存サイトの構成をもとにした候補です。実際のファイルと照合したうえで、編集・保存機能を実装します。
-    </div>
-  </main>
-
-  <footer>COFFEE GUIDE — 管理システム</footer>
 </body>
 </html>
